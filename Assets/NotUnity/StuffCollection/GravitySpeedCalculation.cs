@@ -1,26 +1,26 @@
 ﻿
 public class GravitySpeedCalculation : Something
 {
-    VariablePosition Speed;
     GroundCollisionCalculation GroundCollisionCalculation;
+    Thing Parent;
 
     public GravitySpeedCalculation(
-        VariablePosition speed, 
+        Thing parent,
         GroundCollisionCalculation groundCollision)
     {
-        Speed = speed;
+        Parent = parent;
         GroundCollisionCalculation = groundCollision;
     }
 
     public void Do(float timeSinceLastUpdate)
     {
-        if(GroundCollisionCalculation.IsHittingTheGround)
+        if (GroundCollisionCalculation.IsHittingTheGround)
         {
-            Speed.Velocity_Y.SetValue(0);   
+            Parent.Velocity_Y.SetValue(0);
         }
         else
         {
-            Speed.Velocity_Y.Add(-0.05f);
+            Parent.Velocity_Y.Add(-0.05f);
         }
     }
 }

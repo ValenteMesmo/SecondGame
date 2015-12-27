@@ -6,14 +6,14 @@ public class RectangleCollider : Something
     {
         get
         {
-            return Coord.X.GetValue();
+            return Parent.X.GetValue();
         }
     }
     public float Y
     {
         get
         {
-            return Coord.Y.GetValue();
+            return Parent.Y.GetValue();
         }
     }
 
@@ -24,12 +24,11 @@ public class RectangleCollider : Something
     public List<CollisionInfo> CurrentCollisions = new List<CollisionInfo>();
 
     private ColliderContext ColliderContext;
-    private VariablePosition Coord;
+    private Thing Parent;
 
     public RectangleCollider(
-        Thing thing,
         ColliderContext colliderContext,
-        VariablePosition coord,
+        Thing parent,
         float width,
         float height,
         string name)
@@ -38,7 +37,7 @@ public class RectangleCollider : Something
         Width = width;
         Height = height;
         Name = name;
-        Coord = coord;
+        Parent = parent;
         //TODO: validade ? to prevent duplication..
         ColliderContext.Colliders.Add(this);
     }

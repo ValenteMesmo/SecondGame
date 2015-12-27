@@ -1,13 +1,13 @@
 ﻿
 public class PositionToAvoidColliderIntersection : Something
 {
-    VariablePosition Position;
+    Thing Parent;
     RectangleCollider Collider;
     public PositionToAvoidColliderIntersection( 
-        VariablePosition position,
+        Thing parent,
         RectangleCollider collider)
     {
-        Position = position;
+        Parent = parent;
         Collider = collider;
     }
 
@@ -17,12 +17,12 @@ public class PositionToAvoidColliderIntersection : Something
         {
             if (collision.Below)
             {
-                Position.Y.SetValue(collision.Collider.Y + collision.Collider.Height);
+                Parent.Y.SetValue(collision.Collider.Y + collision.Collider.Height);
             }
 
             if (collision.Above)
             {
-                Position.Y.SetValue(collision.Collider.Y - Collider.Height);
+                Parent.Y.SetValue(collision.Collider.Y - Collider.Height);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 public class MovementVelocityCalculation : Something
 {
-    VariablePosition SpeedCalculation;
+    Thing Parent;
 
     const float acceleration = 0.05f;
 
@@ -9,19 +9,19 @@ public class MovementVelocityCalculation : Something
 
     public MovementVelocityCalculation(
         InputInfo inputInfo, 
-        VariablePosition speedCalculation)
+        Thing parent)
     {
-        SpeedCalculation = speedCalculation;
+        Parent = parent;
         input = inputInfo;
     }
 
     public void Do(float timeSinceLastUpdate)
     {
         if (input.RequestingLeftMovement)
-            SpeedCalculation.Velocity_X.SetValue(-acceleration);
+            Parent.Velocity_X.SetValue(-acceleration);
         else if (input.RequestingRightMovement)
-            SpeedCalculation.Velocity_X.SetValue(acceleration);
+            Parent.Velocity_X.SetValue(acceleration);
         else
-            SpeedCalculation.Velocity_X.SetValue(0);
+            Parent.Velocity_X.SetValue(0);
     }
 }

@@ -47,8 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DummyComponent.cs" />
-     <Compile Include="Assets\DummyComponentFloor.cs" />
      <Compile Include="Assets\GameLoop.cs" />
+     <Compile Include="Assets\GenerateUnityAssets.cs" />
      <Compile Include="Assets\NotUnity\ColliderContext.cs" />
      <Compile Include="Assets\NotUnity\CollisionInfo.cs" />
      <Compile Include="Assets\NotUnity\FloatNumber.cs" />
@@ -59,9 +59,9 @@
      <Compile Include="Assets\NotUnity\StuffCollection\MovementVelocityCalculation.cs" />
      <Compile Include="Assets\NotUnity\StuffCollection\PositionToAvoidColliderIntersection.cs" />
      <Compile Include="Assets\NotUnity\StuffCollection\RectangleCollider.cs" />
-     <Compile Include="Assets\NotUnity\StuffCollection\VariablePosition.cs" />
      <Compile Include="Assets\NotUnity\Thing.cs" />
      <Compile Include="Assets\NotUnity\World.cs" />
+     <Compile Include="Assets\PositionComponent.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

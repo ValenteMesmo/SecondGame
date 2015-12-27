@@ -1,7 +1,7 @@
 ﻿
 public class JumpVelocityCalculation : Something
 {
-    VariablePosition position;
+    Thing Parent;
 
     const float acceleration = 1f;
 
@@ -10,10 +10,10 @@ public class JumpVelocityCalculation : Something
 
     public JumpVelocityCalculation(
         InputInfo inputInfo,
-        VariablePosition speedCalculation,
+        Thing parent,
         GroundCollisionCalculation groundCollision)
     {
-        position = speedCalculation;
+        Parent = parent;
         input = inputInfo;
         GroundCollisionCalculation = groundCollision;
     }
@@ -22,7 +22,7 @@ public class JumpVelocityCalculation : Something
     {
         if (input.RequestingJump && GroundCollisionCalculation.IsHittingTheGround)
         {
-            position.Velocity_Y.SetValue(acceleration);
+            Parent.Velocity_Y.SetValue(acceleration);
         }
     }
 }
