@@ -1,61 +1,5 @@
 ﻿using System.Collections.Generic;
 
-public class Block : Thing
-{
-    public Block(ColliderContext collisionContext)
-    {
-        X = new FloatNumber(-100, 100);
-        Y = new FloatNumber(-100, 100);
-
-        var collider = new RectangleCollider(
-                collisionContext,
-                this,
-                width: 0.8f,
-                height: 0.8f,
-                name: "Ground");
-
-        Have(collider);
-    }
-}
-
-public class Player : Thing
-{
-    public InputInfo input;
-
-    public float Get_X()
-    {
-        return X.GetValue();
-    }
-
-    public float Get_Y()
-    {
-        return Y.GetValue();
-    }
-
-    public Player(ColliderContext collisionContext)
-    {
-        input = new InputInfo();
-        X = new FloatNumber(-100, 100);
-        Y = new FloatNumber(-100, 100);
-
-        var rectangularCollider = new RectangleCollider(
-            collisionContext,
-            this,
-            width: 1f,
-            height: 1.55f,
-            name: "Foot");
-
-        var groundCollision = new GroundCollisionCalculation(rectangularCollider);
-
-        Have(rectangularCollider)
-        .Have(groundCollision)
-        .Have(new PositionToAvoidColliderIntersection(this, rectangularCollider))
-        .Have(new GravitySpeedCalculation(this, groundCollision))
-        .Have(new JumpVelocityCalculation(input, this, groundCollision))
-        .Have(new MovementVelocityCalculation(input, this));
-    }
-}
-
 public class Thing
 {
     public FloatNumber Velocity_X { get; set; }
@@ -82,10 +26,11 @@ public class Thing
         Velocity_X = new FloatNumber(-GameConstants.WalkingVelocity, GameConstants.WalkingVelocity);
         Velocity_Y = new FloatNumber(-GameConstants.Gravity, GameConstants.JumpForce);
 
-        Speed_X = new FloatNumber(-0.1f, 0.1f);
-        Speed_Y = new FloatNumber(-4f, 10f);
-        X = new FloatNumber(-100, 100);
-        Y = new FloatNumber(-100, 100);
+        Speed_X = new FloatNumber(-GameConstants.MaxSpeed_X, GameConstants.MaxSpeed_X);
+        Speed_Y = new FloatNumber(-GameConstants.MaxSpeed_Y, GameConstants.MaxSpeed_Y);
+
+        X = new FloatNumber(-GameConstants.MaxDistance_X, GameConstants.MaxDistance_X);
+        Y = new FloatNumber(-GameConstants.MaxDistance_Y, GameConstants.MaxDistance_Y);
     }
 
     public Thing Have(Something thing)
@@ -114,12 +59,11 @@ public class Thing
         X.Add(Speed_X);
         Y.Add(Speed_Y);
     }
-}
 
-
-public static class GameConstants
-{
-    public static float Gravity = 0.5f;
-    public static float JumpForce = 2.0f;
-    public static float WalkingVelocity = 0.5f;
+    public override string ToString()
+    {
+        return string.Format(
+@"Speed_X: {0}
+Speed_Y: {1}", Speed_X.GetValue(), Speed_Y.GetValue());
+    }
 }

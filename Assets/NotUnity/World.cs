@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 public class World
 {
@@ -24,6 +23,9 @@ public class World
         foreach (Thing thing in things)
         {
             thing.DoIt(timeSinceLastUpdate);
+
+            //if (thing is Player)
+            //    UnityEngine.Debug.Log( thing.ToString());
         }
     }
 }

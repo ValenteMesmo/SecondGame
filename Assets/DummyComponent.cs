@@ -13,13 +13,20 @@ public class DummyComponent : MonoBehaviour
 
         world.AddThing(player);
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 20; i++)
         {
-            world.AddThing(new Block(world.CollisionContext)
-            {
-                Y = new FloatNumber(-10f, 10f, -2f),
-                X = new FloatNumber(-10f, 10f, i * -0.8f)
-            });
+            var block = new Block(world.CollisionContext);
+            block.Y.SetValue(-2);
+            block.X.SetValue(i * -0.8f);
+            world.AddThing(block);
+        }
+
+        for (int i = 1; i < 20; i++)
+        {
+            var block = new Block(world.CollisionContext);
+            block.Y.SetValue(-2);
+            block.X.SetValue(i * 0.8f);
+            world.AddThing(block);
         }
 
     }
@@ -28,6 +35,6 @@ public class DummyComponent : MonoBehaviour
     {
         player.input.RequestingLeftMovement = Input.GetAxis("Horizontal") < 0;
         player.input.RequestingRightMovement = Input.GetAxis("Horizontal") > 0;
-        player.input.RequestingJump = Input.GetButton("Jump");
+        player.input.RequestingJump = Input.GetButton("Jump");        
     }
 }

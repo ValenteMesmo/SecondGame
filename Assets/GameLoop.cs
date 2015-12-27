@@ -26,6 +26,28 @@ public class GameLoop : MonoBehaviour
             var comp = go.AddComponent<PositionComponent>();
             comp.Get_X = () => newThing.X.GetValue();
             comp.Get_Y = () => newThing.Y.GetValue();
+
+            var anim = go.AddComponent<AnimatorComponent>();
+            anim.GetTriggerName = () =>
+            {
+                if ((newThing as Player).IsTouchingTheGround() == false)
+                {
+                    return "MidAir";
+                }
+                //TODO: use speed! not velocity
+                else if (newThing.Velocity_X.GetValue() > 0 || newThing.Velocity_X.GetValue() < 0)
+                {
+                    return "Walk";
+                }
+
+                return "Iddle";
+            };
+
+            go.GetComponent<FlipSprite>().ShouldFlipSprite = () =>
+            {
+                //TODO: change! use speed... not velocity
+                return newThing.Velocity_X.GetValue() < 0;
+            };
         }
         else if (newThing is Block)
         {
