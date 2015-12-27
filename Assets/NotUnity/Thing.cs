@@ -4,8 +4,8 @@ public class Block : Thing
 {
     public Block(ColliderContext collisionContext)
     {
-        X = new FloatNumber(-100, 100, 0);
-        Y = new FloatNumber(-100, 100, -2);
+        X = new FloatNumber(-100, 100);
+        Y = new FloatNumber(-100, 100);
 
         var collider = new RectangleCollider(
                 collisionContext,
@@ -49,9 +49,9 @@ public class Player : Thing
 
         Have(rectangularCollider)
         .Have(groundCollision)
-        .Have(new PositionToAvoidColliderIntersection(this,rectangularCollider))
+        .Have(new PositionToAvoidColliderIntersection(this, rectangularCollider))
         .Have(new GravitySpeedCalculation(this, groundCollision))
-        .Have(new JumpVelocityCalculation(input,this, groundCollision))
+        .Have(new JumpVelocityCalculation(input, this, groundCollision))
         .Have(new MovementVelocityCalculation(input, this));
     }
 }
@@ -78,11 +78,13 @@ public class Thing
     public Thing()
     {
         toDoList = new List<Something>();
-        Velocity_X = new FloatNumber(-5f, 5f);
-        Velocity_Y = new FloatNumber(-0.5f, 5f);
-        Speed_X = new FloatNumber(-15f, 15f);
-        Speed_Y = new FloatNumber(-15f, 15f);
-        X = new FloatNumber(-100,100);
+
+        Velocity_X = new FloatNumber(-GameConstants.WalkingVelocity, GameConstants.WalkingVelocity);
+        Velocity_Y = new FloatNumber(-GameConstants.Gravity, GameConstants.JumpForce);
+
+        Speed_X = new FloatNumber(-0.1f, 0.1f);
+        Speed_Y = new FloatNumber(-4f, 10f);
+        X = new FloatNumber(-100, 100);
         Y = new FloatNumber(-100, 100);
     }
 
@@ -112,4 +114,12 @@ public class Thing
         X.Add(Speed_X);
         Y.Add(Speed_Y);
     }
+}
+
+
+public static class GameConstants
+{
+    public static float Gravity = 0.5f;
+    public static float JumpForce = 2.0f;
+    public static float WalkingVelocity = 0.5f;
 }

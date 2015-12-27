@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class DummyComponent : MonoBehaviour
 {
@@ -11,10 +10,18 @@ public class DummyComponent : MonoBehaviour
         var world = game.World;
 
         player = new Player(world.CollisionContext);
-        var block = new Block(world.CollisionContext);
 
         world.AddThing(player);
-        world.AddThing(block);
+
+        for (int i = 0; i < 15; i++)
+        {
+            world.AddThing(new Block(world.CollisionContext)
+            {
+                Y = new FloatNumber(-10f, 10f, -2f),
+                X = new FloatNumber(-10f, 10f, i * -0.8f)
+            });
+        }
+
     }
 
     void Update()

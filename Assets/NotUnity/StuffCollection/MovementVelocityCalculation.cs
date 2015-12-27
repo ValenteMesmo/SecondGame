@@ -3,7 +3,7 @@ public class MovementVelocityCalculation : Something
 {
     Thing Parent;
 
-    const float acceleration = 0.05f;
+    const float acceleration = 0.5f;
 
     InputInfo input;
 

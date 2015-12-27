@@ -3,7 +3,7 @@ public class JumpVelocityCalculation : Something
 {
     Thing Parent;
 
-    const float acceleration = 1f;
+    const float acceleration = 5f;
 
     InputInfo input;
     GroundCollisionCalculation GroundCollisionCalculation;

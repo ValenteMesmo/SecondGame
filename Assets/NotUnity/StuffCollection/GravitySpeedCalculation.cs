@@ -20,7 +20,7 @@ public class GravitySpeedCalculation : Something
         }
         else
         {
-            Parent.Velocity_Y.Add(-0.05f);
+            Parent.Velocity_Y.Add(-0.5f);
         }
     }
 }

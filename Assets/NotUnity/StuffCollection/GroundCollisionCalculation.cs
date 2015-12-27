@@ -15,9 +15,7 @@ public class GroundCollisionCalculation : Something
         IsHittingTheGround = false;
         foreach (CollisionInfo collision in Collider.CurrentCollisions)
         {
-            //UnityEngine.Debug.Log( collision.ToString());
-
-            if (collision.Collider.Name == "Ground")
+            if (collision.Collider.Name == "Ground" && collision.Below)
                 IsHittingTheGround = true;
         }
     }

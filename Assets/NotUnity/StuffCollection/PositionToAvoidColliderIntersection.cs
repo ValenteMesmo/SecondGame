@@ -24,6 +24,8 @@ public class PositionToAvoidColliderIntersection : Something
             {
                 Parent.Y.SetValue(collision.Collider.Y - Collider.Height);
             }
+
+            //TODO: implement left and right
         }
     }
 }
