@@ -1,4 +1,6 @@
-﻿public static class GameConstants
+﻿using System;
+
+public static class GameConstants
 {
     public static float Gravity = 0.5f;
     public static float JumpForce = 5f;

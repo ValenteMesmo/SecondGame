@@ -46,7 +46,7 @@ public class GameLoop : MonoBehaviour
             go.GetComponent<FlipSprite>().ShouldFlipSprite = () =>
             {
                 //TODO: change! use speed... not velocity
-                return newThing.Velocity_X.GetValue() < 0;
+                return newThing.Velocity_X.GetValue() < 0 /*&& (newThing as Player).IsTouchingTheGround()*/;
             };
         }
         else if (newThing is Block)

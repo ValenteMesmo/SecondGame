@@ -19,7 +19,7 @@ public class World
     }
 
     public void UpdateEverything(float timeSinceLastUpdate)
-    {
+    {        
         foreach (Thing thing in things)
         {
             thing.DoIt(timeSinceLastUpdate);
