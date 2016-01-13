@@ -1,4 +1,4 @@
-﻿using SocketHelper;
+﻿using Core;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -6,13 +6,13 @@ using System.Threading;
 
 public class ClientClass : IDisposable
 {
-    string ip;
+    string Ip;
     int Port;
     Thread threadThatReadsMessagesFromServer;
 
     public ClientClass(string ip, int port)
     {
-        this.ip = ip;
+        Ip = ip;
         Port = port;
     }
 
@@ -21,7 +21,7 @@ public class ClientClass : IDisposable
     public void Start(Action<string> onMessageReceived)
     {
         socketForServer = new TcpClient();
-        socketForServer.Connect(IPAddress.Parse(ip), Port);
+        socketForServer.Connect(IPAddress.Parse(Ip), Port);
 
         networkStream = socketForServer.GetStream();
 

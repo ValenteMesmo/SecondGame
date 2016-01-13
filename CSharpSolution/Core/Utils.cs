@@ -1,15 +1,21 @@
 ﻿using System;
-using System.IO;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace SocketHelper
+namespace Core
 {
-    class Utils
+    public class Utils
     {
+        static Utils()
+        {
+            Trace.Listeners.Add(new TextWriterTraceListener("MyTextFile.log"));
+        }
+
         public static Thread RunInBackground(Action action)
         {
+
             var thread = new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
@@ -21,18 +27,7 @@ namespace SocketHelper
 
         public static void Log(string msg)
         {
-            try
-            {
-                using (FileStream fs = new FileStream("logs.txt", FileMode.OpenOrCreate, FileAccess.Write))
-                using (StreamWriter sw = new StreamWriter(fs))
-                {
-                    sw.WriteLine(msg);
-                    sw.WriteLine("______________________________________________");
-                }
-            }
-            catch 
-            {
-            }
+            Trace.Write(msg);
         }
 
         public static IPAddress GetLocalIPAddress()
@@ -48,5 +43,5 @@ namespace SocketHelper
             throw new Exception("Local IP Address Not Found!");
         }
     }
-    
+
 }

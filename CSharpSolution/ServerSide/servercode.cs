@@ -1,9 +1,9 @@
 ﻿using System.Net.Sockets;using System.Net;
 using System;
 using System.Collections.Generic;
-using SocketHelper;
+using Core;
 
-namespace ConsoleApplication1{
+namespace ServerSide{
     public class ServerClass    {
         private List<TcpClient> clients = new List<TcpClient>();
 
