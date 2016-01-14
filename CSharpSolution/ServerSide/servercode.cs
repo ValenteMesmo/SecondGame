@@ -1,17 +1,21 @@
-﻿using System.Net.Sockets;using System.Net;
+﻿using Core;
 using System;
 using System.Collections.Generic;
-using Core;
+using System.Net;
+using System.Net.Sockets;using System.Threading;
 
 namespace ServerSide{
-    public class ServerClass    {
+    public class ServerClass : IDisposable    {
         private List<TcpClient> clients = new List<TcpClient>();
+        Thread threadThatReadsMessagesFromClients;
+        Thread threadThatAcceptsNewClients;
+        TcpListener listener;
 
         public void Start(int port, Action<string> onMessageReceived)
         {
             try
-            {                
-                TcpListener listener = new TcpListener(GetLocalIPAddress(),port);
+            {
+                listener = new TcpListener(GetLocalIPAddress(), port);
                 listener.Start();
 
                 AcceptClientConnections(listener);
@@ -23,7 +27,7 @@ namespace ServerSide{
                 Utils.Log(ex.ToString());
             }
         }
-        public  IPAddress GetLocalIPAddress()
+        public IPAddress GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
@@ -60,7 +64,7 @@ namespace ServerSide{
 
         private void ReadMessagesFromClients(Action<string> onMessageReceived)
         {
-            Utils.RunInBackground(() =>
+            threadThatReadsMessagesFromClients = Utils.RunInBackground(() =>
             {
                 string message;
                 var bytes = new byte[512];
@@ -95,7 +99,7 @@ namespace ServerSide{
         private void AcceptClientConnections(TcpListener listener)
         {
             TcpClient newClient;
-            Utils.RunInBackground(() =>
+            threadThatAcceptsNewClients = Utils.RunInBackground(() =>
             {
                 try
                 {
@@ -111,6 +115,16 @@ namespace ServerSide{
                     Utils.Log(ex.ToString());
                 }
             });
+        }
+
+        public void Dispose()
+        {
+            if (threadThatReadsMessagesFromClients != null)
+                threadThatReadsMessagesFromClients.Abort();
+            if (threadThatAcceptsNewClients != null)
+                threadThatAcceptsNewClients.Abort();
+            if (listener != null)
+                listener.Stop();
         }
     }
 }

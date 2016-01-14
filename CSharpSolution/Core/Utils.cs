@@ -10,6 +10,7 @@ namespace Core
     {
         static Utils()
         {
+            //TODO: remove this...  may not work well with unity
             Trace.Listeners.Add(new TextWriterTraceListener("MyTextFile.log"));
         }
 
