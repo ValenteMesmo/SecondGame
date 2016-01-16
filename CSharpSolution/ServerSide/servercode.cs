@@ -2,10 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Sockets;using System.Threading;
+using System.Net.Sockets;
+using System.Threading;
 
-namespace ServerSide{
-    public class ServerClass : IDisposable    {
+namespace ServerSide
+{
+    public class ServerClass : IDisposable
+    {
         private List<TcpClient> clients = new List<TcpClient>();
         Thread threadThatReadsMessagesFromClients;
         Thread threadThatAcceptsNewClients;
