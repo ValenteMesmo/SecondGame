@@ -1,31 +1,65 @@
-﻿using System.Collections;
+﻿using Core;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
-public class World
+[assembly: InternalsVisibleTo("ClientSide")]
+[assembly: InternalsVisibleTo("ServerSide")]
+internal class World : IDisposable
 {
-    private ArrayList things = new ArrayList();
     public ColliderContext CollisionContext = new ColliderContext();
+    private Thread physicsThread;
+    private Action<Thing> OnSomthingChanged;
+    private List<Thing> things = new List<Thing>();
 
-    System.Action<Thing> OnThingAdd;
-
-    public World(System.Action<Thing> onThingAdd)
-    {
-        OnThingAdd = onThingAdd;
-    }
+    //TODO: use to keep changes sent by the server
+    //obs: same class to client and server is starting to get wierd
+    private Dictionary<string, Thing> updates = new Dictionary<string, Thing>();
 
     public void AddThing(Thing thing)
     {
-        OnThingAdd(thing);
+        OnSomthingChanged(thing);
         things.Add(thing);
     }
 
-    public void UpdateEverything(float timeSinceLastUpdate)
+    public World(Action<Thing> somethingChanged_Callback)
     {        
-        foreach (Thing thing in things)
-        {
-            thing.DoIt(timeSinceLastUpdate);
+        OnSomthingChanged = somethingChanged_Callback;
+        StartPhysicsThread();
+    }
 
-            //if (thing is Player)
-            //    UnityEngine.Debug.Log( thing.ToString());
-        }
+    private void StartPhysicsThread()
+    {
+        long currentTime = DateTime.Now.Ticks;
+        long frameTime;
+        long newTime;
+
+        physicsThread = Utils.RunInBackground(() =>
+        {
+            Thread.Sleep(100);//prevents weird nullreference exception
+
+            while (true)
+            {
+                newTime = DateTime.Now.Ticks;
+                frameTime = newTime - currentTime;
+                currentTime = newTime;
+
+                for (int i = 0; i < things.Count; i++)
+                {                   
+                    things[i].DoIt(frameTime);
+                } 
+            }
+        });
+    }
+
+    internal void UpdateThing(string id, float x, float y, float velocity_x, float velocity_y)
+    {
+        //TODO: addTOUpdates        
+    }
+
+    public void Dispose()
+    {
+        physicsThread.Abort();
     }
 }

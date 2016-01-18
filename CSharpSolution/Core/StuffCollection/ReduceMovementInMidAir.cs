@@ -2,7 +2,7 @@
 
 class ReduceMovementInMidAir : Something
 {
-    MovementVelocityCalculation Parent;
+    //MovementVelocityCalculation Parent;
 
     //public ReduceMovementInMidAir(
     //    MovementVelocityCalculation inputInfo,

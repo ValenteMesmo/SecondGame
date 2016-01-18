@@ -15,11 +15,9 @@
 
     public bool IsTouchingTheGround() { return groundCollision.IsHittingTheGround; }
 
-    public Player(ColliderContext collisionContext)
+    public Player(string id, ColliderContext collisionContext):base(id)
     {
         input = new InputInfo();
-        X = new FloatNumber(-GameConstants.MaxDistance_X, GameConstants.MaxDistance_X);
-        Y = new FloatNumber(-GameConstants.MaxDistance_Y, GameConstants.MaxDistance_Y);
 
         var rectangularCollider = new RectangleCollider(
             collisionContext,

@@ -7,14 +7,14 @@ using System.Threading;
 
 namespace ServerSide
 {
-    public class ServerClass : IDisposable
+    public class NetworkServer : IDisposable
     {
         private List<TcpClient> clients = new List<TcpClient>();
-        Thread threadThatReadsMessagesFromClients;
-        Thread threadThatAcceptsNewClients;
-        TcpListener listener;
+        private Thread threadThatReadsMessagesFromClients;
+        private Thread threadThatAcceptsNewClients;
+        private TcpListener listener;
 
-        public void Start(int port, Action<string> onMessageReceived)
+        public void Start(int port, Action<string, string> onMessageReceived)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace ServerSide
 
         }
 
-        private void ReadMessagesFromClients(Action<string> onMessageReceived)
+        private void ReadMessagesFromClients(Action<string, string> onMessageReceived)
         {
             threadThatReadsMessagesFromClients = Utils.RunInBackground(() =>
             {
@@ -87,7 +87,7 @@ namespace ServerSide
                                 stream.Read(bytes, 0, bytes.Length);
                                 message = System.Text.Encoding.UTF8.GetString(bytes).TrimEnd();
 
-                                onMessageReceived(message);
+                                onMessageReceived(i.ToString(),message);
                             }
                         }
                     }

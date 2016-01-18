@@ -4,24 +4,17 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-public class ClientClass : IDisposable
+internal class NetworkClient : IDisposable
 {
-    string Ip;
-    int Port;
-    Thread threadThatReadsMessagesFromServer;
+    public Action<string> HandleMessageFromServer = msg => { };
+    private Thread threadThatReadsMessagesFromServer;
+    private NetworkStream networkStream;
+    private TcpClient socketForServer;
 
-    public ClientClass(string ip, int port)
-    {
-        Ip = ip;
-        Port = port;
-    }
-
-    NetworkStream networkStream;
-    TcpClient socketForServer;
-    public void Start(Action<string> onMessageReceived)
+    public void Connect(string ip, int port)
     {
         socketForServer = new TcpClient();
-        socketForServer.Connect(IPAddress.Parse(Ip), Port);
+        socketForServer.Connect(IPAddress.Parse(ip), port);
 
         networkStream = socketForServer.GetStream();
 
@@ -35,9 +28,9 @@ public class ClientClass : IDisposable
                     Array.Clear(bytes, 0, bytes.Length);
 
                     networkStream.Read(bytes, 0, bytes.Length);
-                    onMessageReceived(
-                        System.Text.Encoding.UTF8.GetString(bytes).TrimEnd()
-                    );
+
+                    var message = System.Text.Encoding.UTF8.GetString(bytes).TrimEnd();
+                    HandleMessageFromServer(message);
                 }
             }
         });
@@ -50,10 +43,11 @@ public class ClientClass : IDisposable
     }
 
     public void Dispose()
-    {        
+    {
         if (threadThatReadsMessagesFromServer != null)
             threadThatReadsMessagesFromServer.Abort();
-        if(socketForServer.Connected)
+
+        if (socketForServer.Connected)
             socketForServer.Close();
     }
 }
