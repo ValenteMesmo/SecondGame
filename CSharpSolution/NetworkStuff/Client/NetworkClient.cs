@@ -37,7 +37,7 @@ namespace NetworkStuff.Client
             Helper.Write(msg);
         }
 
-        private IEnumerable<string> Read()
+        public IEnumerable<string> Read()
         {
             // While we are successfully connected, read incoming lines from the server
             while (IsConnectedToServer)
@@ -50,8 +50,10 @@ namespace NetworkStuff.Client
 
         public void Dispose()
         {
-            Helper.Dispose();
-            Socket.Close();
+            if (Helper != null)
+                Helper.Dispose();
+            if (Socket != null)
+                Socket.Close();
         }
     }
 }

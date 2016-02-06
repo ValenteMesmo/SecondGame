@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 
 namespace NetworkStuff
@@ -18,6 +19,12 @@ namespace NetworkStuff
             StreamWriter = new StreamWriter(networkStream);
         }
 
+        [Obsolete("This was a lazy solution... something better needs to be done!")]
+        public static IPAddress GetIp()
+        {
+            return Dns.Resolve(Dns.GetHostName()).AddressList[0];
+        }
+
         public void Dispose()
         {
             StreamWriter.Dispose();
@@ -27,7 +34,7 @@ namespace NetworkStuff
 
         public ICollection<string> Read()
         {
-            var result = new char[128];
+            var result = new char[512];
             if (NetworkStream.DataAvailable)
             {
                 StreamReader.Read(result, 0, result.Length);

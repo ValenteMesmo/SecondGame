@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using NetworkStuff.Client;
+using System;
 
 namespace ClientSide
 {
@@ -7,23 +9,17 @@ namespace ClientSide
     //ter um metodo para cada input do usuario: < ^ > v A B C
     public class GameClient : IDisposable
     {
-        private NetworkClient network;
+        private NetworkClient networkClient;
         private World world;
         private Action<Thing> SomethingChanged;
 
         public GameClient(Action<Thing> somethingChanged)
         {
             SomethingChanged = somethingChanged;
-
-            network = new NetworkClient();
-            network.HandleMessageFromServer = ServerMessageHandler;
-
-            world = new World(SomethingChanged_Callback);
-        }
-
-        private void SomethingChanged_Callback(Thing thing)
-        {
-            SomethingChanged(thing);
+            world = new World(SomethingChanged);
+            world.AddThing(new Player("a", new ColliderContext()));
+            
+            networkClient = new NetworkClient();
         }
 
         public bool IsConnected()
@@ -34,34 +30,40 @@ namespace ClientSide
         public void Connect(string hostIp, int hostPort)
         {
             try
-            {
-                network.Connect(hostIp, hostPort);
+            {                
+                networkClient.Connect(hostIp, hostPort);
+                Utils.RunInBackground(ReadsMessagesFromServerForever);
             }
             catch (Exception ex)
             {
-                var newNetwork = new NetworkClient();
-                newNetwork.HandleMessageFromServer = network.HandleMessageFromServer ;
-                network.Dispose();
+                //var newNetwork = new NetworkClient();         
+                networkClient.Dispose();
             }
         }
 
-        private void ServerMessageHandler(string message)
+        private void ReadsMessagesFromServerForever()
         {
-
-            //ooooooooooooooopa
-            var values = message.Split('|');
-            world.UpdateThing(
-                values[0], 
-                float.Parse(values[1].Replace(",",".")),
-                float.Parse(values[2].Replace(",",".")),
-                float.Parse(values[3].Replace(",",".")) ,
-                float.Parse(values[4].Replace(",", "."))
-            );
+            while (true)
+            {
+                var msgs = networkClient.Read();
+                foreach (var msg in msgs)
+                {
+                    //THIS IS A BUG
+                    var values = msg.Split(new char[] { '|' },StringSplitOptions.RemoveEmptyEntries);
+                    if (values.Length >= 3 && values[2] != "-")
+                        world.UpdateThing(
+                            values[0],
+                            float.Parse(values[1].Replace(",", ".")),
+                            float.Parse(values[2].Replace(",", ".")),
+                            0,
+                            0);
+                }
+            }
         }
 
         public void Dispose()
         {
-            network.Dispose();
+            networkClient.Dispose();
             world.Dispose();
         }
     }

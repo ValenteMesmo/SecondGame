@@ -37,7 +37,7 @@ internal class World : IDisposable
 
         physicsThread = Utils.RunInBackground(() =>
         {
-            Thread.Sleep(100);//prevents weird nullreference exception
+            Thread.Sleep(10);//prevents weird nullreference exception
 
             while (true)
             {
@@ -54,8 +54,8 @@ internal class World : IDisposable
                         thing.Y = updates[thing.Id].Y;
                     }
                     things[i].DoIt(frameTime);
-
-                    //remove?
+                    
+                    //This... ... ... ...                    
                     OnSomthingChanged(things[i]);
                 }
             }
@@ -76,4 +76,3 @@ internal class World : IDisposable
         physicsThread.Abort();
     }
 }
-

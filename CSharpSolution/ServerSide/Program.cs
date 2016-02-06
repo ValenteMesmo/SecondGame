@@ -1,5 +1,4 @@
-﻿using Core;
-using System;
+﻿using System;
 
 namespace ServerSide
 {
@@ -8,7 +7,7 @@ namespace ServerSide
         static void Main(string[] args)
         {
             var server = new GameServer();
-            server.Start(Utils.GetLocalIPAddress().ToString(), 8001);
+            server.Start(1337);
             Console.ReadKey();
             server.Dispose();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkStuff.Server;
+using System;
 
 namespace ServerSide
 {
@@ -13,10 +14,10 @@ namespace ServerSide
             world = new World(SomethingChanged_Callback);
         }
 
-        public void Start(string hostIp, int hostPort)
+        public void Start(int hostPort)
         {
             CreatePlatforms();
-            network.Start(hostPort, HandleMessageFromClients);
+            network.startListener(hostPort);
         }
 
         private void CreatePlatforms()
@@ -57,13 +58,16 @@ namespace ServerSide
 
         private void SomethingChanged_Callback(Thing thing)
         {
-            network.SendMessage(string.Join("|", new[] {
-                thing.Id,
-                thing.X.GetValue().ToString(),
-                thing.Y.GetValue().ToString(),
-                thing.Velocity_X.GetValue().ToString(),
-                thing.Velocity_Y.GetValue().ToString()
-            }));
+            foreach (var client in network.GetClients())
+            {
+                client.Write(string.Join("|", new[] {
+                    thing.Id,
+                    thing.X.GetValue().ToString(),
+                    thing.Y.GetValue().ToString(),
+                    thing.Velocity_X.GetValue().ToString(),
+                    thing.Velocity_Y.GetValue().ToString()
+                }));
+            }            
         }
     }
 }

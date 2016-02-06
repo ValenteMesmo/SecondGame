@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NetworkStuff.Server;
 using System.Threading;
 using NetworkStuff.Client;
+using NetworkStuff;
 
 namespace TestsForNetworkStuff
 {
@@ -29,7 +30,7 @@ namespace TestsForNetworkStuff
 
                 using (var client = new NetworkClient())
                 {
-                    client.Connect(sut.GetIp().ToString(), 1337);
+                    client.Connect(NetworkStreamHelper.GetIp().ToString(), 1337);
 
                     Thread.Sleep(50);
 
@@ -49,7 +50,7 @@ namespace TestsForNetworkStuff
 
                 using (var client = new NetworkClient())
                 {
-                    client.Connect(sut.GetIp().ToString(), 1337);
+                    client.Connect(NetworkStreamHelper.GetIp().ToString(), 1337);
 
                     Thread.Sleep(50);
 
@@ -78,7 +79,7 @@ namespace TestsForNetworkStuff
 
                 using (var client = new NetworkClient())
                 {
-                    client.Connect(sut.GetIp().ToString(), 1337);
+                    client.Connect(NetworkStreamHelper.GetIp().ToString(), 1337);
 
                     Thread.Sleep(50);
 

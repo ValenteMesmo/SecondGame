@@ -31,7 +31,7 @@
         Have(rectangularCollider)
         .Have(groundCollision)
         .Have(new PositionToAvoidColliderIntersection(this, rectangularCollider))
-        //.Have(new GravitySpeedCalculation(this, groundCollision))
+        .Have(new GravitySpeedCalculation(this, groundCollision))
         .Have(new JumpVelocityCalculation(input, this, groundCollision))
         .Have(new MovementVelocityCalculation(input, this));
     }

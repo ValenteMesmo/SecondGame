@@ -13,19 +13,9 @@ namespace NetworkStuff.Server
         private List<NetworkServersClient> Clients = new List<NetworkServersClient>();
         public ICollection<NetworkServersClient> GetClients() { return Clients.ToArray(); }
 
-        private IPAddress _ip;
-        public IPAddress GetIp()
-        {
-            if (_ip == null)
-                _ip = Dns.Resolve(Dns.GetHostName()).AddressList[0]; 
-            return _ip;
-        }
-
         public void startListener(int serverPort)
         {
-            Console.WriteLine(GetIp().ToString());
-
-            IPEndPoint localEndPoint = new IPEndPoint(GetIp(), serverPort);
+            IPEndPoint localEndPoint = new IPEndPoint(NetworkStreamHelper.GetIp(), serverPort);
 
             if (IsServerRunning)
                 throw new Exception("This ChatServer is already running!");
@@ -36,7 +26,7 @@ namespace NetworkStuff.Server
                ProtocolType.Tcp);
 
             socket.Bind(localEndPoint);
-            socket.Listen(10);
+            socket.Listen(100);
 
             IsServerRunning = true;
 
