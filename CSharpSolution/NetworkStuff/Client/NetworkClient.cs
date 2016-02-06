@@ -7,19 +7,23 @@ namespace NetworkStuff.Client
 {
     public class NetworkClient : IDisposable
     {
-        private TcpClient tcpClient;
+        private Socket Socket;
         private bool IsConnectedToServer = false;
         private NetworkStreamHelper Helper;
 
         public void Connect(string hostName, int port)
         {
             if (!IsConnectedToServer)
-            {//TODO: Use socket
-                tcpClient = new TcpClient();
-                tcpClient.Connect(hostName, port);
+            {
+                Socket = new Socket(
+                    AddressFamily.InterNetwork,
+                    SocketType.Stream,
+                    ProtocolType.Tcp);
+                Socket.Connect(hostName, port);
                 IsConnectedToServer = true;
 
-                Helper = new NetworkStreamHelper( tcpClient.GetStream());
+                Helper = new NetworkStreamHelper(
+                    new NetworkStream(Socket));
             }
 
             if (IsConnectedToServer)
@@ -30,7 +34,7 @@ namespace NetworkStuff.Client
 
         public void Write(string msg)
         {
-            Helper.Write(msg);            
+            Helper.Write(msg);
         }
 
         private IEnumerable<string> Read()
@@ -47,7 +51,7 @@ namespace NetworkStuff.Client
         public void Dispose()
         {
             Helper.Dispose();
-            tcpClient.Close();
+            Socket.Close();
         }
     }
 }
