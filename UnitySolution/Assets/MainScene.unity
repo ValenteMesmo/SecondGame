@@ -114,7 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ip: 192.168.0.8
   Port: 8001
-  game: {fileID: 2017040547}
+  PlayerPrefab: {fileID: 194530, guid: 1e25f3447ead18244b253fd9d3e115df, type: 2}
+  BlockPrefab: {fileID: 179908, guid: a1af2b4d49a3dd5408630523a6dad9bd, type: 2}
 --- !u!4 &518835060
 Transform:
   m_ObjectHideFlags: 0

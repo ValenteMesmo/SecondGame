@@ -18,19 +18,20 @@ internal class NetworkClient : IDisposable
 
         networkStream = socketForServer.GetStream();
 
+        SendMessage("Connected! i should delete this line of code!");
+
         threadThatReadsMessagesFromServer = Utils.RunInBackground(() =>
         {
             var bytes = new byte[512];
             while (true)
             {
                 if (networkStream.DataAvailable)
-                {
-                    Array.Clear(bytes, 0, bytes.Length);
-
+                {                    
                     networkStream.Read(bytes, 0, bytes.Length);
 
                     var message = System.Text.Encoding.UTF8.GetString(bytes).TrimEnd();
                     HandleMessageFromServer(message);
+                    networkStream.Flush();
                 }
             }
         });

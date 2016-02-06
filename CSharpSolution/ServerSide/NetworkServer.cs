@@ -30,6 +30,7 @@ namespace ServerSide
                 Utils.Log(ex.ToString());
             }
         }
+
         public IPAddress GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -43,8 +44,7 @@ namespace ServerSide
             }
             throw new Exception("Local IP Address Not Found!");
         }
-
-
+        
         public void SendMessage(string message)
         {
 

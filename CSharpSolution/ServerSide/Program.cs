@@ -8,7 +8,7 @@ namespace ServerSide
         static void Main(string[] args)
         {
             var server = new GameServer();
-            server.Start(Utils.GetLocalIPAddress().ToString(), 1337);
+            server.Start(Utils.GetLocalIPAddress().ToString(), 8001);
             Console.ReadKey();
             server.Dispose();
         }

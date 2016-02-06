@@ -9,15 +9,23 @@ public class ConnectToServer : MonoBehaviour
     private GameClient game;
     private Dictionary<string, Thing> things = new Dictionary<string, Thing>();
 
+    public GameObject PlayerPrefab;
+    public GameObject BlockPrefab;
+
     void Start()
     {
         game = new GameClient(SomethingChanged);
-        game.Connect(Ip,Port);        
+        game.Connect(Ip,Port);                        
     }
 
-    void SomethingChanged(string thingId, Thing thing)
+    void SomethingChanged(Thing thingThatChanged)
     {
-        things[thingId] = thing;
+        Debug.Log("OPA!");
+        if (things.ContainsKey(thingThatChanged.Id) == false)
+        {
+            things[thingThatChanged.Id] = thingThatChanged;
+            adasdsa(thingThatChanged);
+        }
     }
 
     void OnDestroy()
@@ -25,7 +33,7 @@ public class ConnectToServer : MonoBehaviour
         game.Dispose();
     }
 
-    void adasdsa()
+    void adasdsa(Thing newThing )
     {
         if (newThing is Player)
         {

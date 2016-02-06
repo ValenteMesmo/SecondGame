@@ -33,18 +33,29 @@ namespace ClientSide
 
         public void Connect(string hostIp, int hostPort)
         {
-            network.Connect(hostIp, hostPort);
+            try
+            {
+                network.Connect(hostIp, hostPort);
+            }
+            catch (Exception ex)
+            {
+                var newNetwork = new NetworkClient();
+                newNetwork.HandleMessageFromServer = network.HandleMessageFromServer ;
+                network.Dispose();
+            }
         }
 
         private void ServerMessageHandler(string message)
         {
+
+            //ooooooooooooooopa
             var values = message.Split('|');
             world.UpdateThing(
-                values[0],
-                float.Parse(values[1]),
-                float.Parse(values[2]),
-                float.Parse(values[3]),
-                float.Parse(values[4])
+                values[0], 
+                float.Parse(values[1].Replace(",",".")),
+                float.Parse(values[2].Replace(",",".")),
+                float.Parse(values[3].Replace(",",".")) ,
+                float.Parse(values[4].Replace(",", "."))
             );
         }
 

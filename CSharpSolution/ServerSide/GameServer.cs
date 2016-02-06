@@ -23,15 +23,15 @@ namespace ServerSide
         {
             for (int i = 0; i < 20; i++)
             {
-                var block = new Block("block_A" + i,world.CollisionContext);
+                var block = new Block("block_A" + i, world.CollisionContext);
                 block.Y.SetValue(-2);
                 block.X.SetValue(i * -0.8f);
-                world.AddThing( block);
+                world.AddThing(block);
             }
 
             for (int i = 1; i < 20; i++)
             {
-                var block = new Block("block_B" + i,world.CollisionContext);
+                var block = new Block("block_B" + i, world.CollisionContext);
                 block.Y.SetValue(-2);
                 block.X.SetValue(i * 0.8f);
                 world.AddThing(block);
@@ -44,8 +44,9 @@ namespace ServerSide
             //only inputs?
             //should i add a handler for new connections?
             //shound i categorize messages?  newPlayer, thingUpdate, playerLeft, etc
-            var player = new Player("player" + ++playercount,world.CollisionContext);
-            world.AddThing( player);            
+            var player = new Player("player" + ++playercount, world.CollisionContext);
+            player.X.SetValue(playercount);
+            world.AddThing(player);
         }
 
         public void Dispose()
