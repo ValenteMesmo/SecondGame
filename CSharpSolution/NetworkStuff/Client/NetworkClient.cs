@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 
 namespace NetworkStuff.Client
 {
-    public class NetworkClient
+    public class NetworkClient : IDisposable
     {
         private TcpClient tcpClient;
         private bool IsConnectedToServer = false;
@@ -13,7 +14,7 @@ namespace NetworkStuff.Client
         public void Connect(string hostName, int port)
         {
             if (!IsConnectedToServer)
-            {
+            {//TODO: Use socket
                 tcpClient = new TcpClient();
                 tcpClient.Connect(hostName, port);
                 IsConnectedToServer = true;
@@ -41,6 +42,12 @@ namespace NetworkStuff.Client
             }
 
             return Enumerable.Empty<string>();
+        }
+
+        public void Dispose()
+        {
+            Helper.Dispose();
+            tcpClient.Close();
         }
     }
 }

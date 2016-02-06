@@ -5,7 +5,7 @@ using System.Net.Sockets;
 
 namespace NetworkStuff.Server
 {
-    public class NetworkServersClient
+    public class NetworkServersClient : IDisposable
     {
         private NetworkStreamHelper Helper;
 
@@ -15,7 +15,12 @@ namespace NetworkStuff.Server
                 new NetworkStream(client));
         }
 
-        public IEnumerable<string> Read()
+        public void Dispose()
+        {
+            Helper.Dispose();
+        }
+
+        public ICollection<string> Read()
         {
             return Helper.Read();
         }

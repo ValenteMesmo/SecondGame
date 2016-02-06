@@ -25,7 +25,7 @@ namespace NetworkStuff
             NetworkStream.Dispose();
         }
 
-        public IEnumerable<string> Read()
+        public ICollection<string> Read()
         {
             var result = new char[128];
             if (NetworkStream.DataAvailable)

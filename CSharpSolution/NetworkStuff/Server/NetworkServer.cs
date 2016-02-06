@@ -1,27 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
 namespace NetworkStuff.Server
 {
-    public class NetworkServer
+    public class NetworkServer : IDisposable
     {
         public bool IsServerRunning;
         Socket socket;
 
         private List<NetworkServersClient> Clients = new List<NetworkServersClient>();
-        public IEnumerable<NetworkServersClient> GetClients() { return Clients.ToArray(); }
+        public ICollection<NetworkServersClient> GetClients() { return Clients.ToArray(); }
+
+        private IPAddress _ip;
+        public IPAddress GetIp()
+        {
+            if (_ip == null)
+                _ip = Dns.Resolve(Dns.GetHostName()).AddressList[0]; 
+            return _ip;
+        }
 
         public void startListener(int serverPort)
         {
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            Console.WriteLine(GetIp().ToString());
 
-            Console.WriteLine(ipAddress.ToString());
-
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, serverPort);
+            IPEndPoint localEndPoint = new IPEndPoint(GetIp(), serverPort);
 
             if (IsServerRunning)
                 throw new Exception("This ChatServer is already running!");
@@ -32,7 +36,7 @@ namespace NetworkStuff.Server
                ProtocolType.Tcp);
 
             socket.Bind(localEndPoint);
-            socket.Listen(100);
+            socket.Listen(10);
 
             IsServerRunning = true;
 
@@ -41,10 +45,26 @@ namespace NetworkStuff.Server
 
         private void NewClientConnected(IAsyncResult ar)
         {
-            var client = socket.EndAccept(ar);
-            socket.BeginAccept(NewClientConnected, null);
+            try
+            {
+                var client = socket.EndAccept(ar);
+                socket.BeginAccept(NewClientConnected, null);
 
-            Clients.Add(new NetworkServersClient(client));
+                Clients.Add(new NetworkServersClient(client));
+            }
+            catch (ObjectDisposedException)
+            {
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (var client in Clients)
+            {
+                client.Dispose();
+            }
+
+            socket.Close();
         }
     }
 }
