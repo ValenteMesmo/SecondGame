@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-[assembly: InternalsVisibleTo("ClientSide")]
-[assembly: InternalsVisibleTo("ServerSide")]
-internal class World : IDisposable
+public class World : IWorld
 {
-    public ColliderContext CollisionContext = new ColliderContext();
+    public ColliderContext CollisionContext { get; set; }
     private Thread physicsThread;
-    private Action<Thing> OnSomthingChanged;
+    private Action<Thing> OnSomthingChanged = thing => { };
     private List<Thing> things = new List<Thing>();
 
     //TODO: use to keep changes sent by the server
@@ -23,9 +21,9 @@ internal class World : IDisposable
         things.Add(thing);
     }
 
-    public World(Action<Thing> somethingChanged_Callback)
+    public World()
     {
-        OnSomthingChanged = somethingChanged_Callback;
+        CollisionContext = new ColliderContext();
         StartPhysicsThread();
     }
 
@@ -54,7 +52,7 @@ internal class World : IDisposable
                         thing.Y = updates[thing.Id].Y;
                     }
                     things[i].DoIt(frameTime);
-                    
+
                     //This... ... ... ...                    
                     OnSomthingChanged(things[i]);
                 }
@@ -62,7 +60,7 @@ internal class World : IDisposable
         });
     }
 
-    internal void UpdateThing(string id, float x, float y, float velocity_x, float velocity_y)
+    public void UpdateThing(string id, float x, float y, float velocity_x, float velocity_y)
     {
         //trocar por struct?
         var sadsd = new Thing(id);
@@ -75,4 +73,18 @@ internal class World : IDisposable
     {
         physicsThread.Abort();
     }
+
+    public void SetActionToBeCalledWhenSomethingChanges(Action<Thing> action)
+    {
+        OnSomthingChanged = action;
+    }
+}
+public interface IWorld : IDisposable
+{
+    //TODO: verify if this is really necessary
+    ColliderContext CollisionContext { get; set; }
+
+    void SetActionToBeCalledWhenSomethingChanges(Action<Thing> action);
+    void AddThing(Thing thing);
+    void UpdateThing(string id, float x, float y, float velocity_x, float velocity_y);
 }

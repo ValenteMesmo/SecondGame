@@ -10,12 +10,18 @@ namespace NetworkStuff.Server
         public bool IsServerRunning;
         Socket socket;
 
+        public readonly IPAddress Ip;
         private List<NetworkServersClient> Clients = new List<NetworkServersClient>();
         public ICollection<NetworkServersClient> GetClients() { return Clients.ToArray(); }
 
-        public void startListener(int serverPort)
+        public NetworkServer()
         {
-            IPEndPoint localEndPoint = new IPEndPoint(NetworkStreamHelper.GetIp(), serverPort);
+            Ip = NetworkStreamHelper.GetIp();
+        }
+
+        public void startListener(int serverPort)
+        {            
+            IPEndPoint localEndPoint = new IPEndPoint(Ip, serverPort);
 
             if (IsServerRunning)
                 throw new Exception("This ChatServer is already running!");

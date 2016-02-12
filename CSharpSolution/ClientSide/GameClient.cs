@@ -10,14 +10,13 @@ namespace ClientSide
     public class GameClient : IDisposable
     {
         private NetworkClient networkClient;
-        private World world;
-        private Action<Thing> SomethingChanged;
+        private IWorld World;
 
-        public GameClient(Action<Thing> somethingChanged)
+        public GameClient(IWorld world, Action<Thing> somethingChanged)
         {
-            SomethingChanged = somethingChanged;
-            world = new World(SomethingChanged);
-            world.AddThing(new Player("a", new ColliderContext()));
+            World = world;
+            World.SetActionToBeCalledWhenSomethingChanges(somethingChanged);
+            World.AddThing(new Player("a", new ColliderContext()));
             
             networkClient = new NetworkClient();
         }
@@ -51,7 +50,7 @@ namespace ClientSide
                     //THIS IS A BUG
                     var values = msg.Split(new char[] { '|' },StringSplitOptions.RemoveEmptyEntries);
                     if (values.Length >= 3 && values[2] != "-")
-                        world.UpdateThing(
+                        World.UpdateThing(
                             values[0],
                             float.Parse(values[1].Replace(",", ".")),
                             float.Parse(values[2].Replace(",", ".")),
@@ -64,7 +63,7 @@ namespace ClientSide
         public void Dispose()
         {
             networkClient.Dispose();
-            world.Dispose();
+            World.Dispose();
         }
     }
 }

@@ -1,17 +1,22 @@
 ﻿using NetworkStuff.Server;
 using System;
+using System.Net;
 
 namespace ServerSide
 {
     public class GameServer : IDisposable
     {
         private NetworkServer network;
-        private World world;
+        private IWorld World;
+        int playercount = 0;
+        public readonly string Ip;
 
-        public GameServer()
+        public GameServer(IWorld world)
         {
             network = new NetworkServer();
-            world = new World(SomethingChanged_Callback);
+            World = world;
+            World.SetActionToBeCalledWhenSomethingChanges(SomethingChanged_Callback);
+            Ip = network.Ip.ToString();
         }
 
         public void Start(int hostPort)
@@ -24,36 +29,35 @@ namespace ServerSide
         {
             for (int i = 0; i < 20; i++)
             {
-                var block = new Block("block_A" + i, world.CollisionContext);
+                var block = new Block("block_A" + i, World.CollisionContext);
                 block.Y.SetValue(-2);
                 block.X.SetValue(i * -0.8f);
-                world.AddThing(block);
+                World.AddThing(block);
             }
 
             for (int i = 1; i < 20; i++)
             {
-                var block = new Block("block_B" + i, world.CollisionContext);
+                var block = new Block("block_B" + i, World.CollisionContext);
                 block.Y.SetValue(-2);
                 block.X.SetValue(i * 0.8f);
-                world.AddThing(block);
+                World.AddThing(block);
             }
         }
 
-        int playercount = 0;
         private void HandleMessageFromClients(string id, string message)
         {
             //only inputs?
             //should i add a handler for new connections?
             //shound i categorize messages?  newPlayer, thingUpdate, playerLeft, etc
-            var player = new Player("player" + ++playercount, world.CollisionContext);
+            var player = new Player("player" + ++playercount, World.CollisionContext);
             player.X.SetValue(playercount);
-            world.AddThing(player);
+            World.AddThing(player);
         }
 
         public void Dispose()
         {
             network.Dispose();
-            world.Dispose();
+            World.Dispose();
         }
 
         private void SomethingChanged_Callback(Thing thing)
@@ -67,7 +71,7 @@ namespace ServerSide
                     thing.Velocity_X.GetValue().ToString(),
                     thing.Velocity_Y.GetValue().ToString()
                 }));
-            }            
+            }
         }
     }
 }
