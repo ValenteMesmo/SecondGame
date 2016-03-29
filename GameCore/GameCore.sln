@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStuff", "NetworkStuf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStuff.Tests", "NetworkStuff.Tests\NetworkStuff.Tests.csproj", "{693D5D42-096C-4D18-A01E-46AD5E3DBD56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{62C7CAAA-9326-4933-A463-6C7E617165B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{693D5D42-096C-4D18-A01E-46AD5E3DBD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{693D5D42-096C-4D18-A01E-46AD5E3DBD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{693D5D42-096C-4D18-A01E-46AD5E3DBD56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62C7CAAA-9326-4933-A463-6C7E617165B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62C7CAAA-9326-4933-A463-6C7E617165B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62C7CAAA-9326-4933-A463-6C7E617165B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62C7CAAA-9326-4933-A463-6C7E617165B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

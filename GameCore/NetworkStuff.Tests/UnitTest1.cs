@@ -18,12 +18,12 @@ namespace NetworkStuff.Tests
                 writerPort,
                 "localhost",
                 listenerPort);
-           
+
             sut.Listen(actualMessage =>
             {
                 Assert.AreEqual(expectedMessage, actualMessage);
                 AsyncAssert.Done();
-            });            
+            });
 
             writer.Write(expectedMessage);
 

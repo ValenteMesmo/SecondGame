@@ -34,7 +34,6 @@ namespace NetworkStuff.Udp
                        asyncResult,
                        ref receivedIpEndPoint);
 
-
                 string receivedText = Encoding.ASCII.GetString(
                     receivedBytes);
 
@@ -58,5 +57,4 @@ namespace NetworkStuff.Udp
             OnMessageReceived = onMessageReceived;
         }
     }
-
 }

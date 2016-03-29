@@ -39,12 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\NetworkClient.cs" />
-    <Compile Include="NetworkStreamHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Udp\MyUdpServer.cs" />
-    <Compile Include="Server\NetworkServer.cs" />
-    <Compile Include="Server\NetworkServersClient.cs" />
     <Compile Include="Udp\UdpMessageListener.cs" />
     <Compile Include="Udp\UdpMessageWriter.cs" />
   </ItemGroup>
