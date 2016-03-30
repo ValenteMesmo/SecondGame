@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 using System.Threading;
 
 namespace NetworkStuff.Tests
@@ -14,10 +15,16 @@ namespace NetworkStuff.Tests
             Waiting = true;
             stopwatch.Start();
 
-            while (
-                stopwatch.ElapsedMilliseconds < timeout
-                && Waiting)
+            while (Waiting)
             {
+                if (stopwatch.ElapsedMilliseconds > timeout)
+                {
+                    Assert.IsTrue(
+                       false,
+                       string.Format("The AsyncAssert.Done was not called before the {0} Timeout.", timeout));
+                    break;
+                }
+
                 Thread.Sleep(1);
             }
 
