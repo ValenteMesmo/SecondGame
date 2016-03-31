@@ -6,23 +6,16 @@ namespace NetworkStuff.Udp
 {
     public interface IWriteNetworkMessages : IDisposable
     {
-        void Write(string message);
+        void Write(string message, string hostName, int port);
     }
 
     public class UdpMessageWriter : IWriteNetworkMessages
     {
         private readonly UdpClient sender;
-        private readonly string HostName;
-        private readonly int Port;
 
-        public UdpMessageWriter(
-            int writerPort,
-            string receiverHostName,
-            int listenerPort)
+        public UdpMessageWriter(int writerPort)
         {
             sender = new UdpClient(writerPort);
-            HostName = receiverHostName;
-            Port = listenerPort;
         }
 
         public void Dispose()
@@ -30,13 +23,13 @@ namespace NetworkStuff.Udp
             sender.Close();
         }
 
-        public void Write(string message)
+        public void Write(string message, string hostName, int port)
         {
             sender.Send(
                 Encoding.ASCII.GetBytes(message),
                 message.Length,
-                HostName,
-                Port);
+                hostName,
+                port);
         }
     }
 }
