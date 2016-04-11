@@ -19,10 +19,8 @@ namespace NetworkStuff.Tests
             {
                 if (stopwatch.ElapsedMilliseconds > timeout)
                 {
-                    Assert.IsTrue(
-                       false,
+                    throw new System.Exception(
                        string.Format("The AsyncAssert.Done was not called before the {0} Timeout.", timeout));
-                    break;
                 }
 
                 Thread.Sleep(1);
