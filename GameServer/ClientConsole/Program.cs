@@ -11,16 +11,16 @@ namespace ClientConsole
     {
         static void Main(string[] args)
         {
-            var writer = new UdpMessageWriter(20005);
-            new UdpMessageListener(20006).Listen(msg =>
+            new UdpMessageListener(20010).Listen((msg, endpoint) =>
             {
                 Console.WriteLine("Server: " + msg);
             });
+
+            var writer = new UdpMessageWriter(20011);
             while (true)
             {
-                writer.Write(Console.ReadLine(),"localhost", 20001);
+                writer.Write(Console.ReadLine(), "localhost", 20000);
             }
-
         }
     }
 }

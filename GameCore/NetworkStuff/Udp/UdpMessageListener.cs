@@ -7,12 +7,12 @@ namespace NetworkStuff.Udp
 {
     public interface IListenToNetworkMessages : IDisposable
     {
-        void Listen(Action<string> onMessageReceived);
+        void Listen(Action<string, Address> onMessageReceived);
     }
 
     public class UdpMessageListener : IListenToNetworkMessages
     {
-        private Action<string> OnMessageReceived = msg => { };
+        private Action<string, Address> OnMessageReceived = (msg, endpoint) => { };
         private readonly UdpClient receiver;
 
         public UdpMessageListener(int receiverPort)
@@ -24,6 +24,7 @@ namespace NetworkStuff.Udp
         private void DataReceived(IAsyncResult asyncResult)
         {
             var udpClient = (UdpClient)asyncResult.AsyncState;
+
             var receivedIpEndPoint = new IPEndPoint(
                 IPAddress.Any,
                 0);
@@ -37,7 +38,10 @@ namespace NetworkStuff.Udp
                 string receivedText = Encoding.ASCII.GetString(
                     receivedBytes);
 
-                OnMessageReceived(receivedText);
+                OnMessageReceived(receivedText,
+                    new Address(
+                        receivedIpEndPoint.Address.ToString(),
+                        receivedIpEndPoint.Port));
                 try
                 {
                     udpClient.BeginReceive(DataReceived, asyncResult.AsyncState);
@@ -47,12 +51,45 @@ namespace NetworkStuff.Udp
             catch (ObjectDisposedException) { }
         }
 
+        //private Endpoint GetIpAndPort(UdpClient udpClient)
+        //{
+        //    try
+        //    {
+        //        IPEndPoint remoteIpEndPoint =
+        //               udpClient.Client.RemoteEndPoint as IPEndPoint;
+
+        //        if (remoteIpEndPoint == null)
+        //            throw new SocketException();
+
+        //        return new Endpoint(
+        //            remoteIpEndPoint.Address.ToString(),
+        //            remoteIpEndPoint.Port);
+        //    }
+        //    catch (SocketException ex)
+        //    {
+        //        IPEndPoint localIpEndPoint =
+        //        udpClient.Client.LocalEndPoint as IPEndPoint;
+
+        //        if (localIpEndPoint == null)
+        //            throw ex;
+
+        //        if (localIpEndPoint.Address.ToString() == "0.0.0.0")
+        //            return new Endpoint(
+        //            "localhost",
+        //            localIpEndPoint.Port);
+
+        //        return new Endpoint(
+        //            localIpEndPoint.Address.ToString(),
+        //            localIpEndPoint.Port);
+        //    }
+        //}
+
         public void Dispose()
         {
             receiver.Close();
         }
 
-        public void Listen(Action<string> onMessageReceived)
+        public void Listen(Action<string, Address> onMessageReceived)
         {
             OnMessageReceived = onMessageReceived;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace NetworkStuff.Udp
@@ -6,15 +7,20 @@ namespace NetworkStuff.Udp
     public class UpdMessageBroadcaster : IDisposable
     {
         private readonly IWriteNetworkMessages Writer;
-        private readonly List<Endpoint> Listeners = new List<Endpoint>();
+        private readonly List<Address> Listeners = new List<Address>();
 
         public UpdMessageBroadcaster(IWriteNetworkMessages writer)
         {
             Writer = writer;
         }
 
-        public void AddTarget(Endpoint endpoint)
+        public void AddTarget(Address endpoint)
         {
+            if (Listeners.Any(f =>
+                 f.Ip == endpoint.Ip
+                 && f.Port == endpoint.Port))
+                return;
+
             Listeners.Add(endpoint);
         }
 
@@ -24,7 +30,7 @@ namespace NetworkStuff.Udp
             {
                 Writer.Write(
                     message,
-                    item.Hostname,
+                    item.Ip,
                     item.Port);
             }
         }
@@ -32,18 +38,6 @@ namespace NetworkStuff.Udp
         public void Dispose()
         {
             Writer.Dispose();
-        }
-    }
-
-    public struct Endpoint
-    {
-        public readonly string Hostname;
-        public readonly int Port;
-
-        public Endpoint(string hostName, int port)
-        {
-            Hostname = hostName;
-            Port = port;
         }
     }
 }

@@ -52,6 +52,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AsyncAssert.cs" />
+    <Compile Include="GetListenerAdressFromMessageTests.cs" />
+    <Compile Include="HandleMessageThreeTypesOfMessages.cs" />
     <Compile Include="UdpMessageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

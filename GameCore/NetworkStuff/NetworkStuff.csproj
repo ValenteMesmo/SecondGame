@@ -39,8 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="GetListenerAdressFromMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Udp\NetworkServer.cs" />
+    <Compile Include="KnowWhichHandlerCallBasedOnMessagesType.cs" />
+    <Compile Include="Udp\UpdMessageBroadcaster.cs" />
     <Compile Include="Udp\UdpMessageListener.cs" />
     <Compile Include="Udp\UdpMessageWriter.cs" />
   </ItemGroup>

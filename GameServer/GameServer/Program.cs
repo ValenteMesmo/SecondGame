@@ -11,15 +11,16 @@ namespace GameServer
     {
         static void Main(string[] args)
         {
-            var writer = new UdpMessageWriter(20002);
+            var writer = new UdpMessageWriter(20001);
 
             var broadcaster = new UpdMessageBroadcaster(writer);
-            broadcaster.AddTarget(
-                new Endpoint("localhost", 20006));
+            //broadcaster.AddTarget(
+            //    new Endpoint("localhost", 20006));
 
-            new UdpMessageListener(20001).Listen(msg =>
+            new UdpMessageListener(20000).Listen((msg, endpoint) =>
             {
-                Console.WriteLine("From client: "+msg);
+                Console.WriteLine("From client: " + msg);
+                broadcaster.AddTarget(endpoint);
                 broadcaster.Broadcast(msg);
             });
 
