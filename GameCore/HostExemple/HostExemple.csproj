@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9678C99-25AD-49CC-A0BC-2942DBE3767F}</ProjectGuid>
+    <ProjectGuid>{723C7944-6FDC-4D6D-B221-CE4CBBC1DF2A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameServer</RootNamespace>
-    <AssemblyName>GameServer</AssemblyName>
+    <RootNamespace>HostExemple</RootNamespace>
+    <AssemblyName>HostExemple</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NetworkStuff">
-      <HintPath>..\..\GameCore\NetworkStuff\bin\Debug\NetworkStuff.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkStuff\NetworkStuff.csproj">
+      <Project>{1cc21c8b-e4c5-4ca0-914b-f7f0cf0d656e}</Project>
+      <Name>NetworkStuff</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

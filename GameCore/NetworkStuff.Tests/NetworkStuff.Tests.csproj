@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute, Version=1.10.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.10.0.0\lib\net35\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -52,8 +56,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AsyncAssert.cs" />
-    <Compile Include="GetListenerAdressFromMessageTests.cs" />
-    <Compile Include="HandleMessageThreeTypesOfMessages.cs" />
     <Compile Include="UdpMessageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +64,9 @@
       <Project>{1cc21c8b-e4c5-4ca0-914b-f7f0cf0d656e}</Project>
       <Name>NetworkStuff</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
