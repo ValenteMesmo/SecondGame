@@ -96,6 +96,7 @@ GameObject:
   - 212: {fileID: 531280311}
   - 61: {fileID: 531280313}
   - 114: {fileID: 531280314}
+  - 114: {fileID: 531280315}
   m_Layer: 0
   m_Name: Client button
   m_TagString: Untagged
@@ -171,6 +172,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TouchDetector: {fileID: 1092821572}
+--- !u!114 &531280315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 531280310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f761eaca2dedd94586197618929b4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: ConnectToHost
 --- !u!1 &1092821571
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f761eaca2dedd94586197618929b4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneName: ChatAsHost
 --- !u!61 &1483732247
 BoxCollider2D:
   m_ObjectHideFlags: 0
