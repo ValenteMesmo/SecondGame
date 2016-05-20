@@ -26,7 +26,7 @@ namespace ClientExemple
         private static void TryOnThesePorts(int listen, int write)
         {
             var client = Factory.CreateClient(listen, write);
-            client.InformYourListeningPortToHost("localhost", 20010, messageReceived);
+            client.InformYourListeningPortToHost("192.168.0.7", 8001, messageReceived);
 
             while (true)
             {

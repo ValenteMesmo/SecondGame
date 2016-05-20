@@ -10,6 +10,9 @@ namespace NetworkStuff
             IListenToNetworkMessages listener,
             IWriteNetworkMessages writer)
         {
+            Ip = listener.Ip;
+            Port = listener.Port;
+
             var handlers = new List<IHandleNetworkMessages>();
             var clientsAddressKeeper = new List<Address>();
 
@@ -21,5 +24,8 @@ namespace NetworkStuff
 
             listener.Listen(messageHandlersAggregator.Handle);
         }
+
+        public string Ip { get; private set; }
+        public int Port { get; private set; }
     }
 }
