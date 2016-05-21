@@ -78,10 +78,10 @@
     <Compile Include="Assets\ChangeSceneOnTouch.cs" />
     <Compile Include="Assets\ConnectToHostButtonHandler.cs" />
     <Compile Include="Assets\MessageBroadCaster.cs" />
-    <Compile Include="Assets\Scripts\ConnectToServer.cs" />
     <Compile Include="Assets\Scripts\DetectTouchOnThisGameObject.cs" />
     <Compile Include="Assets\Scripts\DetectsTouchOnAnyCollidersInScene.cs" />
     <Compile Include="Assets\Scripts\IPAndPortDiplay.cs" />
+    <Compile Include="Assets\Scripts\ShowMessagesFromServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
