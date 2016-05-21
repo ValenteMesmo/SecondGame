@@ -1,22 +1,15 @@
-﻿using NetworkStuff;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
 public class ConnectToServer : MonoBehaviour
-{
-    public string Ip = "192.168.0.2";
-    public int Port = 20010;
+{  
 
     void Start()
     {
-        var client = Factory.CreateClient(8001,8002);
-        client.InformYourListeningPortToHost(Ip,Port,MessageReceived);
-        //client.SendMessage("Olá, mundo!");
-        
+        ConnectionKeeper.Listen(MessageReceived);
     }
+
     string Mensagem = "";
-    private void MessageReceived(string msg, Address address)
+    private void MessageReceived(string msg)
     {
         Debug.Log(msg);
         Mensagem = msg;
