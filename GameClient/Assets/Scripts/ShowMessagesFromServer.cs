@@ -1,21 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class ShowMessagesFromServer : MonoBehaviour
-{  
+{
+    public Text messageDisplay;
 
     void Start()
     {
+        if (messageDisplay == null)
+            throw new ArgumentNullException(
+                "Reference to a messageDisplay must be set on Editor");
         ConnectionKeeper.Listen(MessageReceived);
     }
 
-    string Mensagem = "";
+    string messageHistory = "";
     private void MessageReceived(string msg)
     {
         Debug.Log(msg);
-        Mensagem = msg;
+        messageHistory = msg + Environment.NewLine+ messageHistory;
     }
 
-    void OnGUI() {
-        GUILayout.Label(Mensagem);
+    void Update() {
+        messageDisplay.text = messageHistory;
     }
 }

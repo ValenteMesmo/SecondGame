@@ -3,6 +3,7 @@ using NetworkStuff;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class ConnectToHostButtonHandler : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ConnectToHostButtonHandler : MonoBehaviour
     {
         try
         {
-            ConnectionKeeper.Connect(Ip.text,int.Parse(Port.text));
+            ConnectionKeeper.Port = int.Parse(Port.text);
             SceneManager.LoadScene("ChatAsClient");
         }
         catch (Exception ex)
@@ -23,12 +24,17 @@ public class ConnectToHostButtonHandler : MonoBehaviour
     }
 }
 
-public static class ConnectionKeeper {
+public static class ConnectionKeeper
+{
+    public static string Ip;
+    public static int Port;
+
     private static Client Client;
     public static Action<string> onMessageReceived = msg => { };
 
 
     public static void Listen(Action <string> handler)
+    public static void Listen(Action<string> handler)
     {
         if (handler == null)
             throw new ArgumentNullException("Action to call on message received event.");
