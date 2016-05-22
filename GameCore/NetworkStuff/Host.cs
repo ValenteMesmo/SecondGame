@@ -52,7 +52,10 @@ namespace NetworkStuff
             foreach (var client in ClientsAddressKeeper)
             {
                 //TODO: ops! this enconding should be centralized
-                Writer.Write("2" + message, client.Ip, client.Port);
+                Writer.Write(
+                    MessageConstants.ACTUAL_MESSAGE_PREFIX + message, 
+                    client.Ip, 
+                    client.Port);
             }
         }
 
