@@ -14,6 +14,7 @@ public class ConnectToHostButtonHandler : MonoBehaviour
     {
         try
         {
+            ConnectionKeeper.Ip = Ip.text;
             ConnectionKeeper.Port = int.Parse(Port.text);
             SceneManager.LoadScene("ChatAsClient");
         }
@@ -32,8 +33,6 @@ public static class ConnectionKeeper
     private static Client Client;
     public static Action<string> onMessageReceived = msg => { };
 
-
-    public static void Listen(Action <string> handler)
     public static void Listen(Action<string> handler)
     {
         if (handler == null)
@@ -41,9 +40,16 @@ public static class ConnectionKeeper
         onMessageReceived = handler;
     }
 
-    public static void Connect(string ip, int port) {
+    public static void Connect()
+    {
+        //TODO validate ip and port
         Client = Factory.CreateClient(8001, 8002);
-        Client.InformYourListeningPortToHost(ip, port, MessageReceived);
+        Client.InformYourListeningPortToHost(Ip, Port, MessageReceived);
+    }
+
+    public static void SendMessage(string message)
+    {
+        Client.SendMessage(message);
     }
 
     private static void MessageReceived(string message, Address address)
