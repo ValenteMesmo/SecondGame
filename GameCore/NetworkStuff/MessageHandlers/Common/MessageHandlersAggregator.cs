@@ -13,9 +13,16 @@ namespace NetworkStuff.MessageHandlers
 
         public void Handle(string message, Address address)
         {
-            foreach (var handler in Handlers)
+            try
             {
-                handler.Handle(message, address);
+                foreach (var handler in Handlers)
+                {
+                    handler.Handle(message, address);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                //TODO: Log
             }
         }
     }
