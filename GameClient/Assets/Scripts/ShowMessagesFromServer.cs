@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ConnectToServer : MonoBehaviour
+public class ShowMessagesFromServer : MonoBehaviour
 {  
 
     void Start()
