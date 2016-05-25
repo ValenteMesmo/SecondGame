@@ -9,7 +9,7 @@ namespace GameCore.Tests
         [TestMethod]
         public void NothingSetAlreadyColliding()
         {
-            var sut = new DetectsCollision();
+            var sut = new CollisionDetector();
 
             var first = new Collider { };
             var second = new Collider { };
@@ -27,7 +27,7 @@ namespace GameCore.Tests
             };
 
             var actual = new List<string>();
-            sut.ForEachCombinations((first, second) =>
+            sut.ForEachCombination((first, second) =>
             {
                 actual.Add(first + second);
             });

@@ -1,6 +1,6 @@
 ﻿namespace GameCore
 {
-    public class DetectsCollision
+    public class CollisionDetector
     {
         public bool IsColliding(Collider first, Collider second)
         {
