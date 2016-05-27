@@ -41,14 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colliders\Player.cs" />
+    <Compile Include="IGetUserInputs.cs" />
+    <Compile Include="Updatables\IUpdate.cs" />
     <Compile Include="CollisionHandlers\CollisionHandlerAggregator.cs" />
-    <Compile Include="CollisionHandlers\Player\CollisionBetweenPlayers.cs" />
+    <Compile Include="CollisionHandlers\CollisionBetweenPlayers.cs" />
     <Compile Include="CollisionOrchestrator.cs" />
     <Compile Include="CollisionHandlers\IHandleCollision.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="Colliders\Collider.cs" />
     <Compile Include="CollisionDetector.cs" />
+    <Compile Include="Updatables\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
