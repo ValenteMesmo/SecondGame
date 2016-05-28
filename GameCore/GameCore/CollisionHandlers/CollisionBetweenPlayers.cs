@@ -4,11 +4,11 @@
     {
         public void Handle(Collider first, Collider second)
         {
-            if (first.Owner is Player 
-                && second.Owner is Player)
-            {
+            //if (first.Owner is Player 
+            //    && second.Owner is Player)
+            //{
 
-            }
+            //}
         }
     }
 }

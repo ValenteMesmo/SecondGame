@@ -2,6 +2,6 @@
 {
     public interface IGetUserInputs
     {
-        bool UpPressed();
+        bool LeftIsPressed();
     }
 }
