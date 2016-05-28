@@ -3,5 +3,6 @@
     public interface IGetUserInputs
     {
         bool LeftIsPressed();
+        bool RightIsPressed();
     }
 }

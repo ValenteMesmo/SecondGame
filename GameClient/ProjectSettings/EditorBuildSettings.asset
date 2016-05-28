@@ -5,11 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChatAsHost.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ConnectToHost.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChatAsClient.unity
+  - enabled: 1
+    path: Assets/Scenes/test.unity

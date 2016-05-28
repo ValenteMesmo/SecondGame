@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GameCore.Updatables
 {
@@ -22,6 +19,10 @@ namespace GameCore.Updatables
         {
             if (Inputs.LeftIsPressed())
                 Controller.SpeedUpToTheLeft();
+            else if (Inputs.RightIsPressed())
+                Controller.SpeedUpToTheRight();
+            else
+                Controller.SlowDown();
         }
     }
 
@@ -30,8 +31,8 @@ namespace GameCore.Updatables
         private readonly Collider Collider;
         private readonly float Acceleration;
 
-        private const float MAX_SPEED = 10f;
-        private const float MIN_SPEED = -10f;
+        private const float MAX_SPEED = 0.1f;
+        private const float MIN_SPEED = -0.1f;
         private float speed = 0;
 
         public MovementController(
