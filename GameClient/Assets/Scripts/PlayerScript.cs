@@ -5,12 +5,12 @@ using System;
 public class PlayerScript : MonoBehaviour
 {
     IPlayer player;
-    ISetUserInputs input;
+    //ISetUserInputs input;
 
     void Start()
     {
         player = Factory.CreatePlayer();
-        input = Factory.GetInputSetter();
+        //input = Factory.GetInputSetter();
     }
     DateTime current = DateTime.Now;
     void Update()
