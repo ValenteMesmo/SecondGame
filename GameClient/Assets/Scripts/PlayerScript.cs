@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
 using GameCore;
 using System;
+using GameCore.Commons;
 
 public class PlayerScript : MonoBehaviour
 {
     IPlayer player;
-    //ISetUserInputs input;
+
+    public float x_limit = 50;
+
+    public string name2 = "";
 
     void Start()
     {
+        name2 = new MyFsharpClass().X;
         player = Factory.CreatePlayer();
-        //input = Factory.GetInputSetter();
     }
     DateTime current = DateTime.Now;
     void Update()
     {
-        //input.SetLeftPressed(Input.GetAxis("Horizontal") < 0);
-        //input.SetRightPressed(Input.GetAxis("Horizontal") > 0);
         player.Update((current - DateTime.Now).Ticks);
-        transform.position = new Vector2(player.GetX(), transform.position.y);
+
+        var x = player.GetX();
+        //if (x > x_limit)
+        //    x = x_limit;
+        //if (x < -x_limit)
+        //    x = -x_limit;
+
+        transform.position = new Vector2(x, transform.position.y);
     }
 }

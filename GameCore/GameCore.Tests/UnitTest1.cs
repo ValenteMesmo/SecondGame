@@ -129,6 +129,22 @@ namespace GameCore.Tests
         }
 
         [TestMethod]
+        public void SimpleCollisionExample()
+        {
+            var sut = new CollisionDetector();
+
+            var first = new Collider { X = 10 };
+            var second = new Collider { X = 0 };
+
+            var actual = sut.IsColliding(first, second);
+            Assert.IsFalse(actual, "Collision detected!");
+
+            new MovementController(second, 10).SpeedUpToTheRight();
+            actual = sut.IsColliding(first, second);
+            Assert.IsTrue(actual, "Collision not detected!");
+        }
+
+        [TestMethod]
         public void ForEachCombination()
         {
             var sut = new List<string> {

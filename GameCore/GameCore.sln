@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCore", "GameCore\GameCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCore.Tests", "GameCore.Tests\GameCore.Tests.csproj", "{E314F29F-2218-420B-A0E6-F92BAA729C7A}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Commons", "GameCoreCommons\Commons.fsproj", "{AD64B8AF-994C-496F-B016-6E63D63C86B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{E314F29F-2218-420B-A0E6-F92BAA729C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E314F29F-2218-420B-A0E6-F92BAA729C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E314F29F-2218-420B-A0E6-F92BAA729C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD64B8AF-994C-496F-B016-6E63D63C86B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD64B8AF-994C-496F-B016-6E63D63C86B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD64B8AF-994C-496F-B016-6E63D63C86B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD64B8AF-994C-496F-B016-6E63D63C86B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

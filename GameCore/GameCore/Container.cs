@@ -19,11 +19,10 @@ namespace GameCore
 
             return new Player(
                 new UpdateAggregator(
-                    new List<IUpdate> {
-                            new MovesColliderLeftWhenPlayerInputsLeft(
-                                new MovementController(collider, 0.01f)                                ,
-                                inputs)
-                    }), collider);
+                    new MovesColliderLeftWhenPlayerInputsLeft(
+                        new MovementController(collider, 0.01f),
+                        inputs)
+                    ), collider);
         }
     }
 }

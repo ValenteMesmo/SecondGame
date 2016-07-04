@@ -7,7 +7,7 @@ namespace GameCore.Updatables
     {
         private readonly IEnumerable<IUpdate> Updates;
 
-        public UpdateAggregator(IEnumerable<IUpdate> updates)
+        public UpdateAggregator(params IUpdate[] updates)
         {
             Updates = updates;
         }

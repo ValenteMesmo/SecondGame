@@ -7,10 +7,20 @@ namespace HostExemple
     {
         static void Main(string[] args)
         {
-            var x = Factory.CreateHost(20010, 20011);
+            var host = Factory.CreateHost(20010, 20011);
 
+            host.SetMessageReceivedHandler(messageReceived);
 
-            Console.ReadKey();
+            while (true)
+            {
+                var msg = Console.ReadLine();
+                host.SendMessage(msg);
+            }
+        }
+
+        private static void messageReceived(string msg, Address address)
+        {
+            Console.WriteLine(string.Format("{0}:{1} => {2}", address.Ip, address.Port, msg));
         }
     }
 }

@@ -31,8 +31,8 @@ namespace GameCore.Updatables
         private readonly Collider Collider;
         private readonly float Acceleration;
 
-        private const float MAX_SPEED = 0.1f;
-        private const float MIN_SPEED = -0.1f;
+        private const float MAX_SPEED = 100f;
+        private const float MIN_SPEED = -100f;
         private float speed = 0;
 
         public MovementController(

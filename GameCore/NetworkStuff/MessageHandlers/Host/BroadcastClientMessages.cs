@@ -9,7 +9,7 @@ namespace NetworkStuff.MessageHandlers
         private readonly IWriteNetworkMessages Writer;
 
         public BroadcastClientMessages(
-            IWriteNetworkMessages writer, 
+            IWriteNetworkMessages writer,
             IEnumerable<Address> connectedClients)
         {
             ConnectedClients = connectedClients;
@@ -20,12 +20,14 @@ namespace NetworkStuff.MessageHandlers
         {
             if (message[0] == '2')
             {
-                var actualMessage = message.Substring(1); 
+                var actualMessage = message.Substring(1);
 
                 foreach (var client in ConnectedClients)
                 {
-                    Writer.Write("2" + actualMessage, client.Ip, client.Port);   
-                }                
+                    if (client.Ip != address.Ip 
+                        && client.Port != address.Port)
+                        Writer.Write("2" + actualMessage, client.Ip, client.Port);
+                }
             }
         }
     }

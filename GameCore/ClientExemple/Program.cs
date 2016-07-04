@@ -1,7 +1,5 @@
 ﻿using NetworkStuff;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace ClientExemple
 {
@@ -60,7 +58,8 @@ namespace ClientExemple
 
             while (true)
             {
-                client.SendMessage(Console.ReadLine());
+                var msg = Console.ReadLine();
+                client.SendMessage(msg);
             }
         }
 
