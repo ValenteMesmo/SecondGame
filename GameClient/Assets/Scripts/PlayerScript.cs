@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 using GameCore;
 using System;
+using GameCore.Commons;
 
 public class PlayerScript : MonoBehaviour
 {
-    DateTime current = DateTime.Now;
-    IPlayer player;
-    public float x_limit = 50;
-
+    DateTime lastUpdate = DateTime.Now;
+    //IPlayer player;
+    //public float x_limit = 50;
+    GameCore.Commons.Collider collider = new GameCore.Commons.Collider();
     void Start()
     {        
-        player = Factory.CreatePlayer();
+        //player = Factory.CreatePlayer();
     }
 
     void Update()
     {
-        player.Update((current - DateTime.Now).Ticks);
-        
-        var x = player.GetX();
-        //if (x > x_limit)
-        //    x = x_limit;
-        //if (x < -x_limit)
-        //    x = -x_limit;
+        var now = DateTime.Now;
+        var millisecondsSinceLastUpdate = (now - lastUpdate).Milliseconds;
+        xxx.UpdateHorizontalPosition(collider, millisecondsSinceLastUpdate);
+        //player.Update((current - DateTime.Now).Ticks);
 
-        transform.position = new Vector2(x, transform.position.y);
+        //var x = player.GetX();
+
+        //transform.position = new Vector2(x, transform.position.y);
+        transform.position = new Vector2(collider.X, transform.position.y);
+        lastUpdate = now;
     }
 }

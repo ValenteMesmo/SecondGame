@@ -1,4 +1,5 @@
 ﻿namespace GameCore.Commons
+open System
 
 type Collider() = 
     let mutable x = 0.0f
@@ -33,7 +34,7 @@ module xxx =
                 action (list.Item i) (list.Item j) |> ignore
                 j <- j - 1
 
-    //TODO: delete
+    [<Obsolete "I dont know if this method has a good performance... use ForeachCombination">]
     let GetCombinations<'T> (list : 'T list) =
         [for i in 0 .. list.Length - 1 do
             let mutable j = list.Length - 1
@@ -55,9 +56,12 @@ module xxx =
 
     let HandleAllCollisions colliders =
         colliders |> ForEachCombination <| handleSingleCollision
-            
-        
 
+    let private speed = 1.0f
 
+    let mutable updatedAt = DateTime.Now
+    let private millisecondsSinceLastUpdate = float32((DateTime.Now - updatedAt).Milliseconds)
 
-            
+    let UpdateHorizontalPosition (collider : Collider) =
+        collider.X <- collider.X + speed * (millisecondsSinceLastUpdate / 100.0f)
+        true

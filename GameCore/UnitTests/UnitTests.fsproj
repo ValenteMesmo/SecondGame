@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Library1.fs" />
+    <Compile Include="ForEach.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameCoreCommons\Commons.fsproj">
