@@ -1,4 +1,6 @@
-﻿namespace GameCore
+﻿using GameCore.Commons;
+
+namespace GameCore
 {
     public interface IHandleCollision
     {

@@ -20,7 +20,7 @@ namespace NetworkStuff.MessageHandlers
                     handler.Handle(message, address);
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 //TODO: Log
             }

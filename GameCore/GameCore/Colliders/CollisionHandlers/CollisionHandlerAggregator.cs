@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GameCore.Commons;
+using System.Collections.Generic;
 
 namespace GameCore.CollisionHandlers
 {
@@ -6,7 +7,7 @@ namespace GameCore.CollisionHandlers
     {
         private readonly IEnumerable<IHandleCollision> Handlers;
 
-        public CollisionHandlerAggregator(IEnumerable<IHandleCollision> handlers)
+        public CollisionHandlerAggregator(params IHandleCollision[] handlers)
         {
             Handlers = handlers;
         }

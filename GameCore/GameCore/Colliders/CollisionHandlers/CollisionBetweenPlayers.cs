@@ -1,4 +1,6 @@
-﻿namespace GameCore.CollisionHandlers
+﻿using GameCore.Commons;
+
+namespace GameCore.CollisionHandlers
 {
     public class CollisionBetweenPlayers : IHandleCollision
     {

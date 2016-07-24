@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameCoreCommons\Commons.fsproj">
+      <Project>{ad64b8af-994c-496f-b016-6e63d63c86b3}</Project>
+      <Name>Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameCore\GameCore.csproj">
       <Project>{41613d44-686d-4710-a3dc-751da6057985}</Project>
       <Name>GameCore</Name>
