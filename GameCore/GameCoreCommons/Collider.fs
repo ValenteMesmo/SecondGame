@@ -63,6 +63,7 @@ module xxx =
 
     let UpdateHorizontalPosition (collider : Collider) =        
         let millisecondsSinceLastUpdate = float32((DateTime.Now - updatedAt).Milliseconds)
+        
         if PlayerOneInput.GetLeft() then
             collider.X <- collider.X - speed * (millisecondsSinceLastUpdate / 100.0f)
         else if PlayerOneInput.GetRight() then

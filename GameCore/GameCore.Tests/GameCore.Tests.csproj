@@ -59,10 +59,6 @@
       <Project>{ad64b8af-994c-496f-b016-6e63d63c86b3}</Project>
       <Name>Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GameCore\GameCore.csproj">
-      <Project>{41613d44-686d-4710-a3dc-751da6057985}</Project>
-      <Name>GameCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
