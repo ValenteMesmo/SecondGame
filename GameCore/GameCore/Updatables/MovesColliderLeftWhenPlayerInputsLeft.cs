@@ -1,85 +1,86 @@
-﻿using GameCore.Commons;
-using System;
+﻿//using GameCore.Commons;
+//using System;
 
-namespace GameCore.Updatables
-{
-    public class MovesColliderLeftWhenPlayerInputsLeft : IUpdate
-    {
-        private readonly IGetUserInputs Inputs;
-        private readonly MovementController Controller;
+//namespace GameCore.Updatables
+//{
+//    public class MovesColliderLeftWhenPlayerInputsLeft : IUpdate
+//    {
+//        //private readonly IGetUserInputs Inputs;
+//        private readonly MovementController Controller;
 
-        public MovesColliderLeftWhenPlayerInputsLeft(
-            MovementController controller,
-            IGetUserInputs inputs)
-        {
-            Inputs = inputs;
-            Controller = controller;
-        }
+//        public MovesColliderLeftWhenPlayerInputsLeft(
+//            MovementController controller//,
+//            //IGetUserInputs inputs
+//            )
+//        {
+//            //Inputs = inputs;
+//            Controller = controller;
+//        }
 
-        public void Update(float deltaTime)
-        {
-            if (Inputs.LeftIsPressed())
-                Controller.SpeedUpToTheLeft();
-            else if (Inputs.RightIsPressed())
-                Controller.SpeedUpToTheRight();
-            else
-                Controller.SlowDown();
-        }
-    }
+//        public void Update(float deltaTime)
+//        {
+//            if (Inputs.LeftIsPressed())
+//                Controller.SpeedUpToTheLeft();
+//            else if (Inputs.RightIsPressed())
+//                Controller.SpeedUpToTheRight();
+//            else
+//                Controller.SlowDown();
+//        }
+//    }
 
-    public class MovementController
-    {
-        private readonly Collider Collider;
-        private readonly float Acceleration;
+//    public class MovementController
+//    {
+//        private readonly Collider Collider;
+//        private readonly float Acceleration;
 
-        private const float MAX_SPEED = 100f;
-        private const float MIN_SPEED = -100f;
-        private float speed = 0;
+//        private const float MAX_SPEED = 100f;
+//        private const float MIN_SPEED = -100f;
+//        private float speed = 0;
 
-        public MovementController(
-            Collider collider,
-            float acceleration)
-        {
-            Collider = collider;
-            if (acceleration <= 0)
-                throw new ArgumentException(
-                    "acceleration", 
-                    "Sorry! Acceleration must be greater than zero!");
-            Acceleration = acceleration;
-        }
+//        public MovementController(
+//            Collider collider,
+//            float acceleration)
+//        {
+//            Collider = collider;
+//            if (acceleration <= 0)
+//                throw new ArgumentException(
+//                    "acceleration", 
+//                    "Sorry! Acceleration must be greater than zero!");
+//            Acceleration = acceleration;
+//        }
 
-        public void SlowDown()
-        {
-            if (speed > 0)
-            {
-                speed -= Acceleration;
-            }
-            else if (speed < 0)
-            {
-                speed += Acceleration;
-            }
+//        public void SlowDown()
+//        {
+//            if (speed > 0)
+//            {
+//                speed -= Acceleration;
+//            }
+//            else if (speed < 0)
+//            {
+//                speed += Acceleration;
+//            }
 
-            Collider.X += speed;
-        }
+//            Collider.X += speed;
+//        }
 
-        public void SpeedUpToTheLeft()
-        {
-            speed -= Acceleration;
+//        public void SpeedUpToTheLeft()
+//        {
+//            speed -= Acceleration;
 
-            if (speed < MIN_SPEED)
-                speed = MIN_SPEED;
+//            if (speed < MIN_SPEED)
+//                speed = MIN_SPEED;
 
-            Collider.X += speed;
-        }
+//            Collider.X += speed;
+//        }
 
-        public void SpeedUpToTheRight()
-        {
-            speed += Acceleration;
+//        public void SpeedUpToTheRight()
+//        {
+//            speed += Acceleration;
 
-            if (speed > MAX_SPEED)
-                speed = MAX_SPEED;
+//            if (speed > MAX_SPEED)
+//                speed = MAX_SPEED;
 
-            Collider.X += speed;
-        }
-    }
-}
+//            Collider.X += speed;
+//        }
+//    }
+//}

@@ -57,11 +57,16 @@ module xxx =
     let HandleAllCollisions colliders =
         colliders |> ForEachCombination <| handleSingleCollision
 
-    let private speed = 1.0f
+    let private speed = 0.2f
 
     let mutable updatedAt = DateTime.Now
-    let private millisecondsSinceLastUpdate = float32((DateTime.Now - updatedAt).Milliseconds)
 
-    let UpdateHorizontalPosition (collider : Collider) =
-        collider.X <- collider.X + speed * (millisecondsSinceLastUpdate / 100.0f)
+    let UpdateHorizontalPosition (collider : Collider) =        
+        let millisecondsSinceLastUpdate = float32((DateTime.Now - updatedAt).Milliseconds)
+        if PlayerOneInput.GetLeft() then
+            collider.X <- collider.X - speed * (millisecondsSinceLastUpdate / 100.0f)
+        else if PlayerOneInput.GetRight() then
+            collider.X <- collider.X + speed * (millisecondsSinceLastUpdate / 100.0f)        
+            
+        updatedAt <- DateTime.Now
         true
