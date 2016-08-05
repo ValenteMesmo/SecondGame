@@ -54,7 +54,6 @@ type TestsSample() =
 
         let expected = ["CD"; "BC"; "BD"; "AB"; "AC"; "AD"]
         let mutable actual : string list = []
-        
         let handler x y =
             actual <- x + y :: actual
             true
@@ -68,4 +67,3 @@ type TestsSample() =
         Assert.AreEqual(expected.Item 3, actual.Item 3);
         Assert.AreEqual(expected.Item 4, actual.Item 4);
         Assert.AreEqual(expected.Item 5, actual.Item 5);
-

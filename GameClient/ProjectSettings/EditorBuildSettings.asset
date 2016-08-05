@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainMenu.unity
   - enabled: 0
-    path: Assets/Scenes/ChatAsHost.unity
+    path: Assets/Scenes/Host_chat.unity
   - enabled: 0
-    path: Assets/Scenes/ConnectToHost.unity
+    path: Assets/Scenes/Lobby.unity
   - enabled: 0
-    path: Assets/Scenes/ChatAsClient.unity
+    path: Assets/Scenes/Client_chat.unity
   - enabled: 1
-    path: Assets/Scenes/test.unity
+    path: Assets/Scenes/SandBox_Server.unity

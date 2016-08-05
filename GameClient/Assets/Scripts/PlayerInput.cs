@@ -27,4 +27,11 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         action();
     }
+
+    public void Update()
+    {
+        var axis_h = Input.GetAxis("Horizontal");
+        PlayerOneInput.SetRight(axis_h > 0);
+        PlayerOneInput.SetLeft(axis_h < 0);
+    }
 }
