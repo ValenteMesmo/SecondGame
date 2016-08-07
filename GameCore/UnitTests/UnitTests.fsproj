@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="World.fs" />
     <Compile Include="ForEach.fs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,9 +23,9 @@ type Collider() =
 //first comes updates then comes the collision handlers
 
 module xxx =
-    let UpdateEverything updates = 
-        for update in updates do
-            update()
+//    let UpdateEverything updates = 
+//        for update in updates do
+//            update()
 
     let ForEachCombination<'T> (list : 'T list) (action : 'T -> 'T -> bool) =
         for i in 0 .. list.Length - 1 do
@@ -42,7 +42,7 @@ module xxx =
                 yield (list.Item i, list.Item j)
                 j <- j - 1]
 
-    let handleSingleCollision (a : Collider) (b : Collider) =
+    let private handleSingleCollision (a : Collider) (b : Collider) =
         if a.X + a.Width < b.X
         || b.X + b.Width < a.X
         || a.Y + a.Height < b.Y

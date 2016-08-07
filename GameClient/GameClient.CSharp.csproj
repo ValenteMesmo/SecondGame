@@ -61,6 +61,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Commons">
+      <HintPath>Assets\Plugin\Commons.dll</HintPath>
+    </Reference>
     <Reference Include="FSharp.Core">
       <HintPath>Assets\Plugin\FSharp.Core.dll</HintPath>
     </Reference>
@@ -70,21 +73,19 @@
     <Reference Include="NetworkStuff">
       <HintPath>Assets\Plugin\NetworkStuff.dll</HintPath>
     </Reference>
-    <Reference Include="Commons">
-      <HintPath>Assets\Plugin\Commons.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InputLeftOnTouch.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
-    <Compile Include="Assets\Scripts\ConnectToHostButtonHandler.cs" />
-    <Compile Include="Assets\Scripts\DetectTouchOnThisGameObject.cs" />
-    <Compile Include="Assets\Scripts\DetectsTouchOnAnyCollidersInScene.cs" />
-    <Compile Include="Assets\Scripts\IPAndPortDiplay.cs" />
-    <Compile Include="Assets\Scripts\MessageBroadCaster.cs" />
+    <Compile Include="Assets\Scripts\Connection\ConnectToHostButtonHandler.cs" />
+    <Compile Include="Assets\Scripts\Connection\IPAndPortDiplay.cs" />
+    <Compile Include="Assets\Scripts\Connection\MessageBroadCaster.cs" />
+    <Compile Include="Assets\Scripts\Connection\SendMessagesToHost.cs" />
+    <Compile Include="Assets\Scripts\Connection\ShowMessagesFromServer.cs" />
+    <Compile Include="Assets\Scripts\GameController\DetectTouchOnThisGameObject.cs" />
+    <Compile Include="Assets\Scripts\GameController\DetectsTouchOnAnyCollidersInScene.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\SendMessagesToHost.cs" />
-    <Compile Include="Assets\Scripts\ShowMessagesFromServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugin\FSharp.Core.xml" />
