@@ -61,7 +61,7 @@ module xxx =
 
     let mutable updatedAt = DateTime.Now
 
-    let UpdateHorizontalPosition (collider : Collider) =        
+    let private UpdateHorizontalPosition (collider : Collider) =        
         let millisecondsSinceLastUpdate = float32((DateTime.Now - updatedAt).Milliseconds)
         
         if PlayerOneInput.GetLeft() then
@@ -71,3 +71,13 @@ module xxx =
             
         updatedAt <- DateTime.Now
         true
+
+    let private updatePlayerArmPosition (playerCollider : Collider) (armCollider : Collider) =
+        if PlayerOneInput.GetPunch() then
+            armCollider.X <- playerCollider.X + 0.6f
+        else
+            armCollider.X <- playerCollider.X
+
+    let playerUpdate collider armCollider = 
+        UpdateHorizontalPosition collider |> ignore
+        updatePlayerArmPosition collider armCollider

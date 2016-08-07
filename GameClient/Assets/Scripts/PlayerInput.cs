@@ -33,5 +33,6 @@ public class PlayerInput : MonoBehaviour
         var axis_h = Input.GetAxis("Horizontal");
         PlayerOneInput.SetRight(axis_h > 0);
         PlayerOneInput.SetLeft(axis_h < 0);
+        PlayerOneInput.SetPunch(Input.GetKey(KeyCode.Space));
     }
 }

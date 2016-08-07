@@ -8,24 +8,6 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 type TestsSample() =
 
     [<TestMethod>]
-    member this.BlockShouldMoveOnUpdate() =
-        xxx.updatedAt <- DateTime.Now
-
-        Assert.IsTrue(new Collider() |> xxx.UpdateHorizontalPosition)
-
-    [<TestMethod>]
-    member this.BlockShouldMoveWhenRightKeyIsPressed() =
-        xxx.updatedAt <- DateTime.Now
-
-        let handleMovementToTheRight =
-            if true then
-                new Collider() |> xxx.UpdateHorizontalPosition 
-            else
-                false
-
-        Assert.IsTrue(handleMovementToTheRight)
-
-    [<TestMethod>]
     member this.GetCombinations() =
                 
         let Items = ["A"; "B"; "C"; "D"]
