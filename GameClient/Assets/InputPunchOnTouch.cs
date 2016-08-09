@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using UnitySolution.InputComponents;
 
-public class InputLeftOnTouch : MonoBehaviour {
+public class InputPunchOnTouch : MonoBehaviour {
 
-	void Start ()
+    void Start()
     {
         var x = GetComponent<DetectTouchOnThisGameObject>();
-        x.OnEnd += touchEnd;        
+        x.OnEnd += touchEnd;
         x.OnCancel += touchEnd;
         x.OnStart += touchStart;
         x.OnStay += touchStart;
@@ -16,11 +15,11 @@ public class InputLeftOnTouch : MonoBehaviour {
 
     private void touchStart(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetLeft(true);
+        PlayerOneInput.SetPunch(true);
     }
 
     private void touchEnd(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetLeft(false);
+        PlayerOneInput.SetPunch(false);
     }
 }
