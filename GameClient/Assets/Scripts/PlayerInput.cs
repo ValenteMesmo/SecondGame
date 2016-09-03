@@ -1,22 +1,10 @@
 ﻿using UnityEngine;
-using GameCore;
 using System;
 using System.Collections;
+using Common;
 
 public class PlayerInput : MonoBehaviour
 {
-    public void SetLeft()
-    {
-        PlayerOneInput.SetLeft(true);
-        DelayExecution(() => PlayerOneInput.SetLeft(false), 0.5f);
-    }
-
-    public void SetRight()
-    {
-        PlayerOneInput.SetRight(true);
-        DelayExecution(() => PlayerOneInput.SetRight(false), 0.5f);
-    }
-
     public void DelayExecution(Action action, float delayInSeconds)
     {
         StartCoroutine(DelayedAction(action, delayInSeconds));
@@ -30,9 +18,9 @@ public class PlayerInput : MonoBehaviour
 
     public void Update()
     {
-        var axis_h = Input.GetAxis("Horizontal");
-        PlayerOneInput.SetRight(axis_h > 0);
-        PlayerOneInput.SetLeft(axis_h < 0);
-        PlayerOneInput.SetPunch(Input.GetKey(KeyCode.Space));
+        var axis_h = Input.GetAxis("Horizontal");        
+        Player1Input.RightIsPressed = axis_h > 0;
+        Player1Input.LeftIsPressed  = axis_h < 0;
+        Player1Input.PunchPressed = Input.GetKey(KeyCode.Space);
     }
 }

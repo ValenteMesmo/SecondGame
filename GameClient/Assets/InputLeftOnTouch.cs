@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 using UnitySolution.InputComponents;
+using Common;
 
-public class InputLeftOnTouch : MonoBehaviour {
+public class InputLeftOnTouch : MonoBehaviour
+{
 
-	void Start ()
+    void Start()
     {
         var x = GetComponent<DetectTouchOnThisGameObject>();
-        x.OnEnd += touchEnd;        
+        x.OnEnd += touchEnd;
         x.OnCancel += touchEnd;
         x.OnStart += touchStart;
         x.OnStay += touchStart;
@@ -16,11 +16,11 @@ public class InputLeftOnTouch : MonoBehaviour {
 
     private void touchStart(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetLeft(true);
+        Player1Input.LeftIsPressed = true;
     }
 
     private void touchEnd(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetLeft(false);
+        Player1Input.LeftIsPressed = false;
     }
 }

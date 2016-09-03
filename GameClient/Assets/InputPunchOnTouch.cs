@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnitySolution.InputComponents;
+using Common;
 
-public class InputPunchOnTouch : MonoBehaviour {
-
+public class InputPunchOnTouch : MonoBehaviour
+{
     void Start()
     {
         var x = GetComponent<DetectTouchOnThisGameObject>();
@@ -15,11 +15,11 @@ public class InputPunchOnTouch : MonoBehaviour {
 
     private void touchStart(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetPunch(true);
+        Player1Input.PunchPressed = true;
     }
 
     private void touchEnd(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetPunch(false);
+        Player1Input.PunchPressed = false;
     }
 }

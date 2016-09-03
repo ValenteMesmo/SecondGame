@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnitySolution.InputComponents;
+using Common;
 
 public class InputRightOnTouch : MonoBehaviour {
 
@@ -15,11 +16,11 @@ public class InputRightOnTouch : MonoBehaviour {
 
     private void touchStart(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetRight(true);
+        Player1Input.RightIsPressed = true;
     }
 
     private void touchEnd(object sender, PointEventArgs e)
     {
-        PlayerOneInput.SetRight(false);
+        Player1Input.RightIsPressed =false;
     }
 }
