@@ -7,23 +7,17 @@ public class PlayerScript : MonoBehaviour
     //GameCore.Commons.Collider armCollider = new GameCore.Commons.Collider();
 
     public Transform armTransform;
-    private World world = new World();
+    public WorldComponent World;
 
     void Start()
     {
-        world.AddPlayer(f => {
-            transform.position = new Vector2(f.Body.X, f.Body.Y);
-            Debug.Log(f.Body.X);
-        });
+        World.Reference.AddPlayer(OnPlayerUpdated);
     }
 
-    void Update()
+    private void OnPlayerUpdated(Player player)
     {
-        world.Update();
-        
-        //xxx.playerUpdate(myCollider, armCollider);
-        //transform.position = new Vector2(myCollider.X, transform.position.y);
-        //armTransform.position = new Vector2(armCollider.X, armCollider.Y);
-        //xxx.HandleAllCollisions(new List<GameCore.Commons.Collider>());
+        transform.position = 
+            new Vector2(player.Body.X, player.Body.Y);
+        //Debug.Log(player.Body.X);
     }
 }

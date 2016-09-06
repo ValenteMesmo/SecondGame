@@ -72,6 +72,7 @@
     <Compile Include="Assets\InputLeftOnTouch.cs" />
     <Compile Include="Assets\InputPunchOnTouch.cs" />
     <Compile Include="Assets\InputRightOnTouch.cs" />
+    <Compile Include="Assets\MonsterScript.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Connection\ConnectToHostButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Connection\IPAndPortDiplay.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\GameController\DetectsTouchOnAnyCollidersInScene.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\WorldComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
