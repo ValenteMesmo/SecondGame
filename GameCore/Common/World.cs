@@ -15,11 +15,10 @@ namespace Common
         {
             var player = new Player();
             player.Body.Width = 1;
-            player.Body.OnRightCollision = other => {
-                other.X +=
-                (player.Body.X + player.Body.Width)
-                -
-                other.X;
+            player.Body.Height = 1;
+            player.Body.OnRightCollision = other =>
+            {
+                other.X = (player.Body.X + player.Body.Width);
             };
 
             colliders.Add(player.Body);
@@ -36,6 +35,7 @@ namespace Common
             var collider = new Collider();
             collider.X = 3;
             collider.Width = 1;
+            collider.Height = 1;
             colliders.Add(collider);
 
             updateActionsList.Add(millisecondsSinceLastUpdate =>

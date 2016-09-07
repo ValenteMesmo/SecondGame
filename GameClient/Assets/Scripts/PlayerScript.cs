@@ -3,9 +3,6 @@ using Common;
 
 public class PlayerScript : MonoBehaviour
 {
-    //GameCore.Commons.Collider myCollider = new GameCore.Commons.Collider();
-    //GameCore.Commons.Collider armCollider = new GameCore.Commons.Collider();
-
     public Transform armTransform;
     public WorldComponent World;
 
@@ -14,10 +11,19 @@ public class PlayerScript : MonoBehaviour
         World.Reference.AddPlayer(OnPlayerUpdated);
     }
 
+    BoxCollider2D colliderJustToVisualize;
+
     private void OnPlayerUpdated(Player player)
     {
         transform.position = 
             new Vector2(player.Body.X, player.Body.Y);
-        //Debug.Log(player.Body.X);
+        if (colliderJustToVisualize == null)
+        {
+            colliderJustToVisualize = gameObject.AddComponent<BoxCollider2D>();
+            colliderJustToVisualize.size = new Vector2(
+                player.Body.Width,
+                player.Body.Height);
+            colliderJustToVisualize.isTrigger = true;
+        }
     }
 }

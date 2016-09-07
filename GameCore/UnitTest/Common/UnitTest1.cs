@@ -58,20 +58,21 @@ namespace UnitTest
             {
                 Height = 1,
                 Width = 1,
-                OnLeftCollision = _ =>
-                {
-                    result1 = true;
-                }
+                X = 0f,
+                OnLeftCollision = _ => result1 = false,
+                OnRightCollision = _ => result1 = true,
+                OnTopCollision = _ => result1 = false,
+                OnBotCollision = _ => result1 = false
             });
             sut.Add(new Collider
             {
                 Height = 1,
                 Width = 1,
                 X = 0.5f,
-                OnRightCollision = _ =>
-                {
-                    result2 = true;
-                }
+                OnLeftCollision = _ => result2 = true,
+                OnRightCollision = _ => result2 = false,
+                OnTopCollision = _ => result2 = false,
+                OnBotCollision = _ => result2 = false
             });
 
             sut.HandleCollisions();
@@ -89,20 +90,21 @@ namespace UnitTest
             {
                 Height = 1,
                 Width = 1,
-                OnRightCollision = _ =>
-                {
-                    result1 = true;
-                }
+                X = 0f,
+                OnLeftCollision = _ => result1 = true,
+                OnRightCollision = _ => result1 = false,
+                OnTopCollision = _ => result1 = false,
+                OnBotCollision = _ => result1 = false
             });
             sut.Add(new Collider
             {
                 Height = 1,
                 Width = 1,
                 X = -0.5f,
-                OnLeftCollision = _ =>
-                {
-                    result2 = true;
-                }
+                OnLeftCollision = _ => result2 = false,
+                OnRightCollision = _ => result2 = true,
+                OnTopCollision = _ => result2 = false,
+                OnBotCollision = _ => result2 = false
             });
 
             sut.HandleCollisions();
@@ -135,7 +137,7 @@ namespace UnitTest
                     result2 = true;
                 }
             });
-            
+
             sut.HandleCollisions();
             Assert.IsTrue(result1);
             Assert.IsTrue(result2);
