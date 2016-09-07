@@ -8,7 +8,10 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        World.Reference.AddPlayer(OnPlayerUpdated);
+        World.Reference.AddPlayer(
+            transform.position.x,
+            transform.position.y,
+            OnPlayerUpdated);
     }
 
     BoxCollider2D colliderJustToVisualize;

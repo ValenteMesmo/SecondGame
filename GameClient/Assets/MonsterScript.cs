@@ -3,10 +3,14 @@
 public class MonsterScript : MonoBehaviour
 {
     public WorldComponent World;
-    BoxCollider2D colliderJustToVisualize;
+    private BoxCollider2D colliderJustToVisualize;
+
     void Start()
     {
-        World.Reference.AddMonster(collider =>
+        World.Reference.AddMonster(
+            transform.position.x,
+            transform.position.y,
+            collider =>
         {
             transform.position =
                 new Vector2(

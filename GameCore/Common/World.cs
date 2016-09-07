@@ -11,14 +11,20 @@ namespace Common
         private IList<Collider> colliders =
             new List<Collider>();
 
-        public void AddPlayer(Action<Player> onPlayerUpdated)
+        public void AddPlayer(float x, float y, Action<Player> onPlayerUpdated)
         {
             var player = new Player();
+            player.Body.X = x;
+            player.Body.Y = y;
             player.Body.Width = 1;
             player.Body.Height = 1;
             player.Body.OnRightCollision = other =>
             {
                 other.X = (player.Body.X + player.Body.Width);
+            };
+            player.Body.OnLeftCollision = other =>
+            {
+                other.X = (player.Body.X - other.Width);
             };
 
             colliders.Add(player.Body);
@@ -30,10 +36,11 @@ namespace Common
             });
         }
 
-        public void AddMonster(Action<Collider> onMonsterUpdated)
+        public void AddMonster(float x, float y, Action<Collider> onMonsterUpdated)
         {
             var collider = new Collider();
-            collider.X = 3;
+            collider.X = x;
+            collider.Y = y;
             collider.Width = 1;
             collider.Height = 1;
             colliders.Add(collider);
