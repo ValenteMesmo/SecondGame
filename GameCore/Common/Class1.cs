@@ -3,18 +3,26 @@ using System.Collections.Generic;
 
 namespace Common
 {
-    public class Collider
+    public interface IGameObject
+    {
+        float X { get; }
+        float Y { get; }
+        float Width { get; }
+        float Height { get; }
+    }
+
+    public class Collider: IGameObject
     {
         public float X { get; set; }
         public float Y { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
 
-        public Action<Collider> OnCollision = other => { };
-        public Action<Collider> OnTopCollision = other => { };
-        public Action<Collider> OnBotCollision = other => { };
-        public Action<Collider> OnLeftCollision = other => { };
-        public Action<Collider> OnRightCollision = other => { };
+        public Action<IGameObject> OnCollision = other => { };
+        public Action<IGameObject> OnTopCollision = other => { };
+        public Action<IGameObject> OnBotCollision = other => { };
+        public Action<IGameObject> OnLeftCollision = other => { };
+        public Action<IGameObject> OnRightCollision = other => { };
     }
 
     public static class XXX
@@ -32,34 +40,37 @@ namespace Common
             }
         }
 
-        public static void HandleCollisions(this IList<Collider> colliders)
+        public static void HandleCollisions(
+            this IList<Collider> colliders)
         {
             colliders.ForEachCombination(
                 HandleSingleCollision);
         }
 
-        private static void HandleSingleCollision(Collider a, Collider b)
+        private static void HandleSingleCollision(
+            Collider a, 
+            Collider b)
         {
-            var a_rightPoint = a.X + a.Width;
-            var b_rightPoint = b.X + b.Width;
-            var a_topPoint = a.Y + a.Height;
-            var b_topPoint = b.Y + b.Height;
+            var rightPoint_a = a.X + a.Width;
+            var rightPoint_b = b.X + b.Width;
+            var topPoint_a = a.Y + a.Height;
+            var topPoint_b = b.Y + b.Height;
 
-            if (a_rightPoint < b.X
-            || b_rightPoint < a.X
-            || a_topPoint < b.Y
-            || b_topPoint < a.Y)
+            if (rightPoint_a < b.X
+            || rightPoint_b < a.X
+            || topPoint_a < b.Y
+            || topPoint_b < a.Y)
                 return;
             else
             {
-                var bot_collision = b_topPoint - a.Y;
-                var top_collision = a_topPoint - b.Y;
-                var left_collision = a_rightPoint - b.X;
-                var right_collision = b_rightPoint - a.X;
+                var top_b__bot_a__difference = topPoint_b - a.Y;
+                var top_a__bot_b__difference = topPoint_a - b.Y;
+                var right_a__left_b__difference = rightPoint_a - b.X;
+                var right_b__left_a__difference = rightPoint_b - a.X;
 
-                if (top_collision < bot_collision
-                    && top_collision < left_collision
-                    && top_collision < right_collision)
+                if (top_a__bot_b__difference < top_b__bot_a__difference
+                    && top_a__bot_b__difference < right_a__left_b__difference
+                    && top_a__bot_b__difference < right_b__left_a__difference)
                 {
                     a.OnTopCollision(b);
                     a.OnCollision(b);
@@ -68,9 +79,9 @@ namespace Common
                     return;
                 }
 
-                if (bot_collision < top_collision
-                    && bot_collision < left_collision
-                    && bot_collision < right_collision)
+                if (top_b__bot_a__difference < top_a__bot_b__difference
+                    && top_b__bot_a__difference < right_a__left_b__difference
+                    && top_b__bot_a__difference < right_b__left_a__difference)
                 {
                     a.OnBotCollision(b);
                     a.OnCollision(b);
@@ -79,9 +90,9 @@ namespace Common
                     return;
                 }
 
-                if (left_collision < right_collision
-                    && left_collision < top_collision
-                    && left_collision < bot_collision)
+                if (right_a__left_b__difference < right_b__left_a__difference
+                    && right_a__left_b__difference < top_a__bot_b__difference
+                    && right_a__left_b__difference < top_b__bot_a__difference)
                 {
                     a.OnRightCollision(b);
                     a.OnCollision(b);
@@ -90,9 +101,9 @@ namespace Common
                     return;
                 }
 
-                if (right_collision < left_collision
-                    && right_collision < top_collision
-                    && right_collision < bot_collision)
+                if (right_b__left_a__difference < right_a__left_b__difference
+                    && right_b__left_a__difference < top_a__bot_b__difference
+                    && right_b__left_a__difference < top_b__bot_a__difference)
                 {
                     a.OnLeftCollision(b);
                     a.OnCollision(b);

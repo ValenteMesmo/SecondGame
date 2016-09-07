@@ -26,7 +26,7 @@ namespace Common
 
     public static class PlayerFuncs
     {
-        private static float speed = 0.2f;
+        private static float speed = 0.2f;        
 
         public static void Update(this Player player, int millisecondsSinceLastUpdate)
         {
