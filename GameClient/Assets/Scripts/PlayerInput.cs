@@ -18,9 +18,10 @@ public class PlayerInput : MonoBehaviour
 
     public void Update()
     {
-        var axis_h = Input.GetAxis("Horizontal");        
+        var axis_h = Input.GetAxis("Horizontal");
+
         Player1Input.RightIsPressed = axis_h > 0;
-        Player1Input.LeftIsPressed  = axis_h < 0;
+        Player1Input.LeftIsPressed = axis_h < 0;
         Player1Input.PunchPressed = Input.GetKey(KeyCode.Space);
     }
 }

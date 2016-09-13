@@ -1,26 +1,72 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace UnitySolution.InputComponents
+public class ColliderTouchBehaviour : MonoBehaviour
 {
-    public class PointEventArgs : EventArgs
+    void Start()
     {
-        public Transform Transform;
-        public Vector2 Vector2;
-
-        public PointEventArgs(Vector2 vector2, Transform transform)
-        {
-            Vector2 = vector2;
-            Transform = transform;
-        }
+        var touches = DetectsTouchOnAnyCollidersInScene.Instance;
+        touches.OnStart += inputs_OnTouch;
+        touches.OnEnd += inputs_OffTouch;
+        touches.OnStay += inputs_OnTouchStay;
+        touches.OnCancel += touches_OnCancel;
     }
 
-    //TODO: implement abstraction ....     uses mouse on pc
-    //estava pensando em deletar todos esses handlers que eu criei... deixar apenas as interfaces
-    public class DetectsTouchOnAnyCollidersInScene : MonoBehaviour
+    public virtual void OnStart(PointEventArgs e) { }
+    public virtual void OnStay(PointEventArgs e) { }
+    public virtual void OnCancel(PointEventArgs e) { }
+    public virtual void OnEnd(PointEventArgs e) { }
+
+    void touches_OnCancel(object sender, PointEventArgs e)
     {
+        if (e.Transform.gameObject == gameObject)
+            OnCancel(e);
+    }
+
+    private void inputs_OffTouch(object sender, PointEventArgs e)
+    {
+        if (e.Transform.gameObject == gameObject)
+            OnEnd(e);
+    }
+
+    private void inputs_OnTouch(object sender, PointEventArgs e)
+    {
+        if (e.Transform.gameObject == gameObject)
+            OnStart(e);
+    }
+
+    private void inputs_OnTouchStay(object sender, PointEventArgs e)
+    {
+        if (e.Transform.gameObject == gameObject)
+            OnStay(e);
+    }
+
+
+    private class DetectsTouchOnAnyCollidersInScene : MonoBehaviour
+    {
+        private DetectsTouchOnAnyCollidersInScene() { }
+        private static object lockObj = new object();
+
+        private static DetectsTouchOnAnyCollidersInScene _instance;
+        public static DetectsTouchOnAnyCollidersInScene Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (lockObj)
+                    {
+                        var gameObj = new GameObject("Touch Detector");
+                        _instance = gameObj.AddComponent<DetectsTouchOnAnyCollidersInScene>();
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
         private List<Collider2D> PreviousTouchs = new List<Collider2D>();
         private List<Collider2D> CurrentTouchs = new List<Collider2D>();
 
@@ -36,7 +82,7 @@ namespace UnitySolution.InputComponents
             for (var i = 0; i < Input.touchCount; ++i)
             {
                 var touch = Input.GetTouch(i);
-                
+
                 RaycastHit2D hitInfo = Physics2D.Raycast(
                     Camera.main.ScreenToWorldPoint(touch.position),
                     Vector2.zero);
@@ -96,5 +142,17 @@ namespace UnitySolution.InputComponents
             if (eventHandler != null)
                 eventHandler(this, new PointEventArgs(vector, transform));
         }
+    }
+}
+
+public class PointEventArgs : EventArgs
+{
+    public Transform Transform;
+    public Vector2 Vector2;
+
+    public PointEventArgs(Vector2 vector2, Transform transform)
+    {
+        Vector2 = vector2;
+        Transform = transform;
     }
 }

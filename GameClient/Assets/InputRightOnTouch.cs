@@ -1,26 +1,24 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnitySolution.InputComponents;
-using Common;
+﻿using Common;
 
-public class InputRightOnTouch : MonoBehaviour {
-
-    void Start()
-    {
-        var x = GetComponent<DetectTouchOnThisGameObject>();
-        x.OnEnd += touchEnd;
-        x.OnCancel += touchEnd;
-        x.OnStart += touchStart;
-        x.OnStay += touchStart;
-    }
-
-    private void touchStart(object sender, PointEventArgs e)
+public class InputRightOnTouch : ColliderTouchBehaviour
+{
+    public override void OnStart(PointEventArgs e)
     {
         Player1Input.RightIsPressed = true;
     }
 
-    private void touchEnd(object sender, PointEventArgs e)
+    public override void OnStay(PointEventArgs e)
     {
-        Player1Input.RightIsPressed =false;
+        Player1Input.RightIsPressed = true;
+    }
+
+    public override void OnCancel(PointEventArgs e)
+    {
+        Player1Input.RightIsPressed = false;
+    }
+
+    public override void OnEnd(PointEventArgs e)
+    {
+        Player1Input.RightIsPressed = false;
     }
 }

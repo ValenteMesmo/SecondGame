@@ -27,11 +27,13 @@ namespace Common
 
             player.Body.OnRightCollision = other =>
             {
-                player.Body.X = other.X - player.Body.Width;
+                player.Body.X = 
+                    other.X - player.Body.Width;
             };
             player.Body.OnLeftCollision = other =>
             {
-                player.Body.X = other.X + other.Width;
+                player.Body.X = 
+                    other.X + other.Width;
             };
 
             colliders.Add(player.Body);
