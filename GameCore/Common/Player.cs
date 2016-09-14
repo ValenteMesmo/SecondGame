@@ -4,6 +4,7 @@
     {
         public Collider Body { get; private set; }
         public Collider Arm { get; private set; }
+        public float Speed;
 
         public Player()
         {
@@ -14,14 +15,15 @@
 
     public static class Player1Input
     {
-        public static bool LeftIsPressed { get;  set; }
-        public static bool PunchPressed { get;  set; }
-        public static bool RightIsPressed { get;  set; }
+        public static bool LeftIsPressed { get; set; }
+        public static bool PunchPressed { get; set; }
+        public static bool RightIsPressed { get; set; }
     }
 
     public static class PlayerFuncs
     {
-        private static float speed = 0.2f;        
+        private const float VELOCITY = 0.02f;
+        private const float MAX_SPEED = 0.8f;
 
         public static void Update(this Player player, int millisecondsSinceLastUpdate)
         {
@@ -34,11 +36,23 @@
             int millisecondsSinceLastUpdate)
         {
             if (Player1Input.LeftIsPressed)
-                player.Body.X =
-                    player.Body.X - speed * (millisecondsSinceLastUpdate / 100.0f);
+            {
+                player.Speed -= VELOCITY;
+                if (player.Speed < -MAX_SPEED)
+                    player.Speed = -MAX_SPEED;
+            }
             else if (Player1Input.RightIsPressed)
+            {
+                player.Speed += VELOCITY;
+                if (player.Speed > MAX_SPEED)
+                    player.Speed = MAX_SPEED;
+            }
+            else
+            {
+                player.Speed = 0f;
+            }
                 player.Body.X =
-                    player.Body.X + speed * (millisecondsSinceLastUpdate / 100.0f);
+                    player.Body.X + player.Speed * (millisecondsSinceLastUpdate / 100.0f);
         }
 
         private static void UpdateArmPosition(this Player player)
