@@ -10,16 +10,23 @@ public class PlayerScript : MonoBehaviour
     {
         World.Reference.AddPlayer(
             transform.position.x,
-            transform.position.y,
+            transform.position.y);
+        World.Reference.Sandbox.Sub<Player>(
+            EventNames.PLAYER_UPDATED, 
             OnPlayerUpdated);
     }
 
     BoxCollider2D colliderJustToVisualize;
 
-    private void OnPlayerUpdated(Player player)
+    private void OnPlayerUpdated(Player player)//, float interpolation)
     {
+        Debug.Log(player.Speed);
         transform.position = 
-            new Vector2(player.Body.X, player.Body.Y);
+            new Vector2(
+               transform.position.x 
+               + player.Speed//+ (player.Speed * interpolation)
+                ,player.Body.Y);
+        
         if (colliderJustToVisualize == null)
         {
             colliderJustToVisualize = gameObject.AddComponent<BoxCollider2D>();
