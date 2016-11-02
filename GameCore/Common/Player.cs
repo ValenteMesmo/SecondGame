@@ -48,8 +48,8 @@ namespace Common
             Body.X = other.X + other.Width;
         }
 
-        private const float VELOCITY = 0.05f;
-        private const float MAX_SPEED = 0.5f;
+        private const float VELOCITY = 0.02f;
+        private const float MAX_SPEED = 0.6f;
 
         private void Update()
         {

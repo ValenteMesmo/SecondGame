@@ -14,13 +14,15 @@ public class PlayerScript : MonoBehaviour
         World.Reference.Sandbox.Sub<Player>(
             EventNames.PLAYER_UPDATED, 
             OnPlayerUpdated);
+
+        //World.Reference.Sandbox.Sub(EventNames.COLLISION_FROM_THE_LEFT,
     }
 
     BoxCollider2D colliderJustToVisualize;
 
     private void OnPlayerUpdated(Player player)//, float interpolation)
     {
-        Debug.Log(player.Speed);
+        //Debug.Log(player.Speed);
         transform.position = 
             new Vector2(
                transform.position.x 
