@@ -11,7 +11,7 @@ namespace Common
         public Player(Sandbox sandbox, float x, float y)
         {
             Sandbox = sandbox;
-            Body = new Collider(sandbox, x, y, 1, 1);
+            Body = new Collider(sandbox, x, y, 3, 6);
 
             sandbox.Sub(EventNames.WORLD_UPDATE, Update);
             sandbox.Sub<Collider>(
