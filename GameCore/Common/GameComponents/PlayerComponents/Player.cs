@@ -1,7 +1,6 @@
 ﻿using Common.PubSubEngine;
-using System;
 
-namespace Common
+namespace Common.GameComponents.PlayerComponents
 {
     public class Player
     {
@@ -15,27 +14,7 @@ namespace Common
             Sandbox = sandbox;
             Body = new Collider(sandbox, x, y, 3, 6);
 
-            sandbox.WorldUpdate.Subscribe(Update);
-            sandbox.CollisionFromTheLeft.Subscribe(OnLeftCollision, Body.Name);
-            sandbox.CollisionFromTheRight.Subscribe(OnRightCollision, Body.Name);
-            sandbox.CollisionFromAbove.Subscribe(OnTopCollision, Body.Name);
-            sandbox.CollisionFromBelow.Subscribe(OnBotCollision, Body.Name);
-
-        }
-        private void OnTopCollision(Collider other)
-        {
-        }
-        private void OnBotCollision(Collider other)
-        {
-        }
-        private void OnRightCollision(Collider other)
-        {
-            Body.X = other.X - Body.Width;
-
-        }
-        private void OnLeftCollision(Collider other)
-        {
-            Body.X = other.X + other.Width;
+            sandbox.WorldUpdate.Subscribe(Update);            
         }
 
         private const float VELOCITY = 0.02f;
@@ -91,12 +70,5 @@ namespace Common
                 Body.Y = 0;
             }
         }
-    }
-
-    public static class Player1Input
-    {
-        public static bool LeftIsPressed { get; set; }
-        public static bool PunchPressed { get; set; }
-        public static bool RightIsPressed { get; set; }
-    }
+    }    
 }

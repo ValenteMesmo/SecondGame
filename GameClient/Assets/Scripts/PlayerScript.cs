@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Common;
+using Common.GameComponents.PlayerComponents;
 
 public class PlayerScript : MonoBehaviour
 {

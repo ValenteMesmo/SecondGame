@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.GameComponents.PlayerComponents;
 
 public class InputPunchOnTouch : ColliderTouchBehaviour
 {

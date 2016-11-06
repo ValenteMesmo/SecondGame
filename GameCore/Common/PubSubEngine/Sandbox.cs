@@ -1,4 +1,6 @@
-﻿namespace Common.PubSubEngine
+﻿using Common.GameComponents.PlayerComponents;
+
+namespace Common.PubSubEngine
 {
     public class Sandbox
     {

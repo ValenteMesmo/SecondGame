@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using Common;
+using Common.GameComponents.PlayerComponents;
 
 public class PlayerInput : MonoBehaviour
 {
