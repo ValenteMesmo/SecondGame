@@ -2,14 +2,13 @@
 using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
-{
-    public WorldComponent World;
+{    
     private BoxCollider2D colliderJustToVisualize;
 
     void Start()
     {
-        World.Reference.Sandbox
-            .MonsterCreationRequested.Publish(
+        WorldComponent.Sandbox
+            .AddMonster.Publish(
             new Position(transform.position.x, transform.position.y));
         //    collider =>
         //{

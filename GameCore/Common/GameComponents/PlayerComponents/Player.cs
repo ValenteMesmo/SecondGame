@@ -14,11 +14,17 @@ namespace Common.GameComponents.PlayerComponents
             Sandbox = sandbox;
             Body = new Collider(sandbox, x, y, 3, 6);
 
-            sandbox.WorldUpdate.Subscribe(Update);            
+            sandbox.WorldUpdate.Subscribe(Update);
+            sandbox.LeftPressed.Subscribe(value => LeftIsPressed = value);
+            sandbox.RightPressed.Subscribe(value => RightIsPressed = value);
+            sandbox.UpPressed.Subscribe(value => PunchPressed = value);
         }
 
         private const float VELOCITY = 0.02f;
         private const float MAX_SPEED = 0.6f;
+        private bool PunchPressed;
+        private bool LeftIsPressed;
+        private bool RightIsPressed;
 
         private void Update()
         {
@@ -29,7 +35,7 @@ namespace Common.GameComponents.PlayerComponents
 
         private void UpdateVerticalPosition()
         {
-            if (Player1Input.PunchPressed)
+            if (PunchPressed)
             {
                 VerticalSpeed += VELOCITY;
                 if (VerticalSpeed > MAX_SPEED)
@@ -45,13 +51,13 @@ namespace Common.GameComponents.PlayerComponents
 
         private void UpdateHorizontalPosition()
         {
-            if (Player1Input.LeftIsPressed)
+            if (LeftIsPressed)
             {
                 HorizontalSpeed -= VELOCITY;
                 if (HorizontalSpeed < -MAX_SPEED)
                     HorizontalSpeed = -MAX_SPEED;
             }
-            else if (Player1Input.RightIsPressed)
+            else if (RightIsPressed)
             {
                 HorizontalSpeed += VELOCITY;
                 if (HorizontalSpeed > MAX_SPEED)
@@ -70,5 +76,5 @@ namespace Common.GameComponents.PlayerComponents
                 Body.Y = 0;
             }
         }
-    }    
+    }
 }

@@ -49,6 +49,7 @@ public class ColliderTouchBehaviour : MonoBehaviour
         private DetectsTouchOnAnyCollidersInScene() { }
         private static object lockObj = new object();
 
+        //todo : use dinleton class
         private static DetectsTouchOnAnyCollidersInScene _instance;
         public static DetectsTouchOnAnyCollidersInScene Instance
         {

@@ -5,14 +5,15 @@ using Common.GameComponents.PlayerComponents;
 public class PlayerScript : MonoBehaviour
 {
     public Transform armTransform;
-    public WorldComponent World;
 
     void Start()
     {
-        World.Reference.AddPlayer(transform.position.x, transform.position.y);
-        World.Reference.Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdated);
+        WorldComponent.Sandbox.AddPlayer.Publish(
+            new Position(transform.position.x, transform.position.y));
 
-        //World.Reference.Sandbox.Sub(EventNames.COLLISION_FROM_THE_LEFT,
+        WorldComponent.Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdated);
+
+        //World.Sandbox.Sub(EventNames.COLLISION_FROM_THE_LEFT,
     }
 
     BoxCollider2D colliderJustToVisualize;

@@ -188,7 +188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 256088420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fc31043dabcd5e4d9565d46070ceeb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 20e410573d0334845bc105bee4c7449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &281139461
@@ -417,7 +417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armTransform: {fileID: 0}
-  World: {fileID: 1983881380}
 --- !u!212 &932867412
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -474,8 +473,8 @@ GameObject:
   - 4: {fileID: 1000046388}
   - 212: {fileID: 1000046389}
   - 114: {fileID: 1000046391}
-  - 114: {fileID: 1000046390}
   - 61: {fileID: 1000046392}
+  - 114: {fileID: 1000046390}
   m_Layer: 0
   m_Name: button Left
   m_TagString: Untagged
@@ -537,7 +536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000046387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3a34693e938594aa21107999e7a59c, type: 3}
+  m_Script: {fileID: 11500000, guid: f512d18a2f0d0464cbb6a7e8f8941e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1000046391
@@ -765,7 +764,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1163535170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 561a1db557a6e024d9e4ba7ac5c0acd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 982fb8f435f9db84e8c2ce2d1e9f12b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1395233160

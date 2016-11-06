@@ -5,17 +5,15 @@ namespace Common
 {
     public class World
     {
-        public readonly Sandbox Sandbox = new Sandbox();
+        public readonly Sandbox Sandbox;
 
-        public void AddPlayer(float x, float y)
+        public World()
         {
-            new Player(Sandbox, x, y);
-            //Sandbox.Pub(EventNames.PLAYER_CREATION_REQUESTED, new Position(x, y));
-        }
-
-        public void AddMonster(float x, float y)
-        {
-            Sandbox.MonsterCreationRequested.Publish(new Position(x, y));
+            Sandbox = new Sandbox();
+            Sandbox.AddPlayer.Subscribe(position =>
+                new Player(Sandbox, position.X, position.Y));
+            //Sandbox.AddMonster.Subscribe(position =>
+            //    new Monster(Sandbox, position.X, position.Y));
         }
 
         public void Update()
