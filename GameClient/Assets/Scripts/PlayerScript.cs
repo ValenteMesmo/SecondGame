@@ -8,12 +8,8 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        World.Reference.AddPlayer(
-            transform.position.x,
-            transform.position.y);
-        World.Reference.Sandbox.Sub<Player>(
-            EventNames.PLAYER_UPDATED, 
-            OnPlayerUpdated);
+        World.Reference.AddPlayer(transform.position.x, transform.position.y);
+        World.Reference.Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdated);
 
         //World.Reference.Sandbox.Sub(EventNames.COLLISION_FROM_THE_LEFT,
     }
@@ -23,12 +19,12 @@ public class PlayerScript : MonoBehaviour
     private void OnPlayerUpdated(Player player)//, float interpolation)
     {
         //Debug.Log(player.Speed);
-        transform.position = 
+        transform.position =
             new Vector2(
-               transform.position.x 
-               + player.Speed//+ (player.Speed * interpolation)
-                ,player.Body.Y);
-        
+               player.Body.X
+                ,
+               player.Body.Y);
+
         if (colliderJustToVisualize == null)
         {
             colliderJustToVisualize = gameObject.AddComponent<BoxCollider2D>();

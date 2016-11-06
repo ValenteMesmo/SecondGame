@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Common.PubSubEngine;
 
 namespace Common
 {
@@ -15,13 +14,13 @@ namespace Common
 
         public void AddMonster(float x, float y)
         {
-            Sandbox.Pub(EventNames.MONSTER_CREATION_REQUESTED, new Position(x, y));
+            Sandbox.MonsterCreationRequested.Publish(new Position(x, y));
         }
 
         public void Update()
         {
-            Sandbox.Pub(EventNames.WORLD_UPDATE);
-            Sandbox.Pub(EventNames.COLLISIONS_DETECTION_REQUESTED);
+            Sandbox.WorldUpdate.Publish();
+            Sandbox.OnCollisionDetectionRequested.Publish();
         }
     }
 }

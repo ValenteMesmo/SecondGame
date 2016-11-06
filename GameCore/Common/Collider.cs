@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.PubSubEngine;
+using System;
 
 namespace Common
 {
@@ -25,8 +26,9 @@ namespace Common
             Y = y;
             Width = width;
             Height = height;
-            sandbox.Pub(EventNames.COLLIDER_CREATED, this);
             Name = Guid.NewGuid().ToString();
+
+            sandbox.ColliderCreated.Publish(this);
         }
     }
 }

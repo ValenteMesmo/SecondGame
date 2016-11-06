@@ -8,10 +8,9 @@ public class MonsterScript : MonoBehaviour
 
     void Start()
     {
-        World.Reference.Sandbox.Pub(EventNames.MONSTER_CREATION_REQUESTED,
-            new Position(
-            transform.position.x,
-            transform.position.y));
+        World.Reference.Sandbox
+            .MonsterCreationRequested.Publish(
+            new Position(transform.position.x, transform.position.y));
         //    collider =>
         //{
         //    transform.position =

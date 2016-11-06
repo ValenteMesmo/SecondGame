@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Common.PubSubEngine;
+using System;
 
 namespace Common
 {
     public class Player
     {
         public Collider Body { get; private set; }
-        public float Speed;
+        public float HorizontalSpeed;
+        public float VerticalSpeed;
         Sandbox Sandbox;
 
         public Player(Sandbox sandbox, float x, float y)
@@ -13,23 +15,11 @@ namespace Common
             Sandbox = sandbox;
             Body = new Collider(sandbox, x, y, 3, 6);
 
-            sandbox.Sub(EventNames.WORLD_UPDATE, Update);
-            sandbox.Sub<Collider>(
-                EventNames.COLLISION_FROM_THE_LEFT,
-                OnLeftCollision,
-                Body.Name);
-            sandbox.Sub<Collider>(
-               EventNames.COLLISION_FROM_THE_RIGHT,
-               OnRightCollision,
-               Body.Name);
-            sandbox.Sub<Collider>(
-               EventNames.COLLISION_FROM_ABOVE,
-               OnTopCollision,
-               Body.Name);
-            sandbox.Sub<Collider>(
-               EventNames.COLLISION_FROM_BELOW,
-               OnBotCollision,
-               Body.Name);
+            sandbox.WorldUpdate.Subscribe(Update);
+            sandbox.CollisionFromTheLeft.Subscribe(OnLeftCollision, Body.Name);
+            sandbox.CollisionFromTheRight.Subscribe(OnRightCollision, Body.Name);
+            sandbox.CollisionFromAbove.Subscribe(OnTopCollision, Body.Name);
+            sandbox.CollisionFromBelow.Subscribe(OnBotCollision, Body.Name);
 
         }
         private void OnTopCollision(Collider other)
@@ -54,28 +44,52 @@ namespace Common
         private void Update()
         {
             UpdateHorizontalPosition();
-            Sandbox.Pub(EventNames.PLAYER_UPDATED, this);
+            UpdateVerticalPosition();
+            Sandbox.PlayerUpdate.Publish(this);
+        }
+
+        private void UpdateVerticalPosition()
+        {
+            if (Player1Input.PunchPressed)
+            {
+                VerticalSpeed += VELOCITY;
+                if (VerticalSpeed > MAX_SPEED)
+                    VerticalSpeed = MAX_SPEED;
+            }
+            else
+            {
+                VerticalSpeed -= VELOCITY;
+                if (VerticalSpeed < -MAX_SPEED)
+                    VerticalSpeed = -MAX_SPEED;
+            }
         }
 
         private void UpdateHorizontalPosition()
         {
             if (Player1Input.LeftIsPressed)
             {
-                Speed -= VELOCITY;
-                if (Speed < -MAX_SPEED)
-                    Speed = -MAX_SPEED;
+                HorizontalSpeed -= VELOCITY;
+                if (HorizontalSpeed < -MAX_SPEED)
+                    HorizontalSpeed = -MAX_SPEED;
             }
             else if (Player1Input.RightIsPressed)
             {
-                Speed += VELOCITY;
-                if (Speed > MAX_SPEED)
-                    Speed = MAX_SPEED;
+                HorizontalSpeed += VELOCITY;
+                if (HorizontalSpeed > MAX_SPEED)
+                    HorizontalSpeed = MAX_SPEED;
             }
             else
             {
-                Speed = 0f;
+                HorizontalSpeed = 0f;
             }
-            Body.X += Speed;
+            Body.X += HorizontalSpeed;
+            Body.Y += VerticalSpeed;
+
+            if (Body.Y < 0)
+            {
+                VerticalSpeed = 0;
+                Body.Y = 0;
+            }
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Common.PubSubEngine;
+using System.Collections.Generic;
 
 namespace Common
 {
@@ -9,9 +10,9 @@ namespace Common
         public CollisionChecker(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            sandbox.Sub<Collider>(EventNames.COLLIDER_CREATED, OnColliderCreated);
 
-            sandbox.Sub(EventNames.COLLISIONS_DETECTION_REQUESTED, DetectCollisions);
+            sandbox.ColliderCreated.Subscribe(OnColliderCreated);
+            sandbox.OnCollisionDetectionRequested.Subscribe(DetectCollisions);
         }
 
         private void DetectCollisions()
@@ -44,8 +45,8 @@ namespace Common
                     && top_a__bot_b__difference < right_a__left_b__difference
                     && top_a__bot_b__difference < right_b__left_a__difference)
                 {
-                    Sandbox.Pub(EventNames.COLLISION_FROM_BELOW, a, b.Name);
-                    Sandbox.Pub(EventNames.COLLISION_FROM_ABOVE, b, a.Name);
+                    Sandbox.CollisionFromBelow.Publish(a, b.Name);
+                    Sandbox.CollisionFromAbove.Publish(b, a.Name);
                     return;
                 }
 
@@ -53,8 +54,8 @@ namespace Common
                     && top_b__bot_a__difference < right_a__left_b__difference
                     && top_b__bot_a__difference < right_b__left_a__difference)
                 {
-                    Sandbox.Pub(EventNames.COLLISION_FROM_BELOW, b, a.Name);
-                    Sandbox.Pub(EventNames.COLLISION_FROM_ABOVE, a, b.Name);
+                    Sandbox.CollisionFromBelow.Publish(b, a.Name);
+                    Sandbox.CollisionFromAbove.Publish(a, b.Name);
                     return;
                 }
 
@@ -62,8 +63,8 @@ namespace Common
                     && right_a__left_b__difference < top_a__bot_b__difference
                     && right_a__left_b__difference < top_b__bot_a__difference)
                 {
-                    Sandbox.Pub(EventNames.COLLISION_FROM_THE_LEFT, a, b.Name);
-                    Sandbox.Pub(EventNames.COLLISION_FROM_THE_RIGHT, b, a.Name);
+                    Sandbox.CollisionFromTheLeft.Publish(a, b.Name);
+                    Sandbox.CollisionFromTheRight.Publish(b, a.Name);
                     return;
                 }
 
@@ -71,8 +72,8 @@ namespace Common
                     && right_b__left_a__difference < top_a__bot_b__difference
                     && right_b__left_a__difference < top_b__bot_a__difference)
                 {
-                    Sandbox.Pub(EventNames.COLLISION_FROM_THE_LEFT, b, a.Name);
-                    Sandbox.Pub(EventNames.COLLISION_FROM_THE_RIGHT, a, b.Name);
+                    Sandbox.CollisionFromTheLeft.Publish(b, a.Name);
+                    Sandbox.CollisionFromTheRight.Publish(a, b.Name);
                     return;
                 }
             }
