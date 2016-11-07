@@ -39,6 +39,8 @@
     <Compile Include="Collider.cs" />
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerCollisionWithFloorHandler.cs" />
+    <Compile Include="GameComponents\PlayerComponents\PlayerVerticalMovement.cs" />
+    <Compile Include="GameComponents\PlayerComponents\PlayerHorizontalMovement.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="GameComponents\PlayerComponents\Player.cs" />
     <Compile Include="Position.cs" />
