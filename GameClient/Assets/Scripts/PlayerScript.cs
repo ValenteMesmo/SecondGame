@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
 
         WorldComponent.Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdated);
 
-        //World.Sandbox.Sub(EventNames.COLLISION_FROM_THE_LEFT,
+        
     }
 
     BoxCollider2D colliderJustToVisualize;
@@ -29,6 +29,10 @@ public class PlayerScript : MonoBehaviour
 
         if (colliderJustToVisualize == null)
         {
+            WorldComponent.Sandbox.CollisionFromTheLeft.Subscribe(collider => {
+                //Debug.Log("opa!");
+            }, player.Body.Name);
+
             colliderJustToVisualize = gameObject.AddComponent<BoxCollider2D>();
             colliderJustToVisualize.size = new Vector2(
                 player.Body.Width,

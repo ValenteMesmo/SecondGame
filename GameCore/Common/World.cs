@@ -1,5 +1,7 @@
-﻿using Common.GameComponents.PlayerComponents;
+﻿using System;
+using Common.GameComponents.PlayerComponents;
 using Common.PubSubEngine;
+using Common.GameComponents.MonsterComponents;
 
 namespace Common
 {
@@ -10,17 +12,23 @@ namespace Common
         public World()
         {
             Sandbox = new Sandbox();
+            new CollisionChecker(Sandbox);
             Sandbox.AddPlayer.Subscribe(CreatePlayer);
-            //Sandbox.AddMonster.Subscribe(position =>
-            //    new Monster(Sandbox, position.X, position.Y));
+            Sandbox.AddMonster.Subscribe(CreateMonster);
+        }
+
+        private void CreateMonster(Position obj)
+        {
+            new Monster(Sandbox, obj);
         }
 
         private void CreatePlayer(Position position)
         {
-            new Player(Sandbox, position.X, position.Y);
+            var player = new Player(Sandbox, position.X, position.Y);
             new PlayerHorizontalMovement(Sandbox);
             new PlayerJump(Sandbox);
             new PlayerGravityFall(Sandbox);
+            new PlayerCollisionWithFloorHandler(Sandbox, player.Body);
         }
 
         public void Update()

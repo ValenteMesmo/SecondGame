@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Collider.cs" />
     <Compile Include="CollisionChecker.cs" />
+    <Compile Include="GameComponents\MonsterComponents\Monster.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerCollisionWithFloorHandler.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerGravityFall.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerJump.cs" />

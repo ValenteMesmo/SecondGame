@@ -1,4 +1,5 @@
-﻿using Common.GameComponents.PlayerComponents;
+﻿using Common.GameComponents.MonsterComponents;
+using Common.GameComponents.PlayerComponents;
 
 namespace Common.PubSubEngine
 {
@@ -21,6 +22,7 @@ namespace Common.PubSubEngine
             LeftPressed = EventFactory.Create<bool>();
             RightPressed = EventFactory.Create<bool>();
             UpPressed = EventFactory.Create<bool>();
+            MonsterUpdate = EventFactory.Create<Monster>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -36,5 +38,6 @@ namespace Common.PubSubEngine
         public readonly MyEvent<bool> LeftPressed;
         public readonly MyEvent<bool> RightPressed;
         public readonly MyEvent<bool> UpPressed;
+        public readonly MyEvent<Monster> MonsterUpdate;
     }
 }
