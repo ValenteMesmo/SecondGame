@@ -19,7 +19,8 @@ namespace Common
         {
             new Player(Sandbox, position.X, position.Y);
             new PlayerHorizontalMovement(Sandbox);
-            new PlayerVerticalMovement(Sandbox);
+            new PlayerJump(Sandbox);
+            new PlayerGravityFall(Sandbox);
         }
 
         public void Update()

@@ -4,6 +4,8 @@ namespace Common.GameComponents.PlayerComponents
 {
     public class Player
     {
+        public float VerticalSpeed;
+
         public Collider Body { get; }
         Sandbox Sandbox;
 
