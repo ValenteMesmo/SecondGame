@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
 {    
-    private BoxCollider2D colliderJustToVisualize;
+    //private BoxCollider2D colliderJustToVisualize;
 
     void Start()
     {

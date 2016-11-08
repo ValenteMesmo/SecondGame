@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TouchOnLeftButton : MonoBehaviour {
+public class TouchOnLeftButton : ColliderTouchBehaviour
+{
+    public override void OnStart(PointEventArgs e)
+    {
+        WorldComponent.Sandbox.LeftPressed.Publish(true);
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public override void OnStay(PointEventArgs e)
+    {
+        WorldComponent.Sandbox.LeftPressed.Publish(true);
+    }
+
+    public override void OnCancel(PointEventArgs e)
+    {
+        WorldComponent.Sandbox.LeftPressed.Publish(false);
+    }
+
+    public override void OnEnd(PointEventArgs e)
+    {
+        WorldComponent.Sandbox.LeftPressed.Publish(false);
+    }
 }
