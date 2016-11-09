@@ -1,8 +1,4 @@
 ﻿using Common.PubSubEngine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Common.GameComponents.MonsterComponents
 {
@@ -16,6 +12,7 @@ namespace Common.GameComponents.MonsterComponents
             Sandbox = sandbox;
             Collider = new Collider(Sandbox, position.X, position.Y, 3, 3);
             Sandbox.WorldUpdate.Subscribe(Update);
+            Sandbox.MonsterCreated.Publish(this);
         }
 
         private void Update()

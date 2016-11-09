@@ -13,16 +13,19 @@ namespace Common.PubSubEngine
             ColliderCreated = EventFactory.Create<Collider>();
             OnCollisionDetectionRequested = EventFactory.Create();
             WorldUpdate = EventFactory.Create();
+            WorldUpdateAfterCollisions = EventFactory.Create();
             CollisionFromTheLeft = EventFactory.Create<Collider>();
             CollisionFromTheRight = EventFactory.Create<Collider>();
             CollisionFromAbove = EventFactory.Create<Collider>();
             CollisionFromBelow = EventFactory.Create<Collider>();
             PlayerUpdate = EventFactory.Create<Player>();
+            PlayerUpdateAfterCollisions = EventFactory.Create<Player>();
             AddMonster = EventFactory.Create<Position>();
             LeftPressed = EventFactory.Create<bool>();
             RightPressed = EventFactory.Create<bool>();
             UpPressed = EventFactory.Create<bool>();
             MonsterUpdate = EventFactory.Create<Monster>();
+            MonsterCreated = EventFactory.Create<Monster>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -39,5 +42,8 @@ namespace Common.PubSubEngine
         public readonly MyEvent<bool> RightPressed;
         public readonly MyEvent<bool> UpPressed;
         public readonly MyEvent<Monster> MonsterUpdate;
+        public readonly MyEvent<Monster> MonsterCreated;
+        public readonly MyEvent WorldUpdateAfterCollisions;
+        public readonly MyEvent<Player> PlayerUpdateAfterCollisions;
     }
 }

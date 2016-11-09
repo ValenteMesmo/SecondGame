@@ -19,10 +19,12 @@ namespace Common.GameComponents.PlayerComponents
 
         private void OnTopCollision(Collider other)
         {
+           // Body.Y = other.Y - other.Height;
         }
 
         private void OnBotCollision(Collider other)
         {
+            Body.Y = other.Y + other.Height;
         }
 
         private void OnRightCollision(Collider other)

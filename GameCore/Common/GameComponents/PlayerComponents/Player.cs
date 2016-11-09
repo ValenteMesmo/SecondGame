@@ -1,4 +1,5 @@
-﻿using Common.PubSubEngine;
+﻿using System;
+using Common.PubSubEngine;
 
 namespace Common.GameComponents.PlayerComponents
 {
@@ -15,6 +16,12 @@ namespace Common.GameComponents.PlayerComponents
             Body = new Collider(sandbox, x, y, 3, 6);
 
             Sandbox.WorldUpdate.Subscribe(Update);
+            Sandbox.WorldUpdateAfterCollisions.Subscribe(LateUpdate);
+        }
+
+        private void LateUpdate()
+        {
+            Sandbox.PlayerUpdateAfterCollisions.Publish(this);
         }
 
         private void Update()

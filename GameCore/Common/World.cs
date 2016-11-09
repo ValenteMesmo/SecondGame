@@ -35,6 +35,7 @@ namespace Common
         {
             Sandbox.WorldUpdate.Publish();
             Sandbox.OnCollisionDetectionRequested.Publish();
+            Sandbox.WorldUpdateAfterCollisions.Publish();
         }
     }
 }
