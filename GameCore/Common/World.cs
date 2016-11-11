@@ -29,6 +29,9 @@ namespace Common
             new PlayerJump(Sandbox);
             new PlayerGravityFall(Sandbox);
             new PlayerCollisionWithFloorHandler(Sandbox, player.Body);
+            new PlayerWarpTopOnBotLimit(Sandbox);
+            new PlayerWarpLeftOnRightLimit(Sandbox);
+            new PlayerWarpRightOnLeftLimit(Sandbox);
         }
 
         public void Update()

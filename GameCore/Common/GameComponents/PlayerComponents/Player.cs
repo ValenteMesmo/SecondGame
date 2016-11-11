@@ -8,6 +8,8 @@ namespace Common.GameComponents.PlayerComponents
         public float VerticalSpeed;
 
         public Collider Body { get; }
+        public bool Grounded { get; private set; }
+
         Sandbox Sandbox;
 
         public Player(Sandbox sandbox, float x, float y)
@@ -16,7 +18,13 @@ namespace Common.GameComponents.PlayerComponents
             Body = new Collider(sandbox, x, y, 3, 6);
 
             Sandbox.WorldUpdate.Subscribe(Update);
+            Sandbox.CollisionFromBelow.Subscribe(OnCollisionFromBelow, Body.Name);
             Sandbox.WorldUpdateAfterCollisions.Subscribe(LateUpdate);
+        }
+
+        private void OnCollisionFromBelow(Collider obj)
+        {
+            Grounded = true;
         }
 
         private void LateUpdate()
@@ -27,6 +35,7 @@ namespace Common.GameComponents.PlayerComponents
         private void Update()
         {
             Sandbox.PlayerUpdate.Publish(this);
+            Grounded = false;
         }
     }
 }

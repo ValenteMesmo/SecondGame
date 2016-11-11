@@ -15,7 +15,7 @@ namespace Common.GameComponents.PlayerComponents
 
         private void OnPlayerUpdate(Player player)
         {
-            if (JumpPressed && player.Body.Y == 0)
+            if (JumpPressed && player.Grounded)
             {
                 player.VerticalSpeed += VELOCITY;             
             }

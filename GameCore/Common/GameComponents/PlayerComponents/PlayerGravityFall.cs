@@ -19,12 +19,6 @@ namespace Common.GameComponents.PlayerComponents
                 obj.VerticalSpeed = -MAX_SPEED;
 
             obj.Body.Y += obj.VerticalSpeed;
-
-            if (obj.Body.Y < 0)
-            {
-                obj.VerticalSpeed = 0;
-                obj.Body.Y = 0;
-            }
         }
     }
 }
