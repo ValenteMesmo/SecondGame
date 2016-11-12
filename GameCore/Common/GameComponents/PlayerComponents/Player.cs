@@ -24,6 +24,7 @@ namespace Common.GameComponents.PlayerComponents
 
         private void OnCollisionFromBelow(Collider obj)
         {
+            VerticalSpeed = 0;
             Grounded = true;
         }
 
