@@ -11,9 +11,7 @@ public class PlayerScript : MonoBehaviour
         WorldComponent.Sandbox.AddPlayer.Publish(
             new Position(transform.position.x, transform.position.y));
 
-        WorldComponent.Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdated);
-
-        
+        WorldComponent.Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdated);        
     }
 
     BoxCollider2D colliderJustToVisualize;

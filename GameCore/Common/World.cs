@@ -1,7 +1,8 @@
-﻿using System;
-using Common.GameComponents.PlayerComponents;
+﻿using Common.GameComponents.PlayerComponents;
 using Common.PubSubEngine;
 using Common.GameComponents.MonsterComponents;
+using System;
+using Common.GameComponents;
 
 namespace Common
 {
@@ -15,11 +16,17 @@ namespace Common
             new CollisionChecker(Sandbox);
             Sandbox.AddPlayer.Subscribe(CreatePlayer);
             Sandbox.AddMonster.Subscribe(CreateMonster);
+            Sandbox.AddGround.Subscribe(CreateGround);
         }
 
-        private void CreateMonster(Position obj)
+        private void CreateGround(Dimension dimension)
         {
-            new Monster(Sandbox, obj);
+            new Ground(Sandbox, dimension);
+        }
+
+        private void CreateMonster(Position position)
+        {
+            new Monster(Sandbox, position);
         }
 
         private void CreatePlayer(Position position)

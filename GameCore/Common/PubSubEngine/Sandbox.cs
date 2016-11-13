@@ -26,6 +26,8 @@ namespace Common.PubSubEngine
             UpPressed = EventFactory.Create<bool>();
             MonsterUpdate = EventFactory.Create<Monster>();
             MonsterCreated = EventFactory.Create<Monster>();
+            GroundCreated = EventFactory.Create<Collider>();
+            AddGround = EventFactory.Create<Dimension>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -45,5 +47,7 @@ namespace Common.PubSubEngine
         public readonly MyEvent<Monster> MonsterCreated;
         public readonly MyEvent WorldUpdateAfterCollisions;
         public readonly MyEvent<Player> PlayerUpdateAfterCollisions;
+        public readonly MyEvent<Collider> GroundCreated;
+        public readonly MyEvent<Dimension> AddGround;
     }
 }

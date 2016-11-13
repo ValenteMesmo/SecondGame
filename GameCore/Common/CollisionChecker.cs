@@ -5,8 +5,9 @@ namespace Common
 {
     public class CollisionChecker
     {
-        IList<Collider> Colliders = new List<Collider>();
-        Sandbox Sandbox;
+        private IList<Collider> Colliders = new List<Collider>();
+        private Sandbox Sandbox;
+
         public CollisionChecker(Sandbox sandbox)
         {
             Sandbox = sandbox;

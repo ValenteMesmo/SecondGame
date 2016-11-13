@@ -1,5 +1,4 @@
-﻿using System;
-using Common.PubSubEngine;
+﻿using Common.PubSubEngine;
 
 namespace Common.GameComponents.PlayerComponents
 {
