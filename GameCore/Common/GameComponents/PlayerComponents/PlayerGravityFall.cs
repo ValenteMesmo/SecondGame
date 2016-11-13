@@ -4,21 +4,21 @@ namespace Common.GameComponents.PlayerComponents
 {
     public class PlayerGravityFall
     {
-        public const float VELOCITY = 0.02f;
-        public const float MAX_SPEED = 0.6f;
+        public const float VELOCITY = 0.04f;
+        public const float MAX_SPEED = 2.0f;
 
         public PlayerGravityFall(Sandbox sandbox)
         {
             sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
         }
 
-        private void OnPlayerUpdate(Player obj)
+        private void OnPlayerUpdate(Player player)
         {
-            obj.VerticalSpeed -= VELOCITY;
-            if (obj.VerticalSpeed < -MAX_SPEED)
-                obj.VerticalSpeed = -MAX_SPEED;
+            player.VerticalSpeed -= VELOCITY;
+            if (player.VerticalSpeed < -MAX_SPEED)
+                player.VerticalSpeed = -MAX_SPEED;
 
-            obj.Body.Y += obj.VerticalSpeed;
+            player.Body.Y += player.VerticalSpeed;
         }
     }
 }

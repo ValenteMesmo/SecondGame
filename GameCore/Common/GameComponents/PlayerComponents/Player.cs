@@ -4,7 +4,8 @@ namespace Common.GameComponents.PlayerComponents
 {
     public class Player
     {
-        public float VerticalSpeed;
+        public float VerticalSpeed = 0f;
+        public float HorizontalSpeed = 0f;
 
         public Collider Body { get; }
         public bool Grounded { get; private set; }
