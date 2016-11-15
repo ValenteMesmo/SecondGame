@@ -28,6 +28,7 @@ namespace Common.PubSubEngine
             MonsterCreated = EventFactory.Create<Monster>();
             GroundCreated = EventFactory.Create<Collider>();
             AddGround = EventFactory.Create<Dimension>();
+            FoundNewIP = EventFactory.Create<string>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -49,5 +50,6 @@ namespace Common.PubSubEngine
         public readonly MyEvent<Player> PlayerUpdateAfterCollisions;
         public readonly MyEvent<Collider> GroundCreated;
         public readonly MyEvent<Dimension> AddGround;
+        public readonly MyEvent<string> FoundNewIP;
     }
 }

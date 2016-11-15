@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -88,6 +90,7 @@
     <Compile Include="Assets\Scripts\Connection\ShowMessagesFromServer.cs" />
     <Compile Include="Assets\Scripts\GameController\ColliderTouchBehaviour.cs" />
     <Compile Include="Assets\Scripts\InputHandlers\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Network\NetworkDiscovery.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
     <Compile Include="Assets\TouchOnJumpButton.cs" />
     <Compile Include="Assets\TouchOnLeftButton.cs" />
