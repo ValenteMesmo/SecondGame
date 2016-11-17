@@ -1,8 +1,8 @@
 ﻿using Common.GameComponents.PlayerComponents;
 using Common.PubSubEngine;
 using Common.GameComponents.MonsterComponents;
-using System;
 using Common.GameComponents;
+using System;
 
 namespace Common
 {
@@ -17,6 +17,19 @@ namespace Common
             Sandbox.AddPlayer.Subscribe(CreatePlayer);
             Sandbox.AddMonster.Subscribe(CreateMonster);
             Sandbox.AddGround.Subscribe(CreateGround);
+            Sandbox.AddMultiplayerPortal.Subscribe(CreatePortal);
+            Sandbox.PlayerEnteredThePortal.Subscribe(PlayerEnteredMultiplayerPortal);
+        }
+
+        private void PlayerEnteredMultiplayerPortal(MultiplayerPortal obj)
+        {
+            var client = NetworkStuff.Factory.CreateClient(1337, 1338);
+            //client.Listen();
+        }
+
+        private void CreatePortal(string ip)
+        {
+            new MultiplayerPortal(Sandbox, ip, 3, 3);
         }
 
         private void CreateGround(Dimension dimension)

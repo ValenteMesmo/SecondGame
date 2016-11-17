@@ -53,12 +53,12 @@ namespace NetworkStuff
             Writer.Write("2"+message, HostAddress.Ip, HostAddress.Port);
         }
 
-        public void InformYourListeningPortToHost(
-            string hostIp, 
-            int hostPort, 
-            Action<string, Address> messageReceived)
+        public void Listen(
+            string ip, 
+            int port, 
+            Action<string, Address> onMessageReceived)
         {
-            HostAddress = new Address(hostIp, hostPort);
+            HostAddress = new Address(ip, port);
             var msg = new StringBuilder();
 
             msg.Append(MessageConstants.CONNECTION_REQUEST_PREFIX);
@@ -66,9 +66,9 @@ namespace NetworkStuff
             msg.Append(':');
             msg.Append(Listener.Port);
 
-            Writer.Write(msg.ToString(), hostIp, hostPort);
+            Writer.Write(msg.ToString(), ip, port);
 
-            MessageReceivedFromHost = messageReceived;
+            MessageReceivedFromHost = onMessageReceived;
         }
     }
 }

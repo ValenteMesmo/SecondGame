@@ -40,6 +40,7 @@
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="GameComponents\Ground.cs" />
     <Compile Include="GameComponents\MonsterComponents\Monster.cs" />
+    <Compile Include="GameComponents\MultiplayerPortal.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerCollisionWithFloorHandler.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerGravityFall.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerJump.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpLeftOnRightLimit.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpRightOnLeftLimit.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpTopOnBotLimit.cs" />
+    <Compile Include="GameComponents\RemotePlayerComponents\RemotePlayer.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="GameComponents\PlayerComponents\Player.cs" />
     <Compile Include="Dimension.cs" />
@@ -58,6 +60,12 @@
     <Compile Include="PubSubEngine\MyEventFactory.cs" />
     <Compile Include="PubSubEngine\Sandbox.cs" />
     <Compile Include="World.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkStuff\NetworkStuff.csproj">
+      <Project>{1cc21c8b-e4c5-4ca0-914b-f7f0cf0d656e}</Project>
+      <Name>NetworkStuff</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

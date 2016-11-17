@@ -13,7 +13,8 @@ namespace Common.GameComponents
                 dimension.X,
                 dimension.Y,
                 dimension.Width,
-                dimension.Height);
+                dimension.Height,
+                GetType());
                         
             sandbox.GroundCreated.Publish(Collider);
         }

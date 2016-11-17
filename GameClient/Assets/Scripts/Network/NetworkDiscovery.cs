@@ -27,7 +27,10 @@ public class NetworkDiscovery : MonoBehaviour
 
     void Start()
     {
-        WorldComponent.Sandbox.FoundNewIP.Subscribe(ip => Debug.Log(ip));
+        WorldComponent.Sandbox.FoundNewIP.Subscribe(ip =>
+        {
+            Factory.CreateClient().InformYourListeningPortToHost(Ip, 1337);
+        });
         Initialize();
     }
 
@@ -110,30 +113,30 @@ public class NetworkDiscovery : MonoBehaviour
         return true;
     }
 
-    public void StopBroadcast()
-    {
-        if (hostId == -1)
-        {
-            Debug.LogError("NetworkDiscovery StopBroadcast not initialized");
-            return;
-        }
+    //public void StopBroadcast()
+    //{
+    //    if (hostId == -1)
+    //    {
+    //        Debug.LogError("NetworkDiscovery StopBroadcast not initialized");
+    //        return;
+    //    }
 
-        if (!running)
-        {
-            Debug.LogWarning("NetworkDiscovery StopBroadcast not started");
-            return;
-        }
-        if (isServer)
-        {
-            NetworkTransport.StopBroadcastDiscovery();
-        }
+    //    if (!running)
+    //    {
+    //        Debug.LogWarning("NetworkDiscovery StopBroadcast not started");
+    //        return;
+    //    }
+    //    if (isServer)
+    //    {
+    //        NetworkTransport.StopBroadcastDiscovery();
+    //    }
 
-        NetworkTransport.RemoveHost(hostId);
-        hostId = -1;
-        running = false;
-        msgInBuffer = null;
-        Debug.Log("Stopped Discovery broadcasting");
-    }
+    //    NetworkTransport.RemoveHost(hostId);
+    //    hostId = -1;
+    //    running = false;
+    //    msgInBuffer = null;
+    //    Debug.Log("Stopped Discovery broadcasting");
+    //}
 
     void Update()
     {
@@ -152,7 +155,6 @@ public class NetworkDiscovery : MonoBehaviour
         do
         {
             networkEvent = NetworkTransport.ReceiveFromHost(hostId, out connectionId, out channelId, msgInBuffer, kMaxBroadcastMsgSize, out receivedSize, out error);
-
             if (networkEvent == NetworkEventType.BroadcastEvent)
             {
                 NetworkTransport.GetBroadcastConnectionMessage(hostId, msgInBuffer, kMaxBroadcastMsgSize, out receivedSize, out error);
@@ -171,9 +173,7 @@ public class NetworkDiscovery : MonoBehaviour
     {
         var ip = fromAddress.Split(':')[3];
         if (Network.player.ipAddress == ip)
-        {    //Debug.Log("Got broadcast from yourself [" + fromAddress + "] ");
             return;
-        }
 
         WorldComponent.Sandbox.FoundNewIP.Publish(ip);
     }

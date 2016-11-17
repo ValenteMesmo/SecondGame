@@ -48,6 +48,8 @@ namespace Common
                 {
                     Sandbox.CollisionFromBelow.Publish(a, b.Name);
                     Sandbox.CollisionFromAbove.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(a, b.Name);
                     return;
                 }
 
@@ -57,6 +59,8 @@ namespace Common
                 {
                     Sandbox.CollisionFromBelow.Publish(b, a.Name);
                     Sandbox.CollisionFromAbove.Publish(a, b.Name);
+                    Sandbox.CollisionFromAnySide.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(a, b.Name);
                     return;
                 }
 
@@ -66,6 +70,8 @@ namespace Common
                 {
                     Sandbox.CollisionFromTheLeft.Publish(a, b.Name);
                     Sandbox.CollisionFromTheRight.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(a, b.Name);
                     return;
                 }
 
@@ -75,6 +81,8 @@ namespace Common
                 {
                     Sandbox.CollisionFromTheLeft.Publish(b, a.Name);
                     Sandbox.CollisionFromTheRight.Publish(a, b.Name);
+                    Sandbox.CollisionFromAnySide.Publish(b, a.Name);
+                    Sandbox.CollisionFromAnySide.Publish(a, b.Name);
                     return;
                 }
             }

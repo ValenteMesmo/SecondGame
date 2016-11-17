@@ -10,7 +10,8 @@ namespace Common.GameComponents.MonsterComponents
         public Monster(Sandbox sandbox, Position position)
         {
             Sandbox = sandbox;
-            Collider = new Collider(Sandbox, position.X, position.Y, 3, 3);
+            Collider = new Collider(Sandbox, position.X, position.Y, 3, 3,
+                GetType());
             Sandbox.WorldUpdate.Subscribe(Update);
             Sandbox.MonsterCreated.Publish(this);
         }

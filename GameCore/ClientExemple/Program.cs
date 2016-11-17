@@ -54,7 +54,7 @@ namespace ClientExemple
         private static void TryOnThesePorts(int listen, int write)
         {
             var client = Factory.CreateClient(listen, write);
-            client.InformYourListeningPortToHost(IP, port, messageReceived);
+            client.Listen(IP, port, messageReceived);
 
             while (true)
             {

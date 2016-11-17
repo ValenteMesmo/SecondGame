@@ -17,7 +17,6 @@ namespace NetworkStuff
             MessageReceivedFromClient = messageReceivedFromClient;
         }
 
-
         readonly IWriteNetworkMessages Writer;
         readonly IList<Address> ClientsAddressKeeper;
 

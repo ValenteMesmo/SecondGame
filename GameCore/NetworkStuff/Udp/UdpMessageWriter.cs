@@ -25,6 +25,8 @@ namespace NetworkStuff.Udp
 
         public void Write(string message, string hostName, int port)
         {
+            //sender.EnableBroadcast = true;//vou deixar de lado o network do unity e fazer o
+            // discovery eu mesmo!  
             sender.Send(
                 Encoding.ASCII.GetBytes(message),
                 message.Length,

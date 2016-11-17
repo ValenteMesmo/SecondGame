@@ -55,6 +55,7 @@
     <Compile Include="MessageHandlers\Common\MessageHandlersAggregator.cs" />
     <Compile Include="MessageHandlers\Host\BroadcastClientMessages.cs" />
     <Compile Include="MessageHandlers\Common\VailidateMessageLength.cs" />
+    <Compile Include="NetworkHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Udp\UdpMessageListener.cs" />
     <Compile Include="Udp\UdpMessageWriter.cs" />

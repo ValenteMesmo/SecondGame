@@ -1,4 +1,5 @@
-﻿using Common.GameComponents.MonsterComponents;
+﻿using Common.GameComponents;
+using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
 
 namespace Common.PubSubEngine
@@ -18,6 +19,7 @@ namespace Common.PubSubEngine
             CollisionFromTheRight = EventFactory.Create<Collider>();
             CollisionFromAbove = EventFactory.Create<Collider>();
             CollisionFromBelow = EventFactory.Create<Collider>();
+            CollisionFromAnySide = EventFactory.Create<Collider>();
             PlayerUpdate = EventFactory.Create<Player>();
             PlayerUpdateAfterCollisions = EventFactory.Create<Player>();
             AddMonster = EventFactory.Create<Position>();
@@ -29,6 +31,8 @@ namespace Common.PubSubEngine
             GroundCreated = EventFactory.Create<Collider>();
             AddGround = EventFactory.Create<Dimension>();
             FoundNewIP = EventFactory.Create<string>();
+            PlayerEnteredThePortal = EventFactory.Create<MultiplayerPortal>();
+            AddMultiplayerPortal = EventFactory.Create<string>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -39,6 +43,7 @@ namespace Common.PubSubEngine
         public readonly MyEvent<Collider> CollisionFromTheRight;
         public readonly MyEvent<Collider> CollisionFromAbove;
         public readonly MyEvent<Collider> CollisionFromBelow;
+        public readonly MyEvent<Collider> CollisionFromAnySide;
         public readonly MyEvent<Player> PlayerUpdate;
         public readonly MyEvent<Position> AddMonster;
         public readonly MyEvent<bool> LeftPressed;
@@ -51,5 +56,7 @@ namespace Common.PubSubEngine
         public readonly MyEvent<Collider> GroundCreated;
         public readonly MyEvent<Dimension> AddGround;
         public readonly MyEvent<string> FoundNewIP;
+        public readonly MyEvent<MultiplayerPortal> PlayerEnteredThePortal;
+        public readonly MyEvent<string> AddMultiplayerPortal;
     }
 }
