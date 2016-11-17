@@ -9,12 +9,12 @@ namespace NetworkStuff.MessageHandlers
 {
     public class ConnectionAttemptMessageHandler : IHandleNetworkMessages
     {
-        private readonly IWriteNetworkMessages Writer;
+        private readonly ISendNetworkMessages Writer;
         private readonly IList<Address> ConnectedClients;
         private readonly IListenToNetworkMessages Listener;
 
         public ConnectionAttemptMessageHandler(
-            IWriteNetworkMessages writer,
+            ISendNetworkMessages writer,
             IListenToNetworkMessages listener,
             IList<Address> connectedClients)
         {

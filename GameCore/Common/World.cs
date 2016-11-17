@@ -23,7 +23,9 @@ namespace Common
 
         private void PlayerEnteredMultiplayerPortal(MultiplayerPortal obj)
         {
-            var client = NetworkStuff.Factory.CreateClient(1337, 1338);
+
+            //ta criando varios sockets com a mesma porta... isso dá caô
+            //var client = NetworkStuff.Factory.CreateClient(1337, 1338);
             //client.Listen();
         }
 

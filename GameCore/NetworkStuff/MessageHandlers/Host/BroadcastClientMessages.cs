@@ -6,10 +6,10 @@ namespace NetworkStuff.MessageHandlers
     public class BroadcastClientMessages : IHandleNetworkMessages
     {
         private readonly IEnumerable<Address> ConnectedClients;
-        private readonly IWriteNetworkMessages Writer;
+        private readonly ISendNetworkMessages Writer;
 
         public BroadcastClientMessages(
-            IWriteNetworkMessages writer,
+            ISendNetworkMessages writer,
             IEnumerable<Address> connectedClients)
         {
             ConnectedClients = connectedClients;

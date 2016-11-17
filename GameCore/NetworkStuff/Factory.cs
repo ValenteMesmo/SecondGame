@@ -8,7 +8,7 @@ namespace NetworkStuff
         public static Host CreateHost(int listeningPort, int writingPort)
         {
             var listener = new UdpMessageListener(listeningPort);
-            var writer = new UdpMessageWriter();
+            var writer = new UdpMessageSender();
             Console.WriteLine(string.Format("Hosting on {0}:{1}", listener.Ip, listener.Port));
             var result = new Host(listener, writer);
             return result;
@@ -17,7 +17,7 @@ namespace NetworkStuff
         public static Client CreateClient(int listeningPort, int writingPort)
         {
             var listener = new UdpMessageListener(listeningPort);
-            var writer = new UdpMessageWriter();
+            var writer = new UdpMessageSender();
 
             var result = new Client(listener, writer);
             return result;

@@ -44,7 +44,7 @@ public static class ConnectionKeeper
     {
         //TODO validate ip and port
         Client = Factory.CreateClient(8001, 8002);
-        Client.InformYourListeningPortToHost(Ip, Port, MessageReceived);
+        Client.Listen(Ip, Port, MessageReceived);
     }
 
     public static void SendMessage(string message)

@@ -9,7 +9,7 @@ namespace NetworkStuff
 {
     public class Client
     {
-        private readonly IWriteNetworkMessages Writer;
+        private readonly ISendNetworkMessages Writer;
         private readonly IListenToNetworkMessages Listener;
         private Address HostAddress;
         private bool Connected;
@@ -17,7 +17,7 @@ namespace NetworkStuff
 
         public Client(
             IListenToNetworkMessages listener,
-            IWriteNetworkMessages writer)
+            ISendNetworkMessages writer)
         {
             Writer = writer;
             Listener = listener;

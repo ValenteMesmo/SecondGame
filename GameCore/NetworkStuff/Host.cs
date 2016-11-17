@@ -17,12 +17,12 @@ namespace NetworkStuff
             MessageReceivedFromClient = messageReceivedFromClient;
         }
 
-        readonly IWriteNetworkMessages Writer;
+        readonly ISendNetworkMessages Writer;
         readonly IList<Address> ClientsAddressKeeper;
 
         public Host(
             IListenToNetworkMessages listener,
-            IWriteNetworkMessages writer)
+            ISendNetworkMessages writer)
         {
             Writer = writer;
             Ip = listener.Ip;
