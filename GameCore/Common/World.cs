@@ -2,6 +2,7 @@
 using Common.PubSubEngine;
 using Common.GameComponents.MonsterComponents;
 using Common.GameComponents;
+using NetworkStuff;
 using System;
 
 namespace Common
@@ -21,17 +22,29 @@ namespace Common
             Sandbox.PlayerEnteredThePortal.Subscribe(PlayerEnteredMultiplayerPortal);
         }
 
-        private void PlayerEnteredMultiplayerPortal(MultiplayerPortal obj)
+        private void PlayerEnteredMultiplayerPortal(MultiplayerPortal portal)
+        {
+            var client = Factory.CreateClient(portal.Ip, 1337);
+            client.Listen(OnMessageReceivedFromServer);
+            client.SendMessage("hello");
+        }
+
+        private void OnMessageReceivedFromServer(string message, Address sourceAddress)
         {
 
-            //ta criando varios sockets com a mesma porta... isso dá caô
-            //var client = NetworkStuff.Factory.CreateClient(1337, 1338);
-            //client.Listen();
         }
 
         private void CreatePortal(string ip)
         {
             new MultiplayerPortal(Sandbox, ip, 3, 3);
+            var host = Factory.CreateHost(1337);
+            host.Listen(OnMessageReceivedFromCLient);
+        }
+
+        private void OnMessageReceivedFromCLient(string message, Address sourceAddress)
+        {
+            //if(message == "hello")
+            //    Sandbox.AddRemotePlayer
         }
 
         private void CreateGround(Dimension dimension)

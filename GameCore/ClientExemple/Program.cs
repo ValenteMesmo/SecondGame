@@ -53,8 +53,8 @@ namespace ClientExemple
 
         private static void TryOnThesePorts(int listen, int write)
         {
-            var client = Factory.CreateClient(listen, write);
-            client.Listen(IP, port, messageReceived);
+            var client = Factory.CreateClient(IP, write);
+            client.Listen(messageReceived);
 
             while (true)
             {

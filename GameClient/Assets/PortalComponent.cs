@@ -1,7 +1,5 @@
-﻿using System;
-using Common.GameComponents;
+﻿using Common.GameComponents;
 using UnityEngine;
-using NetworkStuff;
 
 public class PortalComponent : MonoBehaviour
 {

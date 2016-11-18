@@ -3,7 +3,6 @@ using NetworkStuff;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class ConnectToHostButtonHandler : MonoBehaviour
 {
@@ -43,8 +42,8 @@ public static class ConnectionKeeper
     public static void Connect()
     {
         //TODO validate ip and port
-        Client = Factory.CreateClient(8001, 8002);
-        Client.Listen(Ip, Port, MessageReceived);
+        Client = Factory.CreateClient(Ip,Port);
+        Client.Listen( MessageReceived);
     }
 
     public static void SendMessage(string message)

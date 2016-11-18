@@ -1,5 +1,4 @@
-﻿using NetworkStuff.MessageHandlers.Common;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -9,8 +8,6 @@ namespace NetworkStuff.Udp
     public interface IListenToNetworkMessages : IDisposable
     {
         void Listen(Action<string, Address> onMessageReceived);
-        int Port { get; }
-        string Ip { get; }
     }
 
     public class UdpMessageListener : IListenToNetworkMessages
@@ -18,15 +15,9 @@ namespace NetworkStuff.Udp
         private Action<string, Address> OnMessageReceived = (msg, address) => { };
         private readonly UdpClient receiver;
 
-        public string Ip { get; private set; }
-        public int Port { get; private set; }
-
-        public UdpMessageListener(int receiverPort)
+        public UdpMessageListener(int port)
         {
-            Ip = NetworkHelper.GetLocalIPAddress();
-            Port = receiverPort;
-
-            receiver = new UdpClient(receiverPort);
+            receiver = new UdpClient(port);
             receiver.BeginReceive(DataReceived, receiver);
         }
 

@@ -6,7 +6,6 @@ using System;
 public class MessageBroadCaster : MonoBehaviour
 {
     Host host;
-    string HostAddress = "";
 
     public Text IpAndPortDisplay;
     public Text MessageDisplay;
@@ -21,16 +20,14 @@ public class MessageBroadCaster : MonoBehaviour
         if (MessageDisplay == null)
             throw new ArgumentNullException("No reference was set to MessageDisplay on Editor");
 
-        host = Factory.CreateHost(8001, 8002);
-        HostAddress = host.Ip + ":" + host.Port;
-        Debug.Log(HostAddress);
+        host = Factory.CreateHost(8002);
 
-        host.SetMessageReceivedHandler(MessageReceived);
+        host.Listen(MessageReceived);
     }
 
     void Update()
     {
-        IpAndPortDisplay.text = HostAddress;
+        //IpAndPortDisplay.text = HostAddress;
         MessageDisplay.text = MessageHistory;
     }
 

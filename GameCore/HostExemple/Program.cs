@@ -1,4 +1,4 @@
-﻿    using NetworkStuff;
+﻿using NetworkStuff;
 using System;
 
 namespace HostExemple
@@ -7,9 +7,9 @@ namespace HostExemple
     {
         static void Main(string[] args)
         {
-            var host = Factory.CreateHost(20010, 20011);
+            var host = Factory.CreateHost(20011);
 
-            host.SetMessageReceivedHandler(messageReceived);
+            host.Listen(messageReceived);
 
             while (true)
             {
