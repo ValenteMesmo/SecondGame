@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class TouchOnJumpButton : ColliderTouchBehaviour
+﻿public class TouchOnJumpButton : ColliderTouchBehaviour
 {
     public override void OnStart(PointEventArgs e)
     {

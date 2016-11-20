@@ -37,7 +37,7 @@ namespace NetworkStuff.MessageHandlers.Common
         {
             while (true)
             {
-                sender.Write("Hello", broadcastIp, port);
+                sender.Send("Hello", broadcastIp, port);
                 Thread.Sleep(1000);
             }
         }

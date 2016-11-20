@@ -13,8 +13,8 @@ namespace Common.PubSubEngine
             AddPlayer = EventFactory.Create<Position>();
             ColliderCreated = EventFactory.Create<Collider>();
             OnCollisionDetectionRequested = EventFactory.Create();
-            WorldUpdate = EventFactory.Create();
-            WorldUpdateAfterCollisions = EventFactory.Create();
+            OnWorldUpdate = EventFactory.Create();
+            OnWorldUpdateAfterCollisions = EventFactory.Create();
             CollisionFromTheLeft = EventFactory.Create<Collider>();
             CollisionFromTheRight = EventFactory.Create<Collider>();
             CollisionFromAbove = EventFactory.Create<Collider>();
@@ -31,14 +31,15 @@ namespace Common.PubSubEngine
             GroundCreated = EventFactory.Create<Collider>();
             AddGround = EventFactory.Create<Dimension>();
             FoundNewIP = EventFactory.Create<string>();
-            PlayerEnteredThePortal = EventFactory.Create<MultiplayerPortal>();
+            YouEnteredThePortal = EventFactory.Create<MultiplayerPortal>();
             AddMultiplayerPortal = EventFactory.Create<string>();
+            AddRemotePlayer = EventFactory.Create<string>();
         }
 
         public readonly MyEvent<Position> AddPlayer;
         public readonly MyEvent<Collider> ColliderCreated;
         public readonly MyEvent OnCollisionDetectionRequested;
-        public readonly MyEvent WorldUpdate;
+        public readonly MyEvent OnWorldUpdate;
         public readonly MyEvent<Collider> CollisionFromTheLeft;
         public readonly MyEvent<Collider> CollisionFromTheRight;
         public readonly MyEvent<Collider> CollisionFromAbove;
@@ -51,12 +52,15 @@ namespace Common.PubSubEngine
         public readonly MyEvent<bool> UpPressed;
         public readonly MyEvent<Monster> MonsterUpdate;
         public readonly MyEvent<Monster> MonsterCreated;
-        public readonly MyEvent WorldUpdateAfterCollisions;
+        public readonly MyEvent OnWorldUpdateAfterCollisions;
         public readonly MyEvent<Player> PlayerUpdateAfterCollisions;
         public readonly MyEvent<Collider> GroundCreated;
         public readonly MyEvent<Dimension> AddGround;
         public readonly MyEvent<string> FoundNewIP;
-        public readonly MyEvent<MultiplayerPortal> PlayerEnteredThePortal;
+        public readonly MyEvent<MultiplayerPortal> YouEnteredThePortal;
         public readonly MyEvent<string> AddMultiplayerPortal;
+        public readonly MyEvent<string> AddRemotePlayer;
+        public readonly MyEvent<string> NetwokMessageReceived;
+        public readonly MyEvent<string> SendNetwokMessage;
     }
 }

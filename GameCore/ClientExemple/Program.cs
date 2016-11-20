@@ -1,4 +1,5 @@
 ﻿using NetworkStuff;
+using NetworkStuff.Udp;
 using System;
 
 namespace ClientExemple
@@ -53,13 +54,14 @@ namespace ClientExemple
 
         private static void TryOnThesePorts(int listen, int write)
         {
-            var client = Factory.CreateClient(IP, write);
-            client.Listen(messageReceived);
+            var sender = new UdpMessageSender();
+            var receiver = new UdpMessageListener(listen);
+            receiver.Listen(messageReceived);
 
             while (true)
             {
                 var msg = Console.ReadLine();
-                client.SendMessage(msg);
+                sender.Write(msg, IP, write);
             }
         }
 

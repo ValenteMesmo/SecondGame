@@ -1,5 +1,4 @@
-﻿using System;
-using Common.PubSubEngine;
+﻿using Common.PubSubEngine;
 using Common.GameComponents.PlayerComponents;
 
 namespace Common.GameComponents
@@ -22,7 +21,8 @@ namespace Common.GameComponents
         {
             if (otherCollider.Parent == typeof(Player))
             {
-                Sandbox.PlayerEnteredThePortal.Publish(this);
+                Sandbox.AddRemotePlayer.Publish(Ip);
+                Sandbox.SendNetwokMessage.Publish("Connected", Ip);
             }
         }
     }

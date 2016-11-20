@@ -24,7 +24,7 @@ namespace NetworkStuff.Tests
             });
 
             var writer = new UdpMessageSender();
-            writer.Write(expectedMessage, "localhost", listenerPort);
+            writer.Send(expectedMessage, "localhost", listenerPort);
 
             AsyncAssert.Wait();
 
@@ -53,8 +53,8 @@ namespace NetworkStuff.Tests
 
             var writer2 = new UdpMessageSender();
 
-            writer1.Write(expectedMessages[0], "localhost", listenerPort);
-            writer2.Write(expectedMessages[1], "localhost", listenerPort);
+            writer1.Send(expectedMessages[0], "localhost", listenerPort);
+            writer2.Send(expectedMessages[1], "localhost", listenerPort);
 
             AsyncAssert.Wait();
 

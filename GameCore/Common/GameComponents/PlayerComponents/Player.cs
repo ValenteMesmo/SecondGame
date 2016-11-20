@@ -18,9 +18,9 @@ namespace Common.GameComponents.PlayerComponents
             Body = new Collider(sandbox, x, y, 3, 6,
                 GetType());
 
-            Sandbox.WorldUpdate.Subscribe(Update);
+            Sandbox.OnWorldUpdate.Subscribe(Update);
             Sandbox.CollisionFromBelow.Subscribe(OnCollisionFromBelow, Body.Name);
-            Sandbox.WorldUpdateAfterCollisions.Subscribe(LateUpdate);
+            Sandbox.OnWorldUpdateAfterCollisions.Subscribe(LateUpdate);
         }
 
         private void OnCollisionFromBelow(Collider obj)

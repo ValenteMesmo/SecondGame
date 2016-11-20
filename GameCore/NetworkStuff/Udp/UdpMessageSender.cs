@@ -6,7 +6,7 @@ namespace NetworkStuff.Udp
 {
     public interface ISendNetworkMessages : IDisposable
     {
-        void Write(string message, string ip, int port);
+        void Send(string message, string ip, int port);
     }
 
     public class UdpMessageSender : ISendNetworkMessages
@@ -23,7 +23,7 @@ namespace NetworkStuff.Udp
             sender.Close();
         }
 
-        public void Write(string message, string ip, int port)
+        public void Send(string message, string ip, int port)
         {
             sender.Send(
                 Encoding.ASCII.GetBytes(message),

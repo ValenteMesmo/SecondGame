@@ -37,10 +37,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider.cs" />
-    <Compile Include="CollisionChecker.cs" />
+    <Compile Include="GameComponents\CollisionChecker.cs" />
+    <Compile Include="GameComponents\Factories\GroundFactory.cs" />
+    <Compile Include="GameComponents\Factories\MonsterFactory.cs" />
+    <Compile Include="GameComponents\Factories\MultiplayerPortalFactory.cs" />
+    <Compile Include="GameComponents\Factories\PlayerFactory.cs" />
+    <Compile Include="GameComponents\Factories\OnlinePlayerFactory.cs" />
     <Compile Include="GameComponents\Ground.cs" />
     <Compile Include="GameComponents\MonsterComponents\Monster.cs" />
-    <Compile Include="GameComponents\MultiplayerPortal.cs" />
+    <Compile Include="GameComponents\Multiplayer\PlayerComponents\GuestPlayer.cs" />
+    <Compile Include="GameComponents\Multiplayer\MultiplayerMessageSender.cs" />
+    <Compile Include="GameComponents\Multiplayer\MultiplayerMessageListener.cs" />
+    <Compile Include="GameComponents\Multiplayer\MultiplayerPortal.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerCollisionWithFloorHandler.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerGravityFall.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerJump.cs" />
@@ -50,7 +58,7 @@
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpLeftOnRightLimit.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpRightOnLeftLimit.cs" />
     <Compile Include="GameComponents\PlayerComponents\PlayerWarpTopOnBotLimit.cs" />
-    <Compile Include="GameComponents\RemotePlayerComponents\RemotePlayer.cs" />
+    <Compile Include="GameComponents\Multiplayer\PlayerComponents\HostPlayer.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="GameComponents\PlayerComponents\Player.cs" />
     <Compile Include="Dimension.cs" />
