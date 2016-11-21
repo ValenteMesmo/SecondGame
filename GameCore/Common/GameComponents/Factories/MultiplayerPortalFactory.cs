@@ -9,12 +9,13 @@ namespace Common.GameComponents.Factories
         public MultiplayerPortalFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.AddMultiplayerPortal.Subscribe(CreatePortal);
+            Sandbox.FoundNewIP.Subscribe(CreatePortal);
         }
 
         private void CreatePortal(string ip)
         {
             new MultiplayerPortal(Sandbox, ip, 3, 3);
+            new OtherSideOfMultiplayerPortal(Sandbox, ip, 3, 3);
         }
     }
 }

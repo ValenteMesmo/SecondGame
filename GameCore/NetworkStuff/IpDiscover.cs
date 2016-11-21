@@ -1,5 +1,6 @@
 ﻿using NetworkStuff.Udp;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 
@@ -14,9 +15,11 @@ namespace NetworkStuff.MessageHandlers.Common
         private readonly string broadcastIp;
         private readonly Thread broadcastLoop;
         private readonly Action<string> OnNewIpDiscovered;
+        private readonly List<string> IpsFound;
 
         public IpDiscover(Action<string> onNewIpDiscovered)
         {
+            IpsFound = new List<string>();
             OnNewIpDiscovered = onNewIpDiscovered;
             port = 47777;
             myIp = NetworkHelper.GetLocalIPAddress();
@@ -44,8 +47,11 @@ namespace NetworkStuff.MessageHandlers.Common
 
         private void OnMessageReceived(string message, Address sourceAddress)
         {
-            if (sourceAddress.Ip != myIp)
+            if (sourceAddress.Ip != myIp && IpsFound.Contains(sourceAddress.Ip) == false)
+            {
+                IpsFound.Add(sourceAddress.Ip);
                 OnNewIpDiscovered(sourceAddress.Ip);
+            }
         }
 
         public void Dispose()

@@ -1,6 +1,8 @@
 ﻿using Common.GameComponents;
 using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
+using System;
+using System.Linq;
 
 namespace Common.PubSubEngine
 {
@@ -32,8 +34,10 @@ namespace Common.PubSubEngine
             AddGround = EventFactory.Create<Dimension>();
             FoundNewIP = EventFactory.Create<string>();
             YouEnteredThePortal = EventFactory.Create<MultiplayerPortal>();
-            AddMultiplayerPortal = EventFactory.Create<string>();
+            //AddMultiplayerPortal = EventFactory.Create<string>();
             AddRemotePlayer = EventFactory.Create<string>();
+            CloseThePortal = EventFactory.Create();
+            PortalCreated = EventFactory.Create<string>();            
         }
 
         public readonly MyEvent<Position> AddPlayer;
@@ -58,9 +62,11 @@ namespace Common.PubSubEngine
         public readonly MyEvent<Dimension> AddGround;
         public readonly MyEvent<string> FoundNewIP;
         public readonly MyEvent<MultiplayerPortal> YouEnteredThePortal;
-        public readonly MyEvent<string> AddMultiplayerPortal;
+        //public readonly MyEvent<string> AddMultiplayerPortal;
         public readonly MyEvent<string> AddRemotePlayer;
         public readonly MyEvent<string> NetwokMessageReceived;
         public readonly MyEvent<string> SendNetwokMessage;
+        public readonly MyEvent CloseThePortal;
+        public readonly MyEvent<string> PortalCreated;
     }
 }

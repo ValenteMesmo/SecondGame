@@ -41,10 +41,12 @@
     <Compile Include="GameComponents\Factories\GroundFactory.cs" />
     <Compile Include="GameComponents\Factories\MonsterFactory.cs" />
     <Compile Include="GameComponents\Factories\MultiplayerPortalFactory.cs" />
+    <Compile Include="GameComponents\Multiplayer\OtherSideOfMultiplayerPortal.cs" />
     <Compile Include="GameComponents\Factories\PlayerFactory.cs" />
     <Compile Include="GameComponents\Factories\OnlinePlayerFactory.cs" />
     <Compile Include="GameComponents\Ground.cs" />
     <Compile Include="GameComponents\MonsterComponents\Monster.cs" />
+    <Compile Include="GameComponents\Multiplayer\FindPlayersOnLocalAreaNetwork.cs" />
     <Compile Include="GameComponents\Multiplayer\PlayerComponents\GuestPlayer.cs" />
     <Compile Include="GameComponents\Multiplayer\MultiplayerMessageSender.cs" />
     <Compile Include="GameComponents\Multiplayer\MultiplayerMessageListener.cs" />

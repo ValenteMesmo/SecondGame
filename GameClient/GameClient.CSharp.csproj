@@ -80,15 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameObjectFactory.cs" />
     <Compile Include="Assets\GroundScript.cs" />
     <Compile Include="Assets\LogMessagesOnScreen.cs" />
     <Compile Include="Assets\MonsterScript.cs" />
-    <Compile Include="Assets\PortalComponent.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\GameController\ColliderTouchBehaviour.cs" />
     <Compile Include="Assets\Scripts\InputHandlers\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
-    <Compile Include="Assets\Singleton.cs" />
     <Compile Include="Assets\TouchOnJumpButton.cs" />
     <Compile Include="Assets\TouchOnLeftButton.cs" />
     <Compile Include="Assets\TouchOnRightButton.cs" />

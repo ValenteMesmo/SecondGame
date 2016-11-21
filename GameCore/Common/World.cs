@@ -1,15 +1,19 @@
-﻿using Common.PubSubEngine;
-using Common.GameComponents.Factories;
+﻿using Common.GameComponents.Factories;
+using Common.GameComponents.Multiplayer;
+using Common.PubSubEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Common
 {
-    public class World
+    public class World : IDisposable
     {
         public readonly Sandbox Sandbox;
+        private readonly List<IDisposable> Disposables;
 
         public World()
         {
+            Disposables = new List<IDisposable>();
             Sandbox = new Sandbox();
             new CollisionChecker(Sandbox);            
             new PlayerFactory(Sandbox);
@@ -17,6 +21,15 @@ namespace Common
             new MonsterFactory(Sandbox);
             new MultiplayerPortalFactory(Sandbox);
             new OnlinePlayerFactory(Sandbox);
+            Disposables.Add(new FindPlayersOnLocalAreaNetwork(Sandbox));
+        }
+
+        public void Dispose()
+        {
+            foreach (var item in Disposables)
+            {
+                item.Dispose();
+            }
         }
 
         public void Update()

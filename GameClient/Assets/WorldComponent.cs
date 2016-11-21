@@ -1,12 +1,25 @@
 ﻿using Common;
 using Common.PubSubEngine;
+using UnityEngine;
 
-internal class WorldComponent : Singleton<WorldComponent>
+internal class WorldComponent : MonoBehaviour
 {
-    private World Reference = new World();
+    private World Reference;
+    private static WorldComponent Instance;
+
     public static Sandbox Sandbox
     {
-        get { return Instance.Reference.Sandbox; }
+        get
+        {
+            if (Instance == null)
+            {
+                GameObject singleton = new GameObject();
+                Instance = singleton.AddComponent<WorldComponent>();
+                singleton.name = "(singleton) world";
+                Instance.Reference = new World();
+            }
+            return Instance.Reference.Sandbox;
+        }
     }
 
     void Update()
