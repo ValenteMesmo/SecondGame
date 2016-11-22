@@ -24,7 +24,7 @@ namespace Common.GameComponents.Factories
             new PlayerWarpLeftOnRightLimit(Sandbox);
             new PlayerWarpRightOnLeftLimit(Sandbox);
             new PlayerWalk(Sandbox);
-            new PlayerWalkInTheAir(Sandbox);
+            new PlayerWalkInTheAir(Sandbox);            
         }
     }
 }

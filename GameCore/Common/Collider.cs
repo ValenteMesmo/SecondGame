@@ -26,7 +26,11 @@ namespace Common
             Y = y;
             Width = width;
             Height = height;
-            Name = Guid.NewGuid().ToString();
+            Name =
+#if DEBUG
+                parentType.Name + 
+#endif
+                Guid.NewGuid().ToString();
             Trigger = trigger;
             Parent = parentType;
             sandbox.ColliderCreated.Publish(this);

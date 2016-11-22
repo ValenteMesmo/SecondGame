@@ -34,6 +34,8 @@ namespace Common.GameComponents
 
         public void Dispose()
         {
+            Sandbox.CollisionFromAnySide.Unsubscribe(OnCollision, Collider.Name);
+            Sandbox.CloseThePortal.Unsubscribe(Dispose, Ip);
         }
     }
 }

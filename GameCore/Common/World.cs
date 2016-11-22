@@ -10,6 +10,7 @@ namespace Common
     {
         public readonly Sandbox Sandbox;
         private readonly List<IDisposable> Disposables;
+        public int LoopCount { get; private set; }
 
         public World()
         {
@@ -37,6 +38,7 @@ namespace Common
             Sandbox.OnWorldUpdate.Publish();
             Sandbox.OnCollisionDetectionRequested.Publish();
             Sandbox.OnWorldUpdateAfterCollisions.Publish();
+            LoopCount++;
         }
     }
 }
