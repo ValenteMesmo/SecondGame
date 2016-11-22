@@ -1,72 +1,37 @@
 ﻿using Common.GameComponents;
 using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
-using System;
-using System.Linq;
 
 namespace Common.PubSubEngine
 {
     public class Sandbox
     {
-        public Sandbox()
-        {
-            var EventFactory = new MyEventFactory();
-
-            AddPlayer = EventFactory.Create<Position>();
-            ColliderCreated = EventFactory.Create<Collider>();
-            OnCollisionDetectionRequested = EventFactory.Create();
-            OnWorldUpdate = EventFactory.Create();
-            OnWorldUpdateAfterCollisions = EventFactory.Create();
-            CollisionFromTheLeft = EventFactory.Create<Collider>();
-            CollisionFromTheRight = EventFactory.Create<Collider>();
-            CollisionFromAbove = EventFactory.Create<Collider>();
-            CollisionFromBelow = EventFactory.Create<Collider>();
-            CollisionFromAnySide = EventFactory.Create<Collider>();
-            PlayerUpdate = EventFactory.Create<Player>();
-            PlayerUpdateAfterCollisions = EventFactory.Create<Player>();
-            AddMonster = EventFactory.Create<Position>();
-            LeftPressed = EventFactory.Create<bool>();
-            RightPressed = EventFactory.Create<bool>();
-            UpPressed = EventFactory.Create<bool>();
-            MonsterUpdate = EventFactory.Create<Monster>();
-            MonsterCreated = EventFactory.Create<Monster>();
-            GroundCreated = EventFactory.Create<Collider>();
-            AddGround = EventFactory.Create<Dimension>();
-            FoundNewIP = EventFactory.Create<string>();
-            YouEnteredThePortal = EventFactory.Create<MultiplayerPortal>();
-            //AddMultiplayerPortal = EventFactory.Create<string>();
-            AddRemotePlayer = EventFactory.Create<string>();
-            CloseThePortal = EventFactory.Create();
-            PortalCreated = EventFactory.Create<string>();            
-        }
-
-        public readonly MyEvent<Position> AddPlayer;
-        public readonly MyEvent<Collider> ColliderCreated;
-        public readonly MyEvent OnCollisionDetectionRequested;
-        public readonly MyEvent OnWorldUpdate;
-        public readonly MyEvent<Collider> CollisionFromTheLeft;
-        public readonly MyEvent<Collider> CollisionFromTheRight;
-        public readonly MyEvent<Collider> CollisionFromAbove;
-        public readonly MyEvent<Collider> CollisionFromBelow;
-        public readonly MyEvent<Collider> CollisionFromAnySide;
-        public readonly MyEvent<Player> PlayerUpdate;
-        public readonly MyEvent<Position> AddMonster;
-        public readonly MyEvent<bool> LeftPressed;
-        public readonly MyEvent<bool> RightPressed;
-        public readonly MyEvent<bool> UpPressed;
-        public readonly MyEvent<Monster> MonsterUpdate;
-        public readonly MyEvent<Monster> MonsterCreated;
-        public readonly MyEvent OnWorldUpdateAfterCollisions;
-        public readonly MyEvent<Player> PlayerUpdateAfterCollisions;
-        public readonly MyEvent<Collider> GroundCreated;
-        public readonly MyEvent<Dimension> AddGround;
-        public readonly MyEvent<string> FoundNewIP;
-        public readonly MyEvent<MultiplayerPortal> YouEnteredThePortal;
-        //public readonly MyEvent<string> AddMultiplayerPortal;
-        public readonly MyEvent<string> AddRemotePlayer;
-        public readonly MyEvent<string> NetwokMessageReceived;
-        public readonly MyEvent<string> SendNetwokMessage;
-        public readonly MyEvent CloseThePortal;
-        public readonly MyEvent<string> PortalCreated;
+        public readonly Event<Position> AddPlayer = new Event<Position>();
+        public readonly Event<Collider> ColliderCreated = new Event<Collider>();
+        public readonly Event OnCollisionDetectionRequested = new Event();
+        public readonly Event OnWorldUpdate = new Event();
+        public readonly Event<Collider> CollisionFromTheLeft = new Event<Collider>();
+        public readonly Event<Collider> CollisionFromTheRight = new Event<Collider>();
+        public readonly Event<Collider> CollisionFromAbove = new Event<Collider>();
+        public readonly Event<Collider> CollisionFromBelow = new Event<Collider>();
+        public readonly Event<Collider> CollisionFromAnySide = new Event<Collider>();
+        public readonly Event<Player> PlayerUpdate = new Event<Player>();
+        public readonly Event<Position> AddMonster = new Event<Position>();
+        public readonly Event<bool> LeftPressed = new Event<bool>();
+        public readonly Event<bool> RightPressed = new Event<bool>();
+        public readonly Event<bool> UpPressed = new Event<bool>();
+        public readonly Event<Monster> MonsterUpdate = new Event<Monster>();
+        public readonly Event<Monster> MonsterCreated = new Event<Monster>();
+        public readonly Event OnWorldUpdateAfterCollisions = new Event();
+        public readonly Event<Player> PlayerUpdateAfterCollisions = new Event<Player>();
+        public readonly Event<Collider> GroundCreated = new Event<Collider>();
+        public readonly Event<Dimension> AddGround = new Event<Dimension>();
+        public readonly Event<string> FoundNewIP = new Event<string>();
+        public readonly Event<MultiplayerPortal> YouEnteredThePortal = new Event<MultiplayerPortal>();
+        public readonly Event<string> AddRemotePlayer = new Event<string>();
+        public readonly Event<string> NetwokMessageReceived = new Event<string>();
+        public readonly Event<string> SendNetwokMessage = new Event<string>();
+        public readonly Event CloseThePortal = new Event();
+        public readonly Event<string> PortalCreated = new Event<string>();
     }
 }
