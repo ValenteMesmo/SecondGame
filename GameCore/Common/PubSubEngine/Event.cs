@@ -37,7 +37,7 @@ namespace Common.PubSubEngine
             var partialKey = context + ":";
             var callbacksToExcecute = Callbacks
                 .Where(f => f.Key.StartsWith(partialKey))
-                .SelectMany(f => f.Value);
+                .SelectMany(f => f.Value).ToList();
 
             foreach (var callback in callbacksToExcecute)
             {
@@ -84,7 +84,7 @@ namespace Common.PubSubEngine
             var partialKey = context + ":";
             var callbacksToExcecute = Callbacks
                 .Where(f => f.Key.StartsWith(partialKey))
-                .SelectMany(f => f.Value);
+                .SelectMany(f => f.Value).ToList();
 
             foreach (var callback in callbacksToExcecute)
             {
