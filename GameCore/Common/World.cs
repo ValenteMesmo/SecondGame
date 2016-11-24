@@ -21,7 +21,7 @@ namespace Common
             new GroundFactory(Sandbox);
             new MonsterFactory(Sandbox);
             new MultiplayerPortalFactory(Sandbox);
-            new OnlinePlayerFactory(Sandbox);
+//            new OnlinePlayerFactory(Sandbox);
             Disposables.Add(new FindPlayersOnLocalAreaNetwork(Sandbox));
         }
 

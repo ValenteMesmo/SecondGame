@@ -10,23 +10,25 @@ public class GameObjectFactory : MonoBehaviour
     void Start()
     {
         WorldComponent.Sandbox.PortalCreated.Subscribe(PortalCreated);        
-        WorldComponent.Sandbox.CloseThePortal.Subscribe(ClosePortal);
     }
 
     private void ClosePortal()
     {
+        Debug.Log("Close portal");
         portalOn = false;
     }
 
     private void PortalCreated(string obj)
     {
+        Debug.Log("Create portal");
         portalOn = true;
+        WorldComponent.Sandbox.CloseThePortal.Subscribe(ClosePortal, obj);
     }
 
     void Update()
     {
-        if(portalOn && portal == null)
-        portal = (GameObject)Instantiate(Resources.Load("Prefab/Portal"));
+        if (portalOn && portal == null)
+            portal = (GameObject)Instantiate(Resources.Load("Prefab/Portal"));
 
         if (portalOn == false && portal != null)
         {

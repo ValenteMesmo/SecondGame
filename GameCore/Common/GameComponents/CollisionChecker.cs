@@ -1,5 +1,6 @@
 ﻿using Common.PubSubEngine;
 using System.Collections.Generic;
+using System;
 
 namespace Common
 {
@@ -13,7 +14,13 @@ namespace Common
             Sandbox = sandbox;
 
             sandbox.ColliderCreated.Subscribe(OnColliderCreated);
+            sandbox.ColliderDestroyed.Subscribe(OnColliderDestroyed);
             sandbox.OnCollisionDetectionRequested.Subscribe(DetectCollisions);
+        }
+
+        private void OnColliderDestroyed(Collider obj)
+        {
+            Colliders.Remove(obj);
         }
 
         private void DetectCollisions()

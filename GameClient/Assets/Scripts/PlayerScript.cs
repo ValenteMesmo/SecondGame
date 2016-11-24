@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnPlayerUpdated(Player player)//, float interpolation)
     {
+        WorldComponent.Sandbox.CollisionFromBelow.Subscribe(c => Debug.Log(c.Name), player.Body.Name);
         //Debug.Log(player.Speed);
         transform.position =
             new Vector2(

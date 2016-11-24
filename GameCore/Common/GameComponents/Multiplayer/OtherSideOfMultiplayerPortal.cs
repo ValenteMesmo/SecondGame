@@ -19,8 +19,12 @@ namespace Common.GameComponents
 
         private void OnMessageReceived(string message)
         {
-            new GuestPlayer(Sandbox, 0, 0, Ip);
-            Sandbox.CloseThePortal.Publish(Ip);
+            if (message == "Connected")
+            {
+                new Guest(Sandbox, 0, 0, Ip);
+                new SendPostionToHost(Sandbox);
+                Sandbox.CloseThePortal.Publish(Ip);
+            }
         }
 
         public void Dispose()

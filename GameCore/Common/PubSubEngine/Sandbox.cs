@@ -1,4 +1,5 @@
-﻿using Common.GameComponents;
+﻿using System;
+using Common.GameComponents;
 using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
 
@@ -33,5 +34,6 @@ namespace Common.PubSubEngine
         public readonly Event<string> SendNetwokMessage = new Event<string>();
         public readonly Event CloseThePortal = new Event();
         public readonly Event<string> PortalCreated = new Event<string>();
+        public readonly Event<Collider> ColliderDestroyed = new Event<Collider>();
     }
 }

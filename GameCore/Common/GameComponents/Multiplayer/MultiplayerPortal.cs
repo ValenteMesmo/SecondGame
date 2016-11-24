@@ -25,7 +25,8 @@ namespace Common.GameComponents
         {
             if (otherCollider.Parent == typeof(Player))
             {
-                new HostPlayer(Sandbox, 0, 0);                
+                new Host(Sandbox, 0, 0);
+                new SendPositionToGuests(Sandbox);        
                 Sandbox.AddRemotePlayer.Publish(Ip);
                 Sandbox.SendNetwokMessage.Publish("Connected", Ip);
                 Sandbox.CloseThePortal.Publish(Ip);
@@ -34,6 +35,7 @@ namespace Common.GameComponents
 
         public void Dispose()
         {
+            Sandbox.ColliderDestroyed.Publish(Collider);
             Sandbox.CollisionFromAnySide.Unsubscribe(OnCollision, Collider.Name);
             Sandbox.CloseThePortal.Unsubscribe(Dispose, Ip);
         }

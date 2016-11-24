@@ -1,8 +1,5 @@
 ﻿using Common.GameComponents.RemotePlayerComponents;
 using Common.PubSubEngine;
-using NetworkStuff;
-using NetworkStuff.Udp;
-using System;
 
 namespace Common.GameComponents.Factories
 {
@@ -18,7 +15,7 @@ namespace Common.GameComponents.Factories
 
         private void RemotePlayerCreationRequested(string ip)
         {
-            new HostPlayer(Sandbox, 0, 0);
+            new Host(Sandbox, 0, 0);
         }
     }
 }
