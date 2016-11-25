@@ -9,22 +9,19 @@ namespace Common.GameComponents
     {
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;
-        private string Ip;
-        private int Port;
 
-        public MultiplayerMessageListener(Sandbox sandbox, string ip, int port)
+        public MultiplayerMessageListener(Sandbox sandbox, int port)
         {
-            Ip = ip;
-            Port = port;
             Sandbox = sandbox;
 
-            Listener = new UdpMessageListener(Port);
+            Listener = new UdpMessageListener(port);
             Listener.Listen(MessageReceived);
         }
 
         private void MessageReceived(string message, Address source)
         {
-            Sandbox.NetwokMessageReceived.Publish(message, source.Ip);
+            if (message == "Connected")
+                Sandbox.GuestJoined.Publish(source.Ip);
         }
 
         public void Dispose()

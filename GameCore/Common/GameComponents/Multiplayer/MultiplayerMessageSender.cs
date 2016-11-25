@@ -18,14 +18,25 @@ namespace Common.GameComponents
             Sandbox = sandbox;
 
             Sender = new UdpMessageSender();
-
-            Sandbox.SendNetwokMessage.Subscribe(OnSendMessageRequested, Ip);
+            Sandbox.HostPositionUpdated.Subscribe(SendHostPositionToHost, ip);
+            Sandbox.YouEnteredThePortal.Subscribe(EnteredMultiplayePortal);
         }
 
-        private void OnSendMessageRequested(string message)
+        private void EnteredMultiplayePortal(MultiplayerPortal obj)
         {
-            Sender.Send(message, Ip, Port);
-        }        
+            Sender.Send("Connected", obj.Ip, 1337);
+        }
+
+        private void SendHostPositionToHost(Collider obj)
+        {
+            Sender.Send(
+                string.Format(
+                    "coord;{0};{1}",
+                    obj.X,
+                    obj.Y),
+                Ip,
+                Port);
+        }
 
         public void Dispose()
         {

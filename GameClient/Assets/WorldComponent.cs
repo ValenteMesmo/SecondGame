@@ -17,6 +17,7 @@ internal class WorldComponent : MonoBehaviour
                 Instance = singleton.AddComponent<WorldComponent>();
                 singleton.name = "(singleton) world";
                 Instance.Reference = new World();
+                //Instance.Reference.Sandbox.FoundNewIP.Subscribe(ip=> Debug.Log(ip));
             }
             return Instance.Reference.Sandbox;
         }

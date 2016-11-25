@@ -30,10 +30,13 @@ namespace Common.PubSubEngine
         public readonly Event<string> FoundNewIP = new Event<string>();
         public readonly Event<MultiplayerPortal> YouEnteredThePortal = new Event<MultiplayerPortal>();
         public readonly Event<string> AddRemotePlayer = new Event<string>();
-        public readonly Event<string> NetwokMessageReceived = new Event<string>();
-        public readonly Event<string> SendNetwokMessage = new Event<string>();
+        //public readonly Event<string> NetwokMessageReceived = new Event<string>();
+        //public readonly Event<string> SendNetwokMessage = new Event<string>();
         public readonly Event CloseThePortal = new Event();
         public readonly Event<string> PortalCreated = new Event<string>();
         public readonly Event<Collider> ColliderDestroyed = new Event<Collider>();
+        public readonly Event<Collider> HostPositionUpdated = new Event<Collider>();
+        public readonly Event<Collider> GuestPositionUpdated = new Event<Collider>();
+        public readonly Event GuestJoined = new Event();
     }
 }

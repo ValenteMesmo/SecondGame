@@ -26,9 +26,8 @@ namespace Common.GameComponents
             if (otherCollider.Parent == typeof(Player))
             {
                 new Host(Sandbox, 0, 0);
-                new SendPositionToGuests(Sandbox);        
                 Sandbox.AddRemotePlayer.Publish(Ip);
-                Sandbox.SendNetwokMessage.Publish("Connected", Ip);
+                Sandbox.YouEnteredThePortal.Publish(this);
                 Sandbox.CloseThePortal.Publish(Ip);
             }
         }

@@ -1,4 +1,5 @@
-﻿using Common.GameComponents.Factories;
+﻿using Common.GameComponents;
+using Common.GameComponents.Factories;
 using Common.GameComponents.Multiplayer;
 using Common.PubSubEngine;
 using System;
@@ -21,8 +22,9 @@ namespace Common
             new GroundFactory(Sandbox);
             new MonsterFactory(Sandbox);
             new MultiplayerPortalFactory(Sandbox);
-//            new OnlinePlayerFactory(Sandbox);
+            new NetworkFactory(Sandbox);
             Disposables.Add(new FindPlayersOnLocalAreaNetwork(Sandbox));
+            Disposables.Add(new MultiplayerMessageListener(Sandbox, 1337));
         }
 
         public void Dispose()

@@ -13,22 +13,18 @@ namespace Common.GameComponents
         {
             Sandbox = sandbox;
             Ip = ip;
-            Sandbox.SendNetwokMessage.Subscribe(OnMessageReceived, Ip);
+            Sandbox.GuestJoined.Subscribe(GuestJoined, Ip);
             Sandbox.CloseThePortal.Subscribe(Dispose, Ip);
         }
 
-        private void OnMessageReceived(string message)
+        private void GuestJoined()
         {
-            if (message == "Connected")
-            {
-                new Guest(Sandbox, 0, 0, Ip);
-                new SendPostionToHost(Sandbox);
-                Sandbox.CloseThePortal.Publish(Ip);
-            }
+            new Guest(Sandbox, 0, 0);
+            Sandbox.CloseThePortal.Publish(Ip);
         }
 
         public void Dispose()
-        {            
+        {
         }
     }
 }
