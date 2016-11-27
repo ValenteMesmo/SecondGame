@@ -29,14 +29,12 @@ namespace Common.PubSubEngine
         public readonly Event<Dimension> AddGround = new Event<Dimension>();
         public readonly Event<string> FoundNewIP = new Event<string>();
         public readonly Event<MultiplayerPortal> YouEnteredThePortal = new Event<MultiplayerPortal>();
-        public readonly Event<string> AddRemotePlayer = new Event<string>();
-        //public readonly Event<string> NetwokMessageReceived = new Event<string>();
-        //public readonly Event<string> SendNetwokMessage = new Event<string>();
-        public readonly Event CloseThePortal = new Event();
+        public readonly Event PortalDisposed = new Event();
         public readonly Event<string> PortalCreated = new Event<string>();
         public readonly Event<Collider> ColliderDestroyed = new Event<Collider>();
-        public readonly Event<Collider> HostPositionUpdated = new Event<Collider>();
-        public readonly Event<Collider> GuestPositionUpdated = new Event<Collider>();
-        public readonly Event GuestJoined = new Event();
+        public readonly Event OtherPlayerEnteredAsTheGuest = new Event();
+        public readonly Event OtherPlayerEnteredAsTheHost = new Event();
+        public readonly Event<Collider> HostPosiitonUpdate = new Event<Collider>();
+        public readonly Event<Collider> GuestPosiitonUpdate = new Event<Collider>();
     }
 }

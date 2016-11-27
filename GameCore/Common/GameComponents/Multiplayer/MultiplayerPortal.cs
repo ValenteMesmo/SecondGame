@@ -1,7 +1,6 @@
 ﻿using Common.PubSubEngine;
 using Common.GameComponents.PlayerComponents;
 using System;
-using Common.GameComponents.RemotePlayerComponents;
 
 namespace Common.GameComponents
 {
@@ -17,26 +16,26 @@ namespace Common.GameComponents
             Ip = ip;
             Collider = new Collider(sandbox, x, y, 3, 3, GetType(), true);
             Sandbox.CollisionFromAnySide.Subscribe(OnCollision, Collider.Name);
-            Sandbox.CloseThePortal.Subscribe(Dispose, Ip);
             Sandbox.PortalCreated.Publish(Ip);
+            Sandbox.OtherPlayerEnteredAsTheGuest.Subscribe(Dispose,Ip);
+            Sandbox.OtherPlayerEnteredAsTheHost.Subscribe(Dispose,Ip);
         }
 
         private void OnCollision(Collider otherCollider)
         {
             if (otherCollider.Parent == typeof(Player))
-            {
-                new Host(Sandbox, 0, 0);
-                Sandbox.AddRemotePlayer.Publish(Ip);
+            {                
                 Sandbox.YouEnteredThePortal.Publish(this);
-                Sandbox.CloseThePortal.Publish(Ip);
             }
         }
 
         public void Dispose()
         {
+            Sandbox.OtherPlayerEnteredAsTheGuest.Unsubscribe(Dispose, Ip);
+            Sandbox.OtherPlayerEnteredAsTheHost.Unsubscribe(Dispose, Ip);
             Sandbox.ColliderDestroyed.Publish(Collider);
             Sandbox.CollisionFromAnySide.Unsubscribe(OnCollision, Collider.Name);
-            Sandbox.CloseThePortal.Unsubscribe(Dispose, Ip);
+            Sandbox.PortalDisposed.Publish(Ip);
         }
     }
 }

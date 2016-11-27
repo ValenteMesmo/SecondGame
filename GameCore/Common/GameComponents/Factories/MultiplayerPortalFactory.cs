@@ -14,8 +14,7 @@ namespace Common.GameComponents.Factories
 
         private void CreatePortal(string ip)
         {
-            new MultiplayerPortal(Sandbox, ip, 3, 3);
-            new OtherSideOfMultiplayerPortal(Sandbox, ip, 3, 3);
+            new MultiplayerPortal(Sandbox, ip, 3, 3);            
         }
     }
 }

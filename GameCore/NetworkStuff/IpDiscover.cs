@@ -33,7 +33,6 @@ namespace NetworkStuff.MessageHandlers.Common
             var operation = new ParameterizedThreadStart(Broadcast);
             broadcastLoop = new Thread(operation, 1024 * 1024);
             broadcastLoop.Start();
-            //broadcastLoop.Join();
         }
 
         private void Broadcast(object obj)
@@ -51,6 +50,7 @@ namespace NetworkStuff.MessageHandlers.Common
             {
                 IpsFound.Add(sourceAddress.Ip);
                 OnNewIpDiscovered(sourceAddress.Ip);
+                sender.Send("Hello", sourceAddress.Ip, sourceAddress.Port);
             }
         }
 
