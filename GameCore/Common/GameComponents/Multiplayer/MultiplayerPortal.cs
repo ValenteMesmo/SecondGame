@@ -17,14 +17,14 @@ namespace Common.GameComponents
             Collider = new Collider(sandbox, x, y, 3, 3, GetType(), true);
             Sandbox.CollisionFromAnySide.Subscribe(OnCollision, Collider.Name);
             Sandbox.PortalCreated.Publish(Ip);
-            Sandbox.OtherPlayerEnteredAsTheGuest.Subscribe(Dispose,Ip);
-            Sandbox.OtherPlayerEnteredAsTheHost.Subscribe(Dispose,Ip);
+            Sandbox.OtherPlayerEnteredAsTheGuest.Subscribe(Dispose, Ip);
+            Sandbox.OtherPlayerEnteredAsTheHost.Subscribe(Dispose, Ip);
         }
 
         private void OnCollision(Collider otherCollider)
         {
             if (otherCollider.Parent == typeof(Player))
-            {                
+            {
                 Sandbox.YouEnteredThePortal.Publish(this);
             }
         }

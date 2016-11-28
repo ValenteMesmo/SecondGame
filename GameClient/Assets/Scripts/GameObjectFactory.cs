@@ -1,53 +1,54 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class GameObjectFactory : MonoBehaviour
 {
-    private bool portalOn = false;
-    private UnityEngine.GameObject portal;
+    private readonly Dictionary<string, GameObject> Portals =
+        new Dictionary<string, GameObject>();
 
+    private readonly List<string> PortalsToCreate =
+        new List<string>();
+
+    private readonly List<GameObject> PortalsToDestroy =
+        new List<GameObject>();
+    
     void Start()
     {
-        WorldComponent.Sandbox.PortalCreated.Subscribe(PortalCreated);        
-        WorldComponent.Sandbox.GuestPosiitonUpdate.Subscribe(UpdateGuest);
-        WorldComponent.Sandbox.HostPosiitonUpdate.Subscribe(UpdateHost);
-    }
-
-    private void UpdateHost(Common.Collider obj)
-    {
-        Debug.Log("UpdateHost");
-    }
-
-    private void UpdateGuest(Common.Collider obj)
-    {
-        Debug.Log("UpdateGuest");
+        WorldComponent.Sandbox.PortalCreated.Subscribe(PortalCreated);
     }
 
     private void PortalCreated(string ip)
     {
         Debug.Log("Create portal");
-        portalOn = true;
-        WorldComponent.Sandbox.PortalDisposed.Subscribe(ClosePortal, ip);
+        PortalsToCreate.Add(ip);
+        WorldComponent.Sandbox.PortalDisposed.Subscribe(ClosePortal);
     }
 
-    private void ClosePortal()
+    private void ClosePortal(string ip)
     {
         Debug.Log("Close portal");
-        portalOn = false;
+        if (Portals.ContainsKey(ip))
+        {
+            if (Portals[ip] != null)
+            {
+                PortalsToDestroy.Add(Portals[ip]);
+            }
+        }
     }
-
 
     void Update()
     {
-        if (portalOn && portal == null)
-            portal = (GameObject)Instantiate(Resources.Load("Prefab/Portal"));
-
-        if (portalOn == false && portal != null)
+        foreach (var portal in PortalsToDestroy.ToList())
         {
-            Destroy(portal.gameObject);
-            portal = null;
+            PortalsToDestroy.Remove(portal);
+            Destroy(portal);
+        }
+
+        foreach (var ip in PortalsToCreate.ToList())
+        {
+            PortalsToCreate.Remove(ip);
+            Portals[ip] = (GameObject)Instantiate(Resources.Load("Prefab/Portal"));
         }
     }
 }
