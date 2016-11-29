@@ -1,5 +1,4 @@
 ﻿using Common.GameComponents.MonsterComponents;
-using Common.PubSubEngine;
 
 namespace Common.GameComponents.Factories
 {

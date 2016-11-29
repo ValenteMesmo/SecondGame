@@ -63,8 +63,8 @@
     <Compile Include="Dimension.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PubSubEngine\Event.cs" />
-    <Compile Include="PubSubEngine\Sandbox.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Sandbox.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
