@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Common;
+using System.Threading;
 
 namespace Server
 {
@@ -9,6 +7,15 @@ namespace Server
     {
         public static void Main(string[] args)
         {
+            var world = new World();
+
+           
+
+            while (true)
+            {
+                world.Update();
+                Thread.Sleep(1);
+            }
         }
     }
 }

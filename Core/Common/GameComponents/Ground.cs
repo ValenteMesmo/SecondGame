@@ -6,14 +6,14 @@ namespace Common.GameComponents
     {
         public Collider Collider { get; }
 
-        public Ground(Sandbox sandbox, Dimension dimension)
+        public Ground(Sandbox sandbox, Position position)
         {
             Collider = new Collider(
                 sandbox,
-                dimension.X,
-                dimension.Y,
-                dimension.Width,
-                dimension.Height,
+                position.X,
+                position.Y,
+                3,
+                3,
                 GetType());
                         
             sandbox.GroundCreated.Publish(Collider);

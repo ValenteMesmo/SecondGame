@@ -10,7 +10,7 @@ namespace Common.GameComponents.Factories
         public PlayerFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.AddPlayer.Subscribe(CreatePlayer);
+            Sandbox.PlayerAdded.Subscribe(CreatePlayer);
         }
 
         private void CreatePlayer(Position position)

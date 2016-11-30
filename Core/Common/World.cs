@@ -37,10 +37,25 @@ namespace Common
 
         public void Update()
         {
+            if (LoopCount == 0)
+            {
+                Initialize();
+            }
+
             Sandbox.OnWorldUpdate.Publish();
             Sandbox.OnCollisionDetectionRequested.Publish();
             Sandbox.OnWorldUpdateAfterCollisions.Publish();
             LoopCount++;
+        }
+
+        private void Initialize()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Sandbox.GroundAdded.Publish(new Position(i*3, 0));
+            }
+
+            Sandbox.PlayerAdded.Publish(new Position(4, 4));
         }
     }
 }

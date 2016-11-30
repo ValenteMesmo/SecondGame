@@ -6,7 +6,7 @@ namespace Common
 {
     public class Sandbox
     {
-        public readonly Event<Position> AddPlayer = new Event<Position>();
+        public readonly Event<Position> PlayerAdded = new Event<Position>();
         public readonly Event<Collider> ColliderCreated = new Event<Collider>();
         public readonly Event OnCollisionDetectionRequested = new Event();
         public readonly Event OnWorldUpdate = new Event();
@@ -25,7 +25,7 @@ namespace Common
         public readonly Event OnWorldUpdateAfterCollisions = new Event();
         public readonly Event<Player> PlayerUpdateAfterCollisions = new Event<Player>();
         public readonly Event<Collider> GroundCreated = new Event<Collider>();
-        public readonly Event<Dimension> AddGround = new Event<Dimension>();
+        public readonly Event<Position> GroundAdded = new Event<Position>();
         public readonly Event<string> FoundNewIP = new Event<string>();
         public readonly Event<MultiplayerPortal> YouEnteredThePortal = new Event<MultiplayerPortal>();
         public readonly Event<string> PortalDisposed = new Event<string>();

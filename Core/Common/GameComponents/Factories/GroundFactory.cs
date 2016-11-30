@@ -7,10 +7,10 @@ namespace Common.GameComponents.Factories
         public GroundFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.AddGround.Subscribe(CreateGround);
+            Sandbox.GroundAdded.Subscribe(CreateGround);
         }
 
-        private void CreateGround(Dimension dimension)
+        private void CreateGround(Position dimension)
         {
             new Ground(Sandbox, dimension);
         }

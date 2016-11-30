@@ -8,9 +8,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        WorldComponent.Sandbox.AddPlayer.Publish(
-            new Position(transform.position.x, transform.position.y));
-
         WorldComponent.Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdated);        
     }
 
