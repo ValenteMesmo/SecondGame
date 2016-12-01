@@ -16,12 +16,12 @@ namespace Common
         public readonly Event<Collider> CollisionFromBelow = new Event<Collider>();
         public readonly Event<Collider> CollisionFromAnySide = new Event<Collider>();
         public readonly Event<Player> PlayerUpdate = new Event<Player>();
-        public readonly Event<Position> AddMonster = new Event<Position>();
+        public readonly Event<Position> MonsterAdded = new Event<Position>();
+        public readonly Event<Monster> MonsterUpdate = new Event<Monster>();
+        public readonly Event<Monster> MonsterCreated = new Event<Monster>();
         public readonly Event<bool> LeftPressed = new Event<bool>();
         public readonly Event<bool> RightPressed = new Event<bool>();
         public readonly Event<bool> UpPressed = new Event<bool>();
-        public readonly Event<Monster> MonsterUpdate = new Event<Monster>();
-        public readonly Event<Monster> MonsterCreated = new Event<Monster>();
         public readonly Event OnWorldUpdateAfterCollisions = new Event();
         public readonly Event<Player> PlayerUpdateAfterCollisions = new Event<Player>();
         public readonly Event<Collider> GroundCreated = new Event<Collider>();

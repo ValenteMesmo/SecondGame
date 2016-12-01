@@ -9,7 +9,7 @@ namespace Common.GameComponents.Factories
         public MonsterFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.AddMonster.Subscribe(CreateMonster);
+            Sandbox.MonsterAdded.Subscribe(CreateMonster);
         }
 
         private void CreateMonster(Position position)

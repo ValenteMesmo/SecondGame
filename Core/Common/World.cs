@@ -56,6 +56,7 @@ namespace Common
             }
 
             Sandbox.PlayerAdded.Publish(new Position(4, 4));
+            Sandbox.MonsterAdded.Publish(new Position(6, 3));
         }
     }
 }
