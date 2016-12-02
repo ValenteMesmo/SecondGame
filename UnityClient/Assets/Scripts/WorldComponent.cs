@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Client;
+using Common;
 using UnityEngine;
 
 internal class WorldComponent : MonoBehaviour
@@ -15,7 +16,7 @@ internal class WorldComponent : MonoBehaviour
                 GameObject singleton = new GameObject();
                 Instance = singleton.AddComponent<WorldComponent>();
                 singleton.name = "(singleton) world";
-                Instance.Reference = new World();
+                Instance.Reference = new ClientWorld();
             }
             return Instance.Reference.Sandbox;
         }

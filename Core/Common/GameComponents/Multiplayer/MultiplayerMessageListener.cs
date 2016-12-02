@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Common.GameComponents
 {
-    internal class MultiplayerMessageListener : IDisposable
+    public class MultiplayerMessageListener : IDisposable
     {
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;

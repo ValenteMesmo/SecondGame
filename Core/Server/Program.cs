@@ -7,9 +7,7 @@ namespace Server
     {
         public static void Main(string[] args)
         {
-            var world = new World();
-
-           
+            var world = new ServerWorld();
 
             while (true)
             {
