@@ -53,9 +53,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AsyncAssert.cs" />
     <Compile Include="Common\SandboxTests.cs" />
     <Compile Include="Common\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UdpMessageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

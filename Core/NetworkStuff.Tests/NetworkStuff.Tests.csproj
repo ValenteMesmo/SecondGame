@@ -60,13 +60,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NetworkStuff\NetworkStuff.csproj">
-      <Project>{1cc21c8b-e4c5-4ca0-914b-f7f0cf0d656e}</Project>
-      <Name>NetworkStuff</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0e562e9c-75fc-43ef-a9b8-2a6ff19f584f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

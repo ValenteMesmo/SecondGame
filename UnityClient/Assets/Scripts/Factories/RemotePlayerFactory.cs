@@ -6,8 +6,8 @@ public class RemotePlayerFactory : MonoBehaviour
 {
     void Start()
     {
-        WorldComponent.Sandbox.GuestPosiitonUpdate.Subscribe(UpdateGuest);
-        WorldComponent.Sandbox.HostPosiitonUpdate.Subscribe(UpdateGuest);    
+        //WorldComponent.Sandbox.GuestPosiitonUpdate.Subscribe(UpdateGuest);
+        //WorldComponent.Sandbox.HostPosiitonUpdate.Subscribe(UpdateGuest);    
     }
         
     private readonly Dictionary<string, Vector2> positions =

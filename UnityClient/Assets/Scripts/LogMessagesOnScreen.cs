@@ -10,11 +10,7 @@ public class LogMessagesOnScreen : MonoBehaviour
     void Awake()
     {
         Application.logMessageReceived += Application_logMessageReceived;
-        Debug.Log("teste");
-        WorldComponent.Sandbox.OtherPlayerEnteredAsTheHost
-            
-            .LogEventCalls("Other Player Entered As Host");
-        WorldComponent.Sandbox.OtherPlayerEnteredAsTheGuest.LogEventCalls("Other Player Entered As Guest");
+        Debug.Log("teste");        
     }
 
     private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
