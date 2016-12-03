@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameComponents\ListenMessagesFromClient.cs" />
+    <Compile Include="Components\ListenMessagesFromClient.cs" />
+    <Compile Include="Components\SendMessagesToClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerWorld.cs" />

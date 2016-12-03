@@ -10,12 +10,10 @@ namespace Server.GameComponents
     {
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;
-        private readonly Dictionary<string, Collider> Colliders;
 
         public ListenMessagesFromClient(Sandbox sandbox, int port)
         {
             Sandbox = sandbox;
-            Colliders = new Dictionary<string, Collider>();
             Listener = new UdpMessageListener(port);
             Listener.Listen(MessageReceived);
         }

@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientWorld.cs" />
+    <Compile Include="Components\ListenServerMessages.cs" />
+    <Compile Include="Components\SendMessagesToServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
