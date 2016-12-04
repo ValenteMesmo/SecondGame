@@ -40,7 +40,7 @@
     <Compile Include="Components\CollisionChecker.cs" />
     <Compile Include="Components\Factories\GroundFactory.cs" />
     <Compile Include="Components\Factories\MonsterFactory.cs" />
-    <Compile Include="Components\Factories\PlayerFactory.cs" />
+    <Compile Include="Components\Factories\ClientPlayerFactory.cs" />
     <Compile Include="Components\Ground.cs" />
     <Compile Include="Components\MonsterComponents\Monster.cs" />
     <Compile Include="Components\Multiplayer\MultiplayerMessageSender.cs" />

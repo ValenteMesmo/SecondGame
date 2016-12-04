@@ -3,11 +3,11 @@
 
 namespace Common.GameComponents.Factories
 {
-    class PlayerFactory
+    internal class ClientPlayerFactory
     {
         public readonly Sandbox Sandbox;
 
-        public PlayerFactory(Sandbox sandbox)
+        public ClientPlayerFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
             Sandbox.PlayerAdded.Subscribe(CreatePlayer);

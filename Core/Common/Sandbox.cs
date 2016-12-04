@@ -1,5 +1,6 @@
 ﻿using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
+using NetworkStuff;
 
 namespace Common
 {
@@ -26,5 +27,7 @@ namespace Common
         public readonly Event<bool> LeftPressed = new Event<bool>();
         public readonly Event<bool> RightPressed = new Event<bool>();
         public readonly Event<bool> UpPressed = new Event<bool>();
+        public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
+        public readonly Event<Address> PlayerConnected = new Event<Address>();
     }
 }

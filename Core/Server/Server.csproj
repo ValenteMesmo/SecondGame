@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Factories\PlayerFactory.cs" />
+    <Compile Include="Components\Factories\PlayerPositionSetWhenMessageReceivedFromClient.cs" />
     <Compile Include="Components\ListenMessagesFromClient.cs" />
     <Compile Include="Components\SendMessagesToClient.cs" />
     <Compile Include="Program.cs" />

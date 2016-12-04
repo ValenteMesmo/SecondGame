@@ -15,7 +15,7 @@ namespace Common
             Disposables = new List<IDisposable>();
             Sandbox = new Sandbox();
             new CollisionChecker(Sandbox);
-            new PlayerFactory(Sandbox);
+            new ClientPlayerFactory(Sandbox);
             new GroundFactory(Sandbox);
             new MonsterFactory(Sandbox);
         }
