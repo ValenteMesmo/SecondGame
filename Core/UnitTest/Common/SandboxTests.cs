@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Client;
+using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest.Common
@@ -9,7 +10,8 @@ namespace UnitTest.Common
         [TestMethod]
         public void MyTestMethod()
         {
-            new Sandbox();
+            new ClientWorld();
+            
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Common.GameComponents.PlayerComponents
 {
-    class PlayerWalkInTheAir
+    public class PlayerWalkInTheAir
     {
         private readonly Sandbox Sandbox;
         private bool LeftIsPressed;

@@ -1,4 +1,5 @@
-﻿using Common.GameComponents.PlayerComponents;
+﻿using Client;
+using Common.GameComponents.PlayerComponents;
 
 
 namespace Common.GameComponents.Factories
@@ -10,7 +11,7 @@ namespace Common.GameComponents.Factories
         public ClientPlayerFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.PlayerAdded.Subscribe(CreatePlayer);
+            Sandbox.ClientEvents_PlayerAdded.Subscribe(CreatePlayer);
         }
 
         private void CreatePlayer(Position position)

@@ -12,10 +12,9 @@ namespace Common
 
         public World()
         {
-            Disposables = new List<IDisposable>();
             Sandbox = new Sandbox();
-            new CollisionChecker(Sandbox);
-            new ClientPlayerFactory(Sandbox);
+            Disposables = new List<IDisposable>();
+            new CollisionChecker(Sandbox);            
             new GroundFactory(Sandbox);
             new MonsterFactory(Sandbox);
         }

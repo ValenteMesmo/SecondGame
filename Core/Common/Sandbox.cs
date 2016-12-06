@@ -6,7 +6,6 @@ namespace Common
 {
     public class Sandbox
     {
-        public readonly Event<Position> PlayerAdded = new Event<Position>();
         public readonly Event<Player> PlayerUpdate = new Event<Player>();
         public readonly Event<Player> PlayerUpdateAfterCollisions = new Event<Player>();
         public readonly Event<Collider> ColliderCreated = new Event<Collider>();
@@ -26,8 +25,8 @@ namespace Common
         public readonly Event<Monster> MonsterCreated = new Event<Monster>();
         public readonly Event<bool> LeftPressed = new Event<bool>();
         public readonly Event<bool> RightPressed = new Event<bool>();
-        public readonly Event<bool> UpPressed = new Event<bool>();
-        public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
-        public readonly Event<Address> PlayerConnected = new Event<Address>();
+        public readonly Event<bool> UpPressed = new Event<bool>(); public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
+        public readonly Event<Address> ServerEvents_PlayerConnected = new Event<Address>();
+        public readonly Event<Position> ClientEvents_PlayerAdded = new Event<Position>();
     }
 }

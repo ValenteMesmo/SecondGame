@@ -63,9 +63,9 @@ namespace Server.GameComponents
 
         private void PlayerConnected(Address source)
         {
-            Sandbox.PlayerConnected.Publish(source);
+            Sandbox.ServerEvents_PlayerConnected.Publish(source);
             //usar o playerConnected no playerfactory... em vez do player added?
-            Sandbox.PlayerAdded.Publish(new Position(0,0));
+            Sandbox.ClientEvents_PlayerAdded.Publish(new Position(0,0));
             //Transformar sandbox em abstrato para ter umva versao client e outra server?
         }
 

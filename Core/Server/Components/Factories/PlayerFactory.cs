@@ -1,5 +1,5 @@
 ﻿using Common.GameComponents.PlayerComponents;
-
+using Server;
 
 namespace Common.GameComponents.Factories
 {
@@ -10,7 +10,7 @@ namespace Common.GameComponents.Factories
         public PlayerFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.PlayerAdded.Subscribe(CreatePlayer);
+            Sandbox.ClientEvents_PlayerAdded.Subscribe(CreatePlayer);
         }
 
         private void CreatePlayer(Position position)

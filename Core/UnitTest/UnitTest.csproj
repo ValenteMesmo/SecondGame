@@ -60,6 +60,10 @@
     <Compile Include="UdpMessageTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{fe4fc060-097c-4caa-9832-85d11e48a680}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{0e562e9c-75fc-43ef-a9b8-2a6ff19f584f}</Project>
       <Name>Common</Name>

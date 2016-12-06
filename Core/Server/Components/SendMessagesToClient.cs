@@ -7,36 +7,34 @@ using System.Collections.Generic;
 
 namespace Server.Components
 {
-    class SendMessagesToClient
+    public class SendMessagesToClient : IDisposable
     {//fazer o esquema de guardar mensagens para rodar na thread do unity aqui... centralizado
-        internal class ListenMessagesFromClient : IDisposable
+
+        private readonly UdpMessageSender Sender;
+        private readonly Sandbox Sandbox;
+        //private readonly Dictionary<string,.>
+
+        public SendMessagesToClient(Sandbox sandbox, int port)
         {
-            private readonly UdpMessageSender Sender;
-            private readonly Sandbox Sandbox;
-            private readonly Dictionary<string,>
+            Sandbox = sandbox;
+            Sender = new UdpMessageSender();
+            Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
+            Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
+        }
 
-            public ListenMessagesFromClient(Sandbox sandbox, int port)
-            {
-                Sandbox = sandbox;
-                Sender = new UdpMessageSender();
-                Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
-                Sandbox.PlayerConnected.Subscribe(PlayerConnected);
-            }
+        private void PlayerConnected(Address playerAddress)
+        {
 
-            private void PlayerConnected(Address playerAddress)
-            {
-                
-            }
+        }
 
-            private void OnPlayerUpdate(Player player)
-            {
-                Sender.Send();
-            }
+        private void OnPlayerUpdate(Player player)
+        {
+            //Sender.Send();
+        }
 
-            public void Dispose()
-            {
-                Sender.Dispose();
-            }
+        public void Dispose()
+        {
+            Sender.Dispose();
         }
     }
 }

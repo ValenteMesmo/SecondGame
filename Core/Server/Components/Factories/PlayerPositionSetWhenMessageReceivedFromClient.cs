@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server;
+using System;
 
 namespace Common.GameComponents.Factories
 {
@@ -11,7 +12,7 @@ namespace Common.GameComponents.Factories
         {
             Sandbox = sandbox;
             Collider = collider;
-
+                
             Sandbox.PositionReceivedFromClient.Subscribe(OnMessageReceived, Collider.Name);
         }
 
