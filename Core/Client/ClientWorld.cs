@@ -12,7 +12,7 @@ namespace Client
             //Disposables.Add(new MultiplayerMessageListener(Sandbox, 1337));
             new ClientPlayerFactory(Sandbox);
             Disposables.Add(new ListenMessagesFromServer(Sandbox, 1337));
-            Disposables.Add(new SendMessagesToServer(Sandbox, "192.168.0.3", 1337));
+            Disposables.Add(new SendMessagesToServer(Sandbox, "192.168.0.15", 1337));
         }
 
         protected override void Initialize()

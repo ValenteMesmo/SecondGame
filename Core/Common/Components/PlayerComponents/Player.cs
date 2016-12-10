@@ -12,11 +12,12 @@ namespace Common.GameComponents.PlayerComponents
 
         Sandbox Sandbox;
 
-        public Player(Sandbox sandbox, float x, float y)
+        public Player(Sandbox sandbox, float x, float y, string name = null)
         {
             Sandbox = sandbox;
             Body = new Collider(sandbox, x, y, 3, 6, GetType());
-
+            if (string.IsNullOrEmpty(name))
+                Body.Name = name;
             Sandbox.OnWorldUpdate.Subscribe(Update);
             Sandbox.CollisionFromBelow.Subscribe(OnCollisionFromBelow, Body.Name);
             Sandbox.OnWorldUpdateAfterCollisions.Subscribe(LateUpdate);

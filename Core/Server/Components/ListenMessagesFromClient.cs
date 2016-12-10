@@ -2,6 +2,7 @@
 using NetworkStuff;
 using NetworkStuff.Udp;
 using System;
+using System.Collections.Generic;
 
 namespace Server.Components
 {
@@ -21,8 +22,8 @@ namespace Server.Components
 
         private void MessageReceived(string message, Address source)
         {
-            if (message == "Connected")
-                PlayerConnected(source);
+            //if (message == "Connected")
+            //    PlayerConnected(source);
 
             if (message.StartsWith("pp;"))
                 PlayerInputReceived(message, source);
@@ -57,17 +58,24 @@ namespace Server.Components
             TempPosition.X = float.Parse(split[1]);
             TempPosition.Y = float.Parse(split[2]);
             var name = split[3];
+            
+            if(Names.Contains(name) == false)
+            {
+                Sandbox.ServerEvents_PlayerAdded.Publish(name);
+            }
 
             Sandbox.PositionReceivedFromClient.Publish(TempPosition, name);
         }
 
-        private void PlayerConnected(Address source)
-        {
-            Sandbox.ServerEvents_PlayerConnected.Publish(source);
-            //usar o playerConnected no playerfactory... em vez do player added?
-            Sandbox.ClientEvents_PlayerAdded.Publish(new Position(0,0));
-            //Transformar sandbox em abstrato para ter umva versao client e outra server?
-        }
+        private readonly List<string> Names = new List<string>();
+
+        //private void PlayerConnected(Address source)
+        //{
+        //    Sandbox.ServerEvents_PlayerConnected.Publish(source);
+        //    //usar o playerConnected no playerfactory... em vez do player added?
+        //    Sandbox.ClientEvents_PlayerAdded.Publish(new Position(0,0));
+        //    //Transformar sandbox em abstrato para ter umva versao client e outra server?
+        //}
 
         public void Dispose()
         {

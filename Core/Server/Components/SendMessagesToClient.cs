@@ -18,19 +18,14 @@ namespace Server.Components
         {
             Sandbox = sandbox;
             Sender = new UdpMessageSender();
-            Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
-            Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
+            //Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
+            //Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
         }
 
-        private void PlayerConnected(Address playerAddress)
-        {
-
-        }
-
-        private void OnPlayerUpdate(Player player)
-        {
-            //Sender.Send();
-        }
+        //private void OnPlayerUpdate(Player player)
+        //{
+        //    //Sender.Send();
+        //}
 
         public void Dispose()
         {

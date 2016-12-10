@@ -1,9 +1,6 @@
 ﻿using Common;
 using NetworkStuff.Udp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Common.GameComponents.PlayerComponents;
 
 namespace Client.Components

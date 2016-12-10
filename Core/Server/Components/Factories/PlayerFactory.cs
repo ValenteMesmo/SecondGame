@@ -1,4 +1,5 @@
-﻿using Common.GameComponents.PlayerComponents;
+﻿using System;
+using Common.GameComponents.PlayerComponents;
 using Server;
 
 namespace Common.GameComponents.Factories
@@ -10,12 +11,12 @@ namespace Common.GameComponents.Factories
         public PlayerFactory(Sandbox sandbox)
         {
             Sandbox = sandbox;
-            Sandbox.ClientEvents_PlayerAdded.Subscribe(CreatePlayer);
+            Sandbox.ServerEvents_PlayerAdded.Subscribe(CreatePlayer);
         }
 
-        private void CreatePlayer(Position position)
+        private void CreatePlayer(string name)
         {
-            var player = new Player(Sandbox, position.X, position.Y);
+            var player = new Player(Sandbox, 0, 0, name);
             new PlayerMoveBasedOnHorizontalSpeed(Sandbox);
             new PlayerJump(Sandbox);
             new PlayerGravityFall(Sandbox);
@@ -26,6 +27,11 @@ namespace Common.GameComponents.Factories
             //new PlayerWalk(Sandbox);
             //new PlayerWalkInTheAir(Sandbox);            
             new PlayerPositionSetWhenMessageReceivedFromClient(Sandbox, player.Body);
+            //Sandbox.PositionReceivedFromClient.Subscribe(pos =>
+            //{
+            //    player.Body.X = pos.X;
+            //    player.Body.Y = pos.Y;
+            //}, name);
         }
     }
 }
