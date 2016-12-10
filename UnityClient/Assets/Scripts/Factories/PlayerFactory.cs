@@ -8,7 +8,7 @@ public class PlayerFactory : MonoBehaviour
 
     void Start()
     {
-        WorldComponent.Sandbox.PlayerAdded.Subscribe(PlayerAdded);
+        WorldComponent.Sandbox.ClientEvents_PlayerAdded.Subscribe(PlayerAdded);
     }
 
     private void PlayerAdded(Position position)

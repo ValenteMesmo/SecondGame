@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Client.Components
 {
-    class ListenMessagesFromServer
+    class ListenMessagesFromServer : IDisposable
     {
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;

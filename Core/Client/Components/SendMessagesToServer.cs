@@ -8,14 +8,14 @@ using Common.GameComponents.PlayerComponents;
 
 namespace Client.Components
 {
-    class SendMessagesToServer
+    class SendMessagesToServer : IDisposable
     {
         private readonly UdpMessageSender Sender;
         private readonly Sandbox Sandbox;
         private readonly int Port;
         private readonly string Ip;
 
-        public SendMessagesToServer(Sandbox sandbox, int port, string ip)
+        public SendMessagesToServer(Sandbox sandbox, string ip, int port)
         {
             Ip = ip;
             Port = port;

@@ -3,7 +3,7 @@ using NetworkStuff;
 using NetworkStuff.Udp;
 using System;
 
-namespace Server.GameComponents
+namespace Server.Components
 {
     internal class ListenMessagesFromClient : IDisposable
     {

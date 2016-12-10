@@ -1,6 +1,5 @@
 ﻿using Common;
-using Common.GameComponents;
-using Server.GameComponents;
+using Server.Components;
 
 namespace Server
 {
@@ -9,6 +8,7 @@ namespace Server
         public ServerWorld()
         {            
             Disposables.Add(new ListenMessagesFromClient(Sandbox, 1337));
+            Disposables.Add(new SendMessagesToClient(Sandbox, 1337));
         }
     }
 }
