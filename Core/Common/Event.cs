@@ -41,9 +41,10 @@ namespace Common
                 var key = Callbacks.Keys.ElementAt(i);
                 if (key.StartsWith(partialKey) || key.StartsWith(":"))
                 {
-                    for (int j = 0; j < Callbacks[key].Count ; j++)
+                    for (int j = 0; j < Callbacks[key].Count; j++)
                     {
-                        Callbacks[key][j](arg);
+                        if (Callbacks[key][j] != null)
+                            Callbacks[key][j](arg);
                     }
                 }
             }

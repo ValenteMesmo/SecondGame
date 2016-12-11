@@ -1,6 +1,7 @@
-﻿using Client.Components;
+﻿using System;
+using Client.Components;
+using Client.Components.Factories;
 using Common;
-using Common.GameComponents;
 using Common.GameComponents.Factories;
 
 namespace Client
@@ -10,15 +11,21 @@ namespace Client
         public ClientWorld()
         {            
             new ClientPlayerFactory(Sandbox);
-            Disposables.Add(new ListenMessagesFromServer(Sandbox, 1337));
-            Disposables.Add(new SendMessagesToServer(Sandbox, "192.168.0.3", 1337));
-            //}
+            new OtherPlayersFactory(Sandbox);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            Sandbox.ClientEvents_PlayerAdded.Publish(new Position(4, 4));
+            Sandbox.ClientEvents_PlayerCreated.Subscribe(asdasdsa);
+            Sandbox.ClientEvents_PlayerCreating.Publish(new Position(4, 4));
+        }
+
+        private void asdasdsa(Collider obj)
+        {
+            Disposables.Add(new ListenMessagesFromServer(Sandbox, 1338, obj.Name));
+            Disposables.Add(new SendMessagesToServer(Sandbox, "192.168.0.3", 1337));
+            Sandbox.Log.Publish(obj.Name);
         }
     }
 }

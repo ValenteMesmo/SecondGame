@@ -17,8 +17,21 @@ namespace NetworkStuff.Udp
 
         public UdpMessageListener(int port)
         {
-            receiver = new UdpClient(port);
-            receiver.BeginReceive(DataReceived, receiver);
+            receiver = CreateReceiver(port);
+        }
+
+        private UdpClient CreateReceiver(int port)
+        {
+            //try
+            //{
+                var receiver = new UdpClient(port);
+                receiver.BeginReceive(DataReceived, receiver);
+                return receiver;
+            //}
+            //catch (SocketException)
+            //{
+            //    return CreateReceiver(++port);
+            //}
         }
 
         private void DataReceived(IAsyncResult asyncResult)

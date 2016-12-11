@@ -5,6 +5,7 @@ using Common.GameComponents.PlayerComponents;
 using NetworkStuff;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace Server.Components
 {
@@ -15,7 +16,7 @@ namespace Server.Components
         private readonly Sandbox Sandbox;
         private readonly List<Address> Addresses;
 
-        public SendMessagesToClient(Sandbox sandbox, int port)
+        public SendMessagesToClient(Sandbox sandbox)
         {
             Sandbox = sandbox;
             Sender = new UdpMessageSender();
@@ -26,24 +27,27 @@ namespace Server.Components
 
         private void OnPlayerUpdate(Player player)
         {
-            foreach (var address in Addresses)
-            {
+            for (int i = 0; i < Addresses.Count; i++)
+            {            
                 var msg = string.Format(
                     "pp;{0};{1};{2}",
-                    player.Body.X,
-                    player.Body.Y,
+                    player.Body.X.ToString(CultureInfo.InvariantCulture),
+                    player.Body.Y.ToString(CultureInfo.InvariantCulture),
                     player.Body.Name
                 );
-                Sender.Send(msg, address.Ip, address.Port);
+
+                //Console.WriteLine(msg);
+                Sender.Send(msg, Addresses[i].Ip, 1338);
+                //Sandbox.Log.Publish(Addresses[i].Ip +":"+ Addresses[i].Port);
             }
         }
 
         private void PlayerConnected(Address address)
         {
-            if (Addresses.Any(f => f.Ip == address.Ip) == false)
-            {
-                Addresses.Add(address);
-            }
+            if (Addresses.Any(f => f.Ip == address.Ip && address.Port == f.Port))
+                return;
+
+            Addresses.Add(address);
         }
 
         public void Dispose()

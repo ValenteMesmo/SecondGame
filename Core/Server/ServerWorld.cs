@@ -9,7 +9,7 @@ namespace Server
         public ServerWorld()
         {            
             Disposables.Add(new ListenMessagesFromClient(Sandbox, 1337));
-            Disposables.Add(new SendMessagesToClient(Sandbox, 1337));
+            Disposables.Add(new SendMessagesToClient(Sandbox));
         }
 
         protected override void Initialize()

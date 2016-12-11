@@ -26,14 +26,21 @@ namespace Common
             Y = y;
             Width = width;
             Height = height;
+
             if (name != null)
-                Name = name;
+            {
+                Name = name;                
+            }
             else
+            {
                 Name =
 #if DEBUG
                 parentType.Name +
 #endif
                 Guid.NewGuid().ToString();
+                //sandbox.Log.Publish("Collider criado com nome padrao: " + Name);
+
+            }
             Trigger = trigger;
             Parent = parentType;
             sandbox.ColliderCreated.Publish(this);

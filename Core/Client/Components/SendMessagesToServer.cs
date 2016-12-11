@@ -2,6 +2,7 @@
 using NetworkStuff.Udp;
 using System;
 using Common.GameComponents.PlayerComponents;
+using System.Globalization;
 
 namespace Client.Components
 {
@@ -25,12 +26,14 @@ namespace Client.Components
         {
             var msg = string.Format(
                 "pp;{0};{1};{2}",
-                player.Body.X,
-                player.Body.Y,
+                player.Body.X.ToString(CultureInfo.InvariantCulture),
+                player.Body.Y.ToString(CultureInfo.InvariantCulture),
                 player.Body.Name
             );
 
             Sender.Send(msg, Ip, Port);
+            //Sandbox.Log.Publish(msg);
+            //Sandbox.Log.Publish(Ip +":"+ Port);
         }
 
         public void Dispose()

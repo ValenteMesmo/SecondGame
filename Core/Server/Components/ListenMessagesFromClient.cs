@@ -3,6 +3,7 @@ using NetworkStuff;
 using NetworkStuff.Udp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Server.Components
 {
@@ -11,6 +12,7 @@ namespace Server.Components
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;
         private readonly Position TempPosition;
+        private readonly List<string> Names = new List<string>();
 
         public ListenMessagesFromClient(Sandbox sandbox, int port)
         {
@@ -24,7 +26,7 @@ namespace Server.Components
         {
             //if (message == "Connected")
             //    PlayerConnected(source);
-
+            //Sandbox.Log.Publish(message);
             if (message.StartsWith("pp;"))
                 PlayerInputReceived(message, source);
         }
@@ -55,11 +57,12 @@ namespace Server.Components
             //    }
 
             //}
-            TempPosition.X = float.Parse(split[1]);
-            TempPosition.Y = float.Parse(split[2]);
+            TempPosition.X = float.Parse(split[1], CultureInfo.InvariantCulture);
+            TempPosition.Y = float.Parse(split[2], CultureInfo.InvariantCulture);
+
             var name = split[3];
-            
-            if(Names.Contains(name) == false)
+
+            if (Names.Contains(name) == false)
             {
                 Sandbox.ServerEvents_PlayerAdded.Publish(name);
                 Sandbox.ServerEvents_PlayerConnected.Publish(source);
@@ -68,7 +71,6 @@ namespace Server.Components
             Sandbox.PositionReceivedFromClient.Publish(TempPosition, name);
         }
 
-        private readonly List<string> Names = new List<string>();
 
         //private void PlayerConnected(Address source)
         //{

@@ -11,6 +11,10 @@ public class LogMessagesOnScreen : MonoBehaviour
     {
         Application.logMessageReceived += Application_logMessageReceived;
         Debug.Log("Logger ready!");
+        //WorldComponent.Sandbox.OtherPlayerPositionChanged.Subscribe(pos => Debug.Log(pos.X));
+        //WorldComponent.Sandbox.ClinetEvents_OtherPlayerAdded.Subscribe(na => Debug.Log(na));
+        WorldComponent.Sandbox.Log.Subscribe(msg => {
+            Debug.Log(msg); });
     }
 
     private void Application_logMessageReceived(string condition, string stackTrace, LogType type)

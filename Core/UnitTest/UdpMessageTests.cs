@@ -59,5 +59,13 @@ namespace NetworkStuff.Tests
             writer2.Dispose();
             listener.Dispose();
         }
+
+        [TestMethod]
+        public void Should_use_other_port_if_current_is_unavailabe()
+        {
+            var sut = new Udp.UdpMessageListener(1337);
+            var sut2 = new Udp.UdpMessageListener(1337);
+            var sut3 = new Udp.UdpMessageListener(1337);
+        }
     }
 }

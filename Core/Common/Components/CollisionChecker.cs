@@ -31,6 +31,18 @@ namespace Common
             Collider a,
             Collider b)
         {
+            if (a == null)
+            {
+                Colliders.Remove(a);
+                return;
+            }
+
+            if (b == null)
+            {
+                Colliders.Remove(b);
+                return;
+            }
+
             var rightPoint_a = a.X + a.Width;
             var rightPoint_b = b.X + b.Width;
             var topPoint_a = a.Y + a.Height;

@@ -39,7 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientWorld.cs" />
-    <Compile Include="Components\ClientPlayerFactory.cs" />
+    <Compile Include="Components\Factories\ClientPlayerFactory.cs" />
+    <Compile Include="Components\Factories\OtherPlayersFactory.cs" />
     <Compile Include="Components\ListenMessagesFromServer.cs" />
     <Compile Include="Components\SendMessagesToServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
