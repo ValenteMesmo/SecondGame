@@ -10,7 +10,7 @@ public class LogMessagesOnScreen : MonoBehaviour
     void Awake()
     {
         Application.logMessageReceived += Application_logMessageReceived;
-        Debug.Log("teste");        
+        Debug.Log("Logger ready!");
     }
 
     private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
@@ -18,6 +18,7 @@ public class LogMessagesOnScreen : MonoBehaviour
         messages.Add(condition);
         if (messages.Count > 40)
             messages.RemoveAt(0);
+
         messageOnScreen = "";
         foreach (var item in messages)
         {

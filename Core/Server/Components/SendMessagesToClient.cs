@@ -4,6 +4,7 @@ using System;
 using Common.GameComponents.PlayerComponents;
 using NetworkStuff;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.Components
 {
@@ -12,20 +13,38 @@ namespace Server.Components
 
         private readonly UdpMessageSender Sender;
         private readonly Sandbox Sandbox;
-        //private readonly Dictionary<string,.>
+        private readonly List<Address> Addresses;
 
         public SendMessagesToClient(Sandbox sandbox, int port)
         {
             Sandbox = sandbox;
             Sender = new UdpMessageSender();
-            //Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
-            //Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
+            Addresses = new List<Address>();
+            Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
+            Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
         }
 
-        //private void OnPlayerUpdate(Player player)
-        //{
-        //    //Sender.Send();
-        //}
+        private void OnPlayerUpdate(Player player)
+        {
+            foreach (var address in Addresses)
+            {
+                var msg = string.Format(
+                    "pp;{0};{1};{2}",
+                    player.Body.X,
+                    player.Body.Y,
+                    player.Body.Name
+                );
+                Sender.Send(msg, address.Ip, address.Port);
+            }
+        }
+
+        private void PlayerConnected(Address address)
+        {
+            if (Addresses.Any(f => f.Ip == address.Ip) == false)
+            {
+                Addresses.Add(address);
+            }
+        }
 
         public void Dispose()
         {

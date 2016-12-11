@@ -62,6 +62,7 @@ namespace Server.Components
             if(Names.Contains(name) == false)
             {
                 Sandbox.ServerEvents_PlayerAdded.Publish(name);
+                Sandbox.ServerEvents_PlayerConnected.Publish(source);
             }
 
             Sandbox.PositionReceivedFromClient.Publish(TempPosition, name);

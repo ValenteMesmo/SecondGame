@@ -35,13 +35,17 @@ namespace Common
         public void Publish(T arg, string context = "")
         {
             var partialKey = context + ":";
-            var callbacksToExcecute = Callbacks
-                .Where(f => f.Key.StartsWith(partialKey) || f.Key.StartsWith(":"))
-                .SelectMany(f => f.Value).ToList();
 
-            foreach (var callback in callbacksToExcecute)
+            for (int i = 0; i < Callbacks.Keys.Count; i++)
             {
-                callback(arg);
+                var key = Callbacks.Keys.ElementAt(i);
+                if (key.StartsWith(partialKey) || key.StartsWith(":"))
+                {
+                    for (int j = 0; j < Callbacks[key].Count ; j++)
+                    {
+                        Callbacks[key][j](arg);
+                    }
+                }
             }
         }
 
@@ -82,13 +86,17 @@ namespace Common
         public void Publish(string context = "")
         {
             var partialKey = context + ":";
-            var callbacksToExcecute = Callbacks
-                .Where(f => f.Key.StartsWith(partialKey) || f.Key.StartsWith(":"))
-                .SelectMany(f => f.Value).ToList();
 
-            foreach (var callback in callbacksToExcecute)
+            for (int i = 0; i < Callbacks.Keys.Count; i++)
             {
-                callback();
+                var key = Callbacks.Keys.ElementAt(i);
+                if (key.StartsWith(partialKey) || key.StartsWith(":"))
+                {
+                    for (int j = 0; j < Callbacks[key].Count; j++)
+                    {
+                        Callbacks[key][j]();
+                    }
+                }
             }
         }
 

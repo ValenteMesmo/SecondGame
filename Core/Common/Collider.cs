@@ -13,21 +13,25 @@ namespace Common
         public Type Parent { get; }
 
         public Collider(
-            Sandbox sandbox, 
-            float x, 
-            float y, 
-            int width, 
-            int height, 
+            Sandbox sandbox,
+            float x,
+            float y,
+            int width,
+            int height,
             Type parentType,
+            string name = null,
             bool trigger = false)
         {
             X = x;
             Y = y;
             Width = width;
             Height = height;
-            Name =
+            if (name != null)
+                Name = name;
+            else
+                Name =
 #if DEBUG
-                parentType.Name + 
+                parentType.Name +
 #endif
                 Guid.NewGuid().ToString();
             Trigger = trigger;
