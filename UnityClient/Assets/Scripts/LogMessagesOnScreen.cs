@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class LogMessagesOnScreen : MonoBehaviour
 {
+#if UNITY_EDITOR
     string messageOnScreen = "";
     List<string> messages = new List<string>();
 
@@ -13,8 +14,10 @@ public class LogMessagesOnScreen : MonoBehaviour
         Debug.Log("Logger ready!");
         //WorldComponent.Sandbox.OtherPlayerPositionChanged.Subscribe(pos => Debug.Log(pos.X));
         //WorldComponent.Sandbox.ClinetEvents_OtherPlayerAdded.Subscribe(na => Debug.Log(na));
-        WorldComponent.Sandbox.Log.Subscribe(msg => {
-            Debug.Log(msg); });
+        WorldComponent.Sandbox.Log.Subscribe(msg =>
+        {
+            Debug.Log(msg);
+        });
     }
 
     private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
@@ -33,5 +36,6 @@ public class LogMessagesOnScreen : MonoBehaviour
     void OnGUI()
     {
         GUILayout.TextField(messageOnScreen);
-    }
+    } 
+#endif
 }

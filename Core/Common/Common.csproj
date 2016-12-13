@@ -57,7 +57,6 @@
     <Compile Include="Components\PlayerComponents\PlayerWarpTopOnBotLimit.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="Components\PlayerComponents\Player.cs" />
-    <Compile Include="Network\Address.cs" />
     <Compile Include="Network\IpDiscover.cs" />
     <Compile Include="Network\NetworkHelper.cs" />
     <Compile Include="Network\Udp\UdpMessageListener.cs" />

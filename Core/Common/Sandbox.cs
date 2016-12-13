@@ -1,7 +1,5 @@
-﻿using System;
-using Common.GameComponents.MonsterComponents;
+﻿using Common.GameComponents.MonsterComponents;
 using Common.GameComponents.PlayerComponents;
-using NetworkStuff;
 
 namespace Common
 {
@@ -29,7 +27,7 @@ namespace Common
         public readonly Event<bool> RightPressed = new Event<bool>();
         public readonly Event<bool> UpPressed = new Event<bool>();
         public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
-        public readonly Event<Address> ServerEvents_PlayerConnected = new Event<Address>();
+        public readonly Event<string> ServerEvents_PlayerConnected = new Event<string>();
         public readonly Event<Position> ClientEvents_PlayerCreating = new Event<Position>();
         public readonly Event<Collider> ClientEvents_PlayerCreated = new Event<Collider>();
         public readonly Event<string> ServerEvents_PlayerAdded = new Event<string>();

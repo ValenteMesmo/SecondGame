@@ -7,12 +7,12 @@ namespace NetworkStuff.Udp
 {
     public interface IListenToNetworkMessages : IDisposable
     {
-        void Listen(Action<string, Address> onMessageReceived);
+        void Listen(Action<string, string> onMessageReceived);
     }
 
     public class UdpMessageListener : IListenToNetworkMessages
     {
-        private Action<string, Address> OnMessageReceived = (msg, address) => { };
+        private Action<string, string> OnMessageReceived = (msg, address) => { };
         private readonly UdpClient receiver;
 
         public UdpMessageListener(int port)
@@ -51,9 +51,7 @@ namespace NetworkStuff.Udp
 
                 OnMessageReceived(
                     receivedText,
-                    new Address(
-                        receivedIpEndPoint.Address.ToString(),
-                        receivedIpEndPoint.Port));
+                        receivedIpEndPoint.Address.ToString());
                 try
                 {
                     udpClient.BeginReceive(DataReceived, asyncResult.AsyncState);
@@ -68,7 +66,7 @@ namespace NetworkStuff.Udp
             receiver.Close();
         }
 
-        public void Listen(Action<string, Address> onMessageReceived)
+        public void Listen(Action<string, string> onMessageReceived)
         {
             OnMessageReceived = onMessageReceived;
         }

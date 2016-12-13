@@ -10,17 +10,16 @@ using System.Globalization;
 namespace Server.Components
 {
     public class SendMessagesToClient : IDisposable
-    {//fazer o esquema de guardar mensagens para rodar na thread do unity aqui... centralizado
-
+    {
         private readonly UdpMessageSender Sender;
         private readonly Sandbox Sandbox;
-        private readonly List<Address> Addresses;
+        private readonly List<string> Addresses;
 
         public SendMessagesToClient(Sandbox sandbox)
         {
             Sandbox = sandbox;
             Sender = new UdpMessageSender();
-            Addresses = new List<Address>();
+            Addresses = new List<string>();
             Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdate);
             Sandbox.ServerEvents_PlayerConnected.Subscribe(PlayerConnected);
         }
@@ -37,14 +36,14 @@ namespace Server.Components
                 );
 
                 //Console.WriteLine(msg);
-                Sender.Send(msg, Addresses[i].Ip, 1338);
+                Sender.Send(msg, Addresses[i], 1338);
                 //Sandbox.Log.Publish(Addresses[i].Ip +":"+ Addresses[i].Port);
             }
         }
 
-        private void PlayerConnected(Address address)
+        private void PlayerConnected(string address)
         {
-            if (Addresses.Any(f => f.Ip == address.Ip && address.Port == f.Port))
+            if (Addresses.Any(f => f == address))
                 return;
 
             Addresses.Add(address);

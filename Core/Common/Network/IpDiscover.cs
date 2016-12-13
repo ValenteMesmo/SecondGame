@@ -44,13 +44,13 @@ namespace NetworkStuff.MessageHandlers.Common
             }
         }
 
-        private void OnMessageReceived(string message, Address sourceAddress)
+        private void OnMessageReceived(string message, string sourceAddress)
         {
-            if (sourceAddress.Ip != myIp && IpsFound.Contains(sourceAddress.Ip) == false)
+            if (sourceAddress != myIp && IpsFound.Contains(sourceAddress) == false)
             {
-                IpsFound.Add(sourceAddress.Ip);
-                OnNewIpDiscovered(sourceAddress.Ip);
-                sender.Send("Hello", sourceAddress.Ip, sourceAddress.Port);
+                IpsFound.Add(sourceAddress);
+                OnNewIpDiscovered(sourceAddress);
+                sender.Send("Hello", sourceAddress, port);
             }
         }
 

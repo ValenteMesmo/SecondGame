@@ -8,7 +8,7 @@ using System.Globalization;
 namespace Client.Components
 {
     class ListenMessagesFromServer : IDisposable
-    {
+    {//fazer o esquema de guardar mensagens para rodar na thread do unity aqui... centralizado
         private readonly UdpMessageListener Listener;
         private readonly Sandbox Sandbox;        
         private readonly Position TempPosition;
@@ -23,15 +23,29 @@ namespace Client.Components
             Listener.Listen(MessageReceived);
 
             PlayerName = playerName;
+            Sandbox.OnWorldUpdateAfterCollisions.Subscribe(WorldUpdate);
         }
 
-        private void MessageReceived(string message, Address source)
+        private readonly List<Action> RunOnUnityThread = new List<Action>();
+
+        private void WorldUpdate()
+        {
+            var excetutionList = RunOnUnityThread.ToArray();
+
+            for (int i = 0; i < excetutionList.Length; i++)
+            {
+                excetutionList[i]();
+                RunOnUnityThread.Remove(excetutionList[i]);
+            }            
+        }
+
+        private void MessageReceived(string message, string source)
         {
             if (message.StartsWith("pp;"))
                 PlayerPositionReceived(message, source);
         }
 
-        private void PlayerPositionReceived(string message, Address source)
+        private void PlayerPositionReceived(string message, string source)
         {
             var split = message.Split(';');
             TempPosition.X = float.Parse(split[1],CultureInfo.InvariantCulture);
@@ -47,10 +61,12 @@ namespace Client.Components
                 if (Names.Contains(name) == false)
                 {
                     Names.Add(name);
-                    Sandbox.ClinetEvents_OtherPlayerAdded.Publish(name);
+                    RunOnUnityThread.Add(() =>
+                    Sandbox.ClinetEvents_OtherPlayerAdded.Publish(name));
                 }
-
-                Sandbox.OtherPlayerPositionChanged.Publish(TempPosition, name); 
+                RunOnUnityThread.Add(()=> 
+                Sandbox.OtherPlayerPositionChanged.Publish(TempPosition, name));
+                Sandbox.Log.Publish("client received: " + source);
             }
         }
 

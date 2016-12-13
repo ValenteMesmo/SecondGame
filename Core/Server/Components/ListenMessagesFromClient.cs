@@ -1,5 +1,4 @@
 ﻿using Common;
-using NetworkStuff;
 using NetworkStuff.Udp;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace Server.Components
             TempPosition = new Position(0, 0);
         }
 
-        private void MessageReceived(string message, Address source)
+        private void MessageReceived(string message, string source)
         {
             //if (message == "Connected")
             //    PlayerConnected(source);
@@ -31,7 +30,7 @@ namespace Server.Components
                 PlayerInputReceived(message, source);
         }
 
-        private void PlayerInputReceived(string message, Address source)
+        private void PlayerInputReceived(string message, string source)
         {
             var split = message.Split(';');
             //for (int i = 1; i < split.Length; i++)
@@ -64,13 +63,14 @@ namespace Server.Components
 
             if (Names.Contains(name) == false)
             {
+                Names.Add(name);
                 Sandbox.ServerEvents_PlayerAdded.Publish(name);
                 Sandbox.ServerEvents_PlayerConnected.Publish(source);
             }
 
             Sandbox.PositionReceivedFromClient.Publish(TempPosition, name);
-        }
-
+            Sandbox.Log.Publish("server received: " + source);
+        }        
 
         //private void PlayerConnected(Address source)
         //{
