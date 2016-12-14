@@ -19,7 +19,7 @@ namespace Server
             while (true)
             {
                 world.Update();
-                Thread.Sleep(1);
+                Thread.Sleep(60);
             }
         }
 
