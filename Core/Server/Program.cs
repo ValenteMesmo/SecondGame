@@ -19,13 +19,12 @@ namespace Server
             while (true)
             {
                 world.Update();
-                Thread.Sleep(60);
             }
         }
 
         private static void playerUpdate(Player obj)
         {
-            //Console.WriteLine(obj.Body.X + "," + obj.Body.Y);
+            Console.WriteLine(obj.Body.X + "," + obj.Body.Y);
         }
     }
 }

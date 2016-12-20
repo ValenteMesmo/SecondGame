@@ -17,11 +17,11 @@ namespace Client
         protected override void Initialize()
         {
             base.Initialize();
-            Sandbox.ClientEvents_PlayerCreated.Subscribe(asdasdsa);
+            Sandbox.ClientEvents_PlayerCreated.Subscribe(playerCreated);
             Sandbox.ClientEvents_PlayerCreating.Publish(new Position(4, 4));
         }
 
-        private void asdasdsa(Collider obj)
+        private void playerCreated(Collider obj)
         {
             Disposables.Add(new ListenMessagesFromServer(Sandbox, 1338, obj.Name));
             Disposables.Add(new SendMessagesToServer(Sandbox, "192.168.0.3", 1337));

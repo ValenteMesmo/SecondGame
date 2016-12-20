@@ -18,6 +18,7 @@ internal class WorldComponent : MonoBehaviour
                 singleton.name = "(singleton) world";
                 Instance.Reference = new ClientWorld();
             }
+
             return Instance.Reference.Sandbox;
         }
     }

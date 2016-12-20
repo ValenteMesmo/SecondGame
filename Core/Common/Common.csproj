@@ -55,6 +55,7 @@
     <Compile Include="Components\PlayerComponents\PlayerWarpLeftOnRightLimit.cs" />
     <Compile Include="Components\PlayerComponents\PlayerWarpRightOnLeftLimit.cs" />
     <Compile Include="Components\PlayerComponents\PlayerWarpTopOnBotLimit.cs" />
+    <Compile Include="Helpers\ThreadHelper.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="Components\PlayerComponents\Player.cs" />
     <Compile Include="Network\IpDiscover.cs" />
