@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        WorldComponent.Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdated);        
+        WorldComponent.Sandbox.PlayerUpdateAfterCollisions.Subscribe(OnPlayerUpdated);
     }
 
     BoxCollider2D colliderJustToVisualize;
@@ -17,13 +17,13 @@ public class PlayerScript : MonoBehaviour
     {
         transform.position =
             new Vector2(
-               player.Body.X
-                ,
+               player.Body.X,
                player.Body.Y);
 
         if (colliderJustToVisualize == null)
         {
-            WorldComponent.Sandbox.CollisionFromTheLeft.Subscribe(collider => {
+            WorldComponent.Sandbox.CollisionFromTheLeft.Subscribe(collider =>
+            {
             }, player.Body.Name);
 
             colliderJustToVisualize = gameObject.AddComponent<BoxCollider2D>();

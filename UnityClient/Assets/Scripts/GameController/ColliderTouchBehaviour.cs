@@ -34,7 +34,11 @@ public class ColliderTouchBehaviour : MonoBehaviour
     private void inputs_OnTouch(object sender, PointEventArgs e)
     {
         if (e.Transform.gameObject == gameObject)
+        {
+            WorldComponent.Sandbox.Log.Publish("touched " + e.Transform.gameObject.name);
+
             OnStart(e);
+        }
     }
 
     private void inputs_OnTouchStay(object sender, PointEventArgs e)
@@ -42,7 +46,6 @@ public class ColliderTouchBehaviour : MonoBehaviour
         if (e.Transform.gameObject == gameObject)
             OnStay(e);
     }
-
 
     private class DetectsTouchOnAnyCollidersInScene : MonoBehaviour
     {

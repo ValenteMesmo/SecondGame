@@ -10,16 +10,17 @@ namespace Common.GameComponents.PlayerComponents
         public const float VELOCITY = 0.02f;
         public const float MAX_SPEED = 0.6f;
 
-        public PlayerWalk(Sandbox sandbox)
+        public PlayerWalk(Sandbox sandbox, string name)
         {
             Sandbox = sandbox;
-            Sandbox.LeftPressed.Subscribe(value => LeftIsPressed = value);
-            Sandbox.RightPressed.Subscribe(value => RightIsPressed = value);
-            Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
+            Sandbox.LeftPressed.Subscribe(value => LeftIsPressed = value, name);
+            Sandbox.RightPressed.Subscribe(value => RightIsPressed = value, name);
+            Sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate, name);            
         }
 
         public void OnPlayerUpdate(Player player)
         {
+            //Sandbox.Log.Publish("opa " + LeftIsPressed + " " + RightIsPressed);
             if (player.Grounded)
             {
                 if (LeftIsPressed)

@@ -4,9 +4,9 @@ namespace Common.GameComponents.PlayerComponents
 {
     public class PlayerWarpTopOnBotLimit
     {
-        public PlayerWarpTopOnBotLimit(Sandbox sandbox)
+        public PlayerWarpTopOnBotLimit(Sandbox sandbox, string name)
         {
-            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
+            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate, name);
         }
 
         private void OnPlayerUpdate(Player obj)

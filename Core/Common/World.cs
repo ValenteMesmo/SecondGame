@@ -48,7 +48,9 @@ namespace Common
             }
 
             double alpha = accumulator / deltaTime;
-            //call render
+            //State state = currentState * alpha + previousState * (1.0 - alpha);
+
+            //render(state);
         }
 
         public void Dispose()

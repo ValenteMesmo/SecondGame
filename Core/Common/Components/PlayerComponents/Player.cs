@@ -29,12 +29,12 @@ namespace Common.GameComponents.PlayerComponents
 
         private void LateUpdate()
         {
-            Sandbox.PlayerUpdateAfterCollisions.Publish(this);
+            Sandbox.PlayerUpdateAfterCollisions.Publish(this, Body.Name);
         }
 
         private void Update()
         {
-            Sandbox.PlayerUpdate.Publish(this);
+            Sandbox.PlayerUpdate.Publish(this, Body.Name);
             Grounded = false;
         }
     }

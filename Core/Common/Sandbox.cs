@@ -26,12 +26,24 @@ namespace Common
         public readonly Event<bool> LeftPressed = new Event<bool>();
         public readonly Event<bool> RightPressed = new Event<bool>();
         public readonly Event<bool> UpPressed = new Event<bool>();
-        public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
+        //public readonly Event<Position> PositionReceivedFromClient = new Event<Position>();
         public readonly Event<string> ServerEvents_PlayerConnected = new Event<string>();
         public readonly Event<Position> ClientEvents_PlayerCreating = new Event<Position>();
-        public readonly Event<Collider> ClientEvents_PlayerCreated = new Event<Collider>();
+        //public readonly Event<Collider> ClientEvents_PlayerCreated = new Event<Collider>();
         public readonly Event<string> ServerEvents_PlayerAdded = new Event<string>();
         public readonly Event<string> ClinetEvents_OtherPlayerAdded = new Event<string>();
         public readonly Event<Position> OtherPlayerPositionChanged = new Event<Position>();
+        //public readonly Event<PlayerInputEnum> InputReceivedFromClient = new Event<PlayerInputEnum>();
     }
+
+    //public enum PlayerInputEnum
+    //{
+    //    Up,
+    //    Down,
+    //    Left,
+    //    Right,
+    //    Jump,
+    //    Attack,
+    //    Defend
+    //}
 }

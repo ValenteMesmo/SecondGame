@@ -4,9 +4,9 @@ namespace Common.GameComponents.PlayerComponents
 {
     public class PlayerWarpLeftOnRightLimit
     {
-        public PlayerWarpLeftOnRightLimit(Sandbox sandbox)
+        public PlayerWarpLeftOnRightLimit(Sandbox sandbox, string name)
         {
-            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
+            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate, name);
         }
 
         private void OnPlayerUpdate(Player obj)

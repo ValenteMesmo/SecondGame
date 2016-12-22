@@ -1,4 +1,5 @@
 ﻿using Client;
+using Client.Components;
 using Common.GameComponents.PlayerComponents;
 
 
@@ -17,16 +18,20 @@ namespace Common.GameComponents.Factories
         private void CreatePlayer(Position position)
         {
             var player = new Player(Sandbox, position.X, position.Y);
-            new PlayerMoveBasedOnHorizontalSpeed(Sandbox);
-            new PlayerJump(Sandbox);
-            new PlayerGravityFall(Sandbox);
+            Sandbox.Log.Publish("new player  " + player.Body.Name);
+            new PlayerMoveBasedOnHorizontalSpeed(Sandbox,player.Body.Name);
+            new PlayerJump(Sandbox, player.Body.Name);
+            new PlayerGravityFall(Sandbox, player.Body.Name);
             new PlayerCollisionWithFloorHandler(Sandbox, player.Body);
-            new PlayerWarpTopOnBotLimit(Sandbox);
-            new PlayerWarpLeftOnRightLimit(Sandbox);
-            new PlayerWarpRightOnLeftLimit(Sandbox);
-            new PlayerWalk(Sandbox);
-            new PlayerWalkInTheAir(Sandbox);
-            Sandbox.ClientEvents_PlayerCreated.Publish(player.Body);
+            new PlayerWarpTopOnBotLimit(Sandbox, player.Body.Name);
+            new PlayerWarpLeftOnRightLimit(Sandbox, player.Body.Name);
+            new PlayerWarpRightOnLeftLimit(Sandbox, player.Body.Name);
+            new PlayerWalk(Sandbox, player.Body.Name);
+            new PlayerWalkInTheAir(Sandbox, player.Body.Name);
+            ////todo: dispose
+            //new ListenMessagesFromServer(Sandbox, 1338, player.Body.Name);
+            ////todo: dispose
+            //new SendMessagesToServer(Sandbox, "192.168.0.3", 1337);
         }
     }
 }

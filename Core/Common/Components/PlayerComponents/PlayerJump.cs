@@ -7,10 +7,10 @@ namespace Common.GameComponents.PlayerComponents
         public bool JumpPressed;
         public const float VELOCITY = 1.0f;
 
-        public PlayerJump(Sandbox sandbox)
+        public PlayerJump(Sandbox sandbox, string name)
         {
-            sandbox.UpPressed.Subscribe(value => JumpPressed = value);
-            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
+            sandbox.UpPressed.Subscribe(value => JumpPressed = value, name);
+            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate, name);
         }
 
         private void OnPlayerUpdate(Player player)

@@ -17,16 +17,16 @@ namespace Common.GameComponents.Factories
         private void CreatePlayer(string name)
         {
             var player = new Player(Sandbox, 0, 0, name);
-            //new PlayerMoveBasedOnHorizontalSpeed(Sandbox);
-            //new PlayerJump(Sandbox);
-            //new PlayerGravityFall(Sandbox);
-            //new PlayerCollisionWithFloorHandler(Sandbox, player.Body);
-            //new PlayerWarpTopOnBotLimit(Sandbox);
-            //new PlayerWarpLeftOnRightLimit(Sandbox);
-            //new PlayerWarpRightOnLeftLimit(Sandbox);
-            //new PlayerWalk(Sandbox);
-            //new PlayerWalkInTheAir(Sandbox);            
-            new PlayerPositionSetWhenMessageReceivedFromClient(Sandbox, player.Body);
+            new PlayerMoveBasedOnHorizontalSpeed(Sandbox, player.Body.Name);
+            new PlayerJump(Sandbox, player.Body.Name);
+            new PlayerGravityFall(Sandbox, player.Body.Name);
+            new PlayerCollisionWithFloorHandler(Sandbox, player.Body);
+            new PlayerWarpTopOnBotLimit(Sandbox, player.Body.Name);
+            new PlayerWarpLeftOnRightLimit(Sandbox, player.Body.Name);
+            new PlayerWarpRightOnLeftLimit(Sandbox, player.Body.Name);
+            new PlayerWalk(Sandbox, player.Body.Name);
+            new PlayerWalkInTheAir(Sandbox, player.Body.Name);            
+            //new PlayerPositionSetWhenMessageReceivedFromClient(Sandbox, player.Body);
             //Sandbox.PositionReceivedFromClient.Subscribe(pos =>
             //{
             //    player.Body.X = pos.X;

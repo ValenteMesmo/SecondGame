@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public class LogMessagesOnScreen : MonoBehaviour
 {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
     string messageOnScreen = "";
     List<string> messages = new List<string>();
 
     void Awake()
     {
         Application.logMessageReceived += Application_logMessageReceived;
-        Debug.Log("Logger ready!");
         //WorldComponent.Sandbox.OtherPlayerPositionChanged.Subscribe(pos => Debug.Log(pos.X));
         //WorldComponent.Sandbox.ClinetEvents_OtherPlayerAdded.Subscribe(na => Debug.Log(na));
         WorldComponent.Sandbox.Log.Subscribe(msg =>
@@ -37,5 +36,5 @@ public class LogMessagesOnScreen : MonoBehaviour
     {
         GUILayout.TextField(messageOnScreen);
     } 
-#endif
+//#endif
 }

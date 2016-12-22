@@ -7,9 +7,9 @@ namespace Common.GameComponents.PlayerComponents
         public const float VELOCITY = 0.04f;
         public const float MAX_SPEED = 2.0f;
 
-        public PlayerGravityFall(Sandbox sandbox)
+        public PlayerGravityFall(Sandbox sandbox, string name)
         {
-            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate);
+            sandbox.PlayerUpdate.Subscribe(OnPlayerUpdate, name);
         }
 
         private void OnPlayerUpdate(Player player)
